@@ -1,0 +1,370 @@
+global OFFSET_X = 17;
+global OFFSET_Y = 17;
+global MAP_SIZE_X = 35;
+global MAP_SIZE_Y = 35; 
+global combo_dict = [:];
+
+// from : [x,y] / to : [x,y]
+// return number
+function manhattan_distance(from, to) {
+	return abs(from[0] - to[0]) + abs(from[1] - to[1]);
+}
+
+// from : [x,y] / to : [x,y]
+// return boolean
+function are_aligned(from, to) {
+	return (from[0] == to[0]) or (from[1] == to[1]);
+}
+
+// from : [x,y] / to : [x,y]
+// return boolean
+function are_diagonaled(from, to) {
+	return abs(from[0] - to[0]) == abs(from[1] - to[1]);
+}
+
+// weapon : id / from : [x,y] / to : [x,y]
+// return boolean
+// only calculate distance, don't take obstacles into account
+function can_weapon_touch_from_to(weapon, from, to) {
+	var dist = manhattan_distance(from, to);
+	if (weapon == WEAPON_PISTOL) {
+		return dist <= 7 and dist >= 1;
+	} else if (weapon == WEAPON_MACHINE_GUN) {
+		return dist <= 6 and dist >= 1 and are_aligned(from, to);
+	} else  if (weapon == WEAPON_NEUTRINO) {
+		return dist <= 6 and dist >= 2 and are_diagonaled(from, to);
+	} else if (weapon == WEAPON_SHOTGUN) {
+		return dist <= 5 and dist >= 1 and are_aligned(from, to);
+	} else if (weapon == WEAPON_MAGNUM) {
+		return dist <= 8 and dist >= 1;
+	} else if (weapon == WEAPON_BROADSWORD) {
+		return dist == 1;
+	} else if (weapon == WEAPON_LASER) {
+		return dist <= 9 and dist >= 2 and are_aligned(from, to);
+	} else if (weapon == WEAPON_DOUBLE_GUN) {
+		return dist <= 7 and dist >= 2;
+	}
+	return false;
+}
+
+// chip : id / from : [x,y] / to : [x,y]
+// return boolean
+// only calculate distance, don't take obstacles into account
+function can_chip_touch_from_to(chip, from, to) {
+	var dist = manhattan_distance(from, to);
+	if (chip == CHIP_SHOCK) {
+		return dist <= 6;
+	} else if (chip == CHIP_PEBBLE) {
+		return dist <= 5;
+	} else if (chip == CHIP_ICE) {
+		return dist <= 8;
+	} else if (chip == CHIP_ROCK) {
+		return dist <= 6 and dist >= 2;
+	} else if (chip == CHIP_SPARK) {
+		return dist <= 10;
+	} else if (chip == CHIP_FLASH) {
+		return dist <= 10 and dist >= 1 and are_aligned(from, to);
+	} else if (chip == CHIP_FLAME) {
+		return dist <= 7 and dist >= 2;
+	} else if (chip == CHIP_VENOM) {
+		return dist <= 10 and dist >= 1;
+	}
+	return false;
+}
+
+// weapons : [id1, id2 ...] / chips : [id1, id2 ...] / maxSize : number (size of the filter, 10 -> filter from -10 to 10)
+// return array of array (x,y) of array of ids (weapons and chips which can touch)
+// [y][x][[weapon1, weapon2 ...][chip1, chip2 ...]]
+// for each chip and weapon, add them to the cell if they can touch
+function create_filter(weapons, chips, maxSize) {
+	var filter = [];
+	for (var y=-maxSize; y<=maxSize; y++) {
+		var line_filter = [];
+		for (var x=-maxSize; x<=maxSize; x++) {
+			var canTouch = [[], []];
+			for (var weapon in weapons) {
+				if (can_weapon_touch_from_to(weapon, [0,0], [x,y])) {
+					push(canTouch[0], weapon);
+				}
+			}
+			for (var chip in chips) {
+				if (can_chip_touch_from_to(chip, [0,0], [x,y])) {
+					push(canTouch[1], chip);
+				}
+			}
+            push(line_filter, canTouch);
+		}
+		push(filter, line_filter);
+	}
+	return filter;
+}
+
+// weapon : id
+// return array of number (mean, min, max) or [0,0,0]
+function get_weapon_damage(weapon) {
+    // return [ceil(mean), min, max]
+    if (weapon == WEAPON_PISTOL) {
+		return [18, 15, 20];
+	} else if (weapon == WEAPON_MACHINE_GUN) {
+		return [38, 30, 45];
+	} else  if (weapon == WEAPON_NEUTRINO) {
+		return [28, 25, 30];
+	} else if (weapon == WEAPON_SHOTGUN) {
+		return [38, 33, 43];
+	} else if (weapon == WEAPON_MAGNUM) {
+		return [33, 25, 40];
+	} else if (weapon == WEAPON_BROADSWORD) {
+		return [40, 39, 41];
+	} else if (weapon == WEAPON_LASER) {
+		return [51, 43, 59];
+	} else if (weapon == WEAPON_DOUBLE_GUN) {
+		return [22, 18, 25];
+	}
+    return [0,0,0];
+}
+
+// chip : id
+// return array of number (mean, min, max) or [0,0,0]
+function get_chip_damage(chip) {
+    // return [ceil(mean), min, max]
+	if (chip == CHIP_SHOCK) {
+		return [8, 7, 9];
+	} else if (chip == CHIP_PEBBLE) {
+		return [17, 2, 34];
+	} else if (chip == CHIP_ICE) {
+		return [18, 17, 19];
+	} else if (chip == CHIP_ROCK) {
+		return [36, 35, 36];
+	} else if (chip == CHIP_SPARK) {
+		return [12, 8, 16];
+	} else if (chip == CHIP_FLASH) {
+		return [34, 32, 35];
+	} else if (chip == CHIP_FLAME) {
+		return [26, 25, 27];
+	} else if (chip == CHIP_VENOM) {
+		return [0,0,0];  // comment le coder ? Cumul ? Un seul tour ?
+	}
+	return [0,0,0];
+}
+
+// arr : array / elem : ?
+// return array with elem inserted
+// only compare arr[x][0] and elem[0], insert if arr[x][0] < elem[0]
+function insert_sorted_for_combo(arr, elem) {
+	// insertion sorted = O(n²) (slow)
+	for (var i=0; i < count(arr); i++) {
+		if (arr[i][0] < elem[0]) {
+			insert(arr, elem, i);
+			return;
+		}
+	}
+	insert(arr, elem, count(arr));
+}
+
+// weapons : array of ids / chips : array of ids / tp : number
+// return number (max damage)
+// use a greedy unbounded algorithm, for mean damages only (suboptimal, fast)
+// use a global combo_dict [:], to save the combo already calculated
+function best_combo(weapons, chips, tp) {
+    // check if combo already registered
+    var key = string([weapons, chips]);
+    if (mapContainsKey(combo_dict, key)) {
+        return mapGet(combo_dict, key);
+    }
+
+	var damages = 0;
+	var remaining_tp = tp;
+	var calc_damage_cost = [];
+	for (var weapon in weapons) {
+		var mean_damage = get_weapon_damage(weapon)[0];
+		var cost = getWeaponCost(weapon);
+		if (cost <= tp) {
+			var ratio = mean_damage/cost;
+			insert_sorted_for_combo(calc_damage_cost, [ratio, mean_damage, cost]);
+		}
+	}
+	for (var chip in chips) {
+		var mean_damage = get_chip_damage(chip)[0];
+		var cost = getChipCost(chip);
+		if (cost <= tp) {
+			var ratio = mean_damage/cost;
+			insert_sorted_for_combo(calc_damage_cost, [ratio, mean_damage, cost]);
+		}
+	}
+	var index = 0;
+	while (remaining_tp > 0 and index < count(calc_damage_cost)) {
+		if (calc_damage_cost[0][2] > remaining_tp) {
+			index++;
+		} else {
+			damages += calc_damage_cost[0][1];
+			remaining_tp -= calc_damage_cost[0][2];
+		}
+	}
+    mapPut(combo_dict, key, damages);
+	return damages;
+}
+
+// return array of array [x,y]
+// map[x][y] = 0 if no obstacle, 1 if obstacle
+function create_obstacle_map() {
+    var actual_map = [];
+    for (var y=0; y < MAP_SIZE_Y; y++) {
+        var line_map = [];
+        fill(line_map, 0, MAP_SIZE_X);
+        push(actual_map, line_map);
+    }
+
+    for (var obs in getObstacles()) {
+        actual_map[getCellY(obs)][getCellX(obs)] = 1;
+    }
+
+    return actual_map;
+}
+
+// filter : filter_map / center : [x,y] / obstacle_map / weapons : array(ids) / chips : array(ids) / tp : number
+// return array of array of number (x,y) (damages)
+// use the filter to calculate semi-accurate damages if no obstacle and los ok
+// then extends the border, dividing the damage by 2 at each cell of distance
+// cost in OPS : 200-300k 
+function filter_to_map(filter, center, obstacle_map, weapons, chips, tp) {
+    var actual_map = [];
+    var filter_map = [];
+    for (var y=0; y < MAP_SIZE_Y; y++) {
+        var line_map1 = [];
+        var line_map2 = [];
+        fill(line_map1, 0, MAP_SIZE_X);
+        fill(line_map2, 0, MAP_SIZE_X);
+        push(actual_map, line_map1);
+        push(filter_map line_map2);
+    }
+
+    var needLos = [:];
+    for (var w in weapons) {
+        if (weaponNeedLos(w)) {
+            mapPut(needLos, w, true);
+        } else {
+            mapPut(needLos, w, false);
+        }
+    }
+    for (var c in chips) {
+        if (chipNeedLos(c)) {
+            mapPut(needLos, c, true);
+        } else {
+            mapPut(needLos, c, false);
+        }
+    }
+
+    var center_x = center[0] + OFFSET_X;
+    var center_y = center[1] + OFFSET_Y;
+    var cell_center = getCellFromXY(center[0], center[1]);
+
+    var size_x_filter = count(filter[0]);
+    var size_y_filter = count(filter);
+    var half_size_x_filter = round(size_x_filter/2);
+    var half_size_y_filter = round(size_y_filter/2);
+
+    // calculate the best combo on each cell corresponding to the filter
+    for (var y=0; y < size_y_filter; y++) {
+        for (var x=0; x < size_x_filter; x++) {
+            var real_x = x-half_size_x_filter+center_x;
+            var real_y = y-half_size_y_filter+center_y;
+            if (real_x < 0 or real_y < 0 or real_x >= MAP_SIZE_X or real_y >= MAP_SIZE_Y or obstacle_map[real_y][real_x] == 1) {
+                continue;
+            }
+            var actual_cell = getCellFromXY(real_x - OFFSET_X, real_y - OFFSET_Y);
+
+            var list_weapons_chips = filter[y][x];
+            // recalculate all weapons and chips that can actually reach
+            var new_list_weapons_chips = [[], []];
+            var los = lineOfSight(cell_center, actual_cell)
+            for (var weapon in list_weapons_chips[0]) {
+                if (!mapGet(needLos, weapon) or los) {
+                    push(new_list_weapons_chips[0], weapon);
+                }
+            }
+            for (var chip in list_weapons_chips[1]) {
+                if (!mapGet(needLos, chip) or los) {
+                    push(new_list_weapons_chips[1], chip);
+                }
+            }
+
+            var damages = best_combo(new_list_weapons_chips[0], new_list_weapons_chips[1], tp);
+            filter_map[real_y][real_x] = damages;
+        }
+    }
+
+    // starting on the center, visit all cells and divide by 2 (arbitrary) the max of all surrounding
+    var to_visit = [[center_x, center_y]];
+    var index = 0;
+    while (index < count(to_visit)) {
+        var x = to_visit[index][0];
+        var y = to_visit[index][1];
+        index++;
+        if (x < 0 or y < 0 or x >= MAP_SIZE_X or y >= MAP_SIZE_Y or obstacle_map[y][x] == 1) {
+            continue;
+        }
+        var damages = max(actual_map[y][x], filter_map[y][x]);
+        actual_map[y][x] = damages;
+        damages /= 2;
+        for (var xy in [[-1,0], [1,0], [0,-1], [0,1]]) {
+            var nx = x+xy[0];
+            var ny = y+xy[1];
+            if (nx < 0 or ny < 0 or nx >= MAP_SIZE_X or ny >= MAP_SIZE_Y or obstacle_map[ny][nx] == 1) {
+                continue;
+            }
+            if (damages > actual_map[ny][nx]) {
+                actual_map[ny][nx] = damages;
+                push(to_visit, [nx,ny]);
+            }
+        }
+    }
+
+    return actual_map;
+}
+
+// from: [x,y] / to: [x,y]
+// return number (optimal damage if we use all weapons, with current TP)
+function calculate_optimal_damage(from, to) {
+	var los = lineOfSight(getCellFromXY(from[0], from[1]), getCellFromXY(to[0], to[1]));
+	var x_diff = to[0]-from[0];
+	var y_diff = to[1]-from[1];
+	var list_weapons_chips = filter_damage[y_diff+max_size_filter][x_diff+max_size_filter];
+	var new_list_weapons_chips = [[], []];
+	for (var weapon in new_list_weapons_chips[0]) {
+        if (los or !weaponNeedLos(weapon)) {
+            push(new_list_weapons_chips[0], weapon);
+        }
+    }
+    for (var chip in new_list_weapons_chips[1]) {
+        if (los or !chipNeedLos(chip)) {
+            push(new_list_weapons_chips[1], chip);
+        }
+    }
+    return best_combo(new_list_weapons_chips[0], new_list_weapons_chips[1], getTP());
+}
+
+
+
+// TESTS 
+
+var enemy = getNearestEnemy();
+var cell_enemy = getCell(enemy);
+var maxSize = 10;
+var filter_danger = create_filter(getWeapons(enemy), getChips(enemy), maxSize);
+debug(getOperations());
+var filter_damage = create_filter(getWeapons(), getChips(), maxSize);
+
+debug(getOperations());
+var obstacle_map = create_obstacle_map();
+
+debug(getOperations());
+
+var danger_map = filter_to_map(filter_danger, [getCellX(cell_enemy), getCellY(cell_enemy)], obstacle_map, getWeapons(enemy), getChips(enemy), getTotalTP(enemy));
+
+debug(getOperations());
+
+var damage_map = filter_to_map(filter_damage, [getCellX(getCell()), getCellY(getCell())], obstacle_map, getWeapons(), getChips(), getTotalTP());
+
+debug(getOperations());
+
+debug(length(jsonEncode(filter_danger)));

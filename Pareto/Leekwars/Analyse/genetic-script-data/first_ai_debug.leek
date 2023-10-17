@@ -1,0 +1,1097 @@
+global gene = adn;
+global currentPosGene;
+global lengthGene = length(gene);
+global cell_target;
+currentPosGene = 0;
+cell_target = 0;
+
+/*
+FONCTIONS-GENES:
+0-50 general non classé
+50-148 canuse
+149-169 mp
+170-189 tp
+190-209 infos sur map de dégats
+210-229 infos hybrides map dégat / danger
+230-249 infos sur map de danger
+
+300-324 isWeaponNotEquiped
+325-349 isWeaponEquiped
+
+
+500-550 general non classé
+550-650 use
+650-675 equipWeapon
+*/
+
+function f1_wild_card() { return true; }
+function f2_is_weapon_not_pistol() { return getWeapon() != WEAPON_PISTOL; }
+function f3_is_it_first_turn() { return getTurn() == 1; }
+
+function f5_line_of_sight() { return lineOfSight(getCell(), getCell(getNearestEnemy())); }
+function f6_is_aligned_with_enemy(){ return (getCellX(getCell()) == getCellX(getCell(getNearestEnemy())) 
+			|| getCellY(getCell()) == getCellY(getCell(getNearestEnemy()))); }
+function f7_need_heal() { return getLife() <= getTotalLife(getEntity())/2 && getLife() < getLife(getNearestEnemy());}
+function f8_is_not_aligned_with_enemy() { return !f6_is_aligned_with_enemy(); }
+
+function f50_can_use_weapon() { return canUseWeapon(getNearestEnemy()); }
+function f51_can_use_shock() { return canUseChip(CHIP_SHOCK, getEntity()) and (getCooldown(CHIP_SHOCK) == 0); }
+function f52_can_use_protein() { return canUseChip(CHIP_PROTEIN, getEntity()) and (getCooldown(CHIP_PROTEIN) == 0); }
+function f53_can_use_helmet() { return canUseChip(CHIP_HELMET, getEntity()) and (getCooldown(CHIP_HELMET) == 0); }
+function f54_can_use_pebble() { return canUseChip(CHIP_PEBBLE, getNearestEnemy()) and (getCooldown(CHIP_PEBBLE) == 0); }
+function f55_can_use_bandage() { return canUseChip(CHIP_BANDAGE, getEntity()) and (getCooldown(CHIP_BANDAGE) == 0); }
+function f56_can_use_rock() { return canUseChip(CHIP_ROCK, getNearestEnemy()) and (getCooldown(CHIP_ROCK) == 0); }
+function f57_can_use_motivation() { return canUseChip(CHIP_MOTIVATION, getEntity()) and (getCooldown(CHIP_MOTIVATION) == 0); }
+function f58_can_use_stretching() { return canUseChip(CHIP_STRETCHING, getEntity()) and (getCooldown(CHIP_STRETCHING) == 0); }
+function f59_can_use_wall() { return canUseChip(CHIP_WALL, getEntity()) and (getCooldown(CHIP_WALL) == 0); }
+
+function f60_can_use_pistol() { return canUseWeapon(WEAPON_PISTOL, getNearestEnemy()); }
+function f61_can_use_machinegun() { return canUseWeapon(WEAPON_MACHINE_GUN, getNearestEnemy()); }
+function f62_can_use_neutrino() { return canUseWeapon(WEAPON_NEUTRINO, getNearestEnemy()); }
+function f63_can_use_shotgun() { return canUseWeapon(WEAPON_SHOTGUN, getNearestEnemy()); }
+
+function f64_can_use_spark() { return canUseChip(CHIP_SPARK, getNearestEnemy()) and (getCooldown(CHIP_SPARK) == 0); }
+function f65_can_use_cure() { return canUseChip(CHIP_CURE, getEntity()) and (getCooldown(CHIP_CURE) == 0); }
+function f66_can_use_leatherboots() { return canUseChip(CHIP_LEATHER_BOOTS, getEntity()) and (getCooldown(CHIP_LEATHER_BOOTS) == 0); }
+function f67_can_use_ice() { return canUseChip(CHIP_ICE, getNearestEnemy()) and (getCooldown(CHIP_ICE) == 0); }
+
+function f68_can_use_magnum() { return canUseWeapon(WEAPON_MAGNUM, getNearestEnemy()); }
+function f69_can_use_broadsword() { return canUseWeapon(WEAPON_BROADSWORD, getNearestEnemy()); }
+function f70_can_use_laser() { return canUseWeapon(WEAPON_LASER, getNearestEnemy()); }
+function f71_can_use_doublegun() { return canUseWeapon(WEAPON_DOUBLE_GUN, getNearestEnemy()); }
+
+function f72_can_use_flame() { return canUseChip(CHIP_FLAME, getNearestEnemy()) and (getCooldown(CHIP_FLAME) == 0); }
+function f73_can_use_knowledge() { return canUseChip(CHIP_KNOWLEDGE, getEntity()) and (getCooldown(CHIP_KNOWLEDGE) == 0); }
+function f74_can_use_shield() { return canUseChip(CHIP_SHIELD, getEntity()) and (getCooldown(CHIP_SHIELD) == 0); }
+function f75_can_use_solidification() { return canUseChip(CHIP_SOLIDIFICATION, getEntity()) and (getCooldown(CHIP_SOLIDIFICATION) == 0); }
+function f76_can_use_venom() { return canUseChip(CHIP_VENOM, getNearestEnemy()) and (getCooldown(CHIP_VENOM) == 0); }
+
+function f149_no_more_mp() { return getMP() == 0; }
+function f150_atleast_1_mp() { return getMP() >= 1; }
+function f151_atleast_2_mp() { return getMP() >= 2; }
+function f152_atleast_3_mp() { return getMP() >= 3; }
+function f153_atleast_4_mp() { return getMP() >= 4; }
+function f154_atleast_5_mp() { return getMP() >= 5; }
+function f155_atleast_6_mp() { return getMP() >= 6; }
+function f156_atleast_7_mp() { return getMP() >= 7; }
+function f157_atleast_8_mp() { return getMP() >= 8; }
+function f158_atleast_9_mp() { return getMP() >= 9; }
+function f159_atleast_10_mp() { return getMP() >= 10; }
+function f160_leq_1_mp() { return getMP() <= 1; }
+function f161_leq_2_mp() { return getMP() <= 2; }
+function f162_leq_3_mp() { return getMP() <= 3; }
+function f163_leq_4_mp() { return getMP() <= 4; }
+function f164_leq_5_mp() { return getMP() <= 5; }
+function f165_leq_6_mp() { return getMP() <= 6; }
+function f166_leq_7_mp() { return getMP() <= 7; }
+function f167_leq_8_mp() { return getMP() <= 8; }
+function f168_leq_9_mp() { return getMP() <= 9; }
+function f169_leq_10_mp() { return getMP() >= 10; }
+
+function f170_atleast_1_tp() { return getTP() >= 1; }
+function f171_atleast_2_tp() { return getTP() >= 2; }
+function f172_atleast_3_tp() { return getTP() >= 3; }
+function f173_atleast_4_tp() { return getTP() >= 4; }
+function f174_atleast_5_tp() { return getTP() >= 5; }
+function f175_atleast_6_tp() { return getTP() >= 6; }
+function f176_atleast_7_tp() { return getTP() >= 7; }
+function f177_atleast_8_tp() { return getTP() >= 8; }
+function f178_atleast_9_tp() { return getTP() >= 9; }
+function f179_atleast_10_tp() { return getTP() >= 10; }
+function f180_leq_1_tp() { return getTP() <= 1; }
+function f181_leq_2_tp() { return getTP() <= 2; }
+function f182_leq_3_tp() { return getTP() <= 3; }
+function f183_leq_4_tp() { return getTP() <= 4; }
+function f184_leq_5_tp() { return getTP() <= 5; }
+function f185_leq_6_tp() { return getTP() <= 6; }
+function f186_leq_7_tp() { return getTP() <= 7; }
+function f187_leq_8_tp() { return getTP() <= 8; }
+function f188_leq_9_tp() { return getTP() <= 9; }
+function f189_no_more_tp() { return getTP() == 0; }
+
+function f190_better_around_damage() {
+    var max_x = getCellX(getCell());
+    var max_y = getCellY(getCell());
+    var damage = read_damage_map([max_x, max_y]);
+    var found_better = false;
+    for (var neigh in get_neighboring_cells([max_x, max_y])) {
+        var ndamage = read_damage_map(neigh);
+        if (ndamage > damage) {
+            damage = ndamage;
+            max_x = neigh[0];
+            max_y = neigh[1];
+            found_better = true;
+        }
+    }
+    if (found_better) {
+        cell_target = getCellFromXY(max_x, max_y);
+    }
+    return found_better;
+}
+function f191_no_better_around_damage() { return !f190_better_around_damage(); }
+function f192_can_i_do_damage_here() { return read_damage_map([getCellX(getCell()), getCellY(getCell())]) > 5 and calculate_optimal_damage([getCellX(getCell()), getCellY(getCell())], [getCellX(getCell(getNearestEnemy())), getCellY(getCell(getNearestEnemy()))]) > 0; }
+function f193_cant_do_damage_here() { return !f192_can_i_do_damage_here(); }
+
+function f210_better_ratio_around() {
+    var max_x = getCellX(getCell());
+    var max_y = getCellY(getCell());
+    var damage = read_damage_map([max_x, max_y]);
+    var danger = read_danger_map([max_x, max_y]);
+    var ratio = damage;
+    if (danger > 0) {
+        ratio = damage/danger;
+    }
+    var found_better = false;
+    for (var neigh in get_neighboring_cells([max_x, max_y])) {
+        var ndamage = read_damage_map(neigh);
+        var ndanger = read_danger_map(neigh);
+        var nratio = ndamage;
+        if (danger > 0) {
+            nratio = ndamage/ndanger;
+        }
+        if (nratio > ratio) {
+            ratio = nratio;
+            max_x = neigh[0];
+            max_y = neigh[1];
+            found_better = true;
+        }
+    }
+    if (found_better) {
+        cell_target = getCellFromXY(max_x, max_y);
+    }
+    return found_better;
+}
+function f211_no_better_ratio_around() { return !f210_better_ratio_around(); }
+
+function f230_less_danger_around() {
+    var min_x = getCellX(getCell());
+    var min_y = getCellY(getCell());
+    var danger = read_danger_map([min_x, min_y]);
+    var found_better = false;
+    for (var neigh in get_neighboring_cells([min_x, min_y])) {
+        var ndanger = read_danger_map(neigh);
+        if (ndanger < danger) {
+            danger = ndanger;
+            min_x = neigh[0];
+            min_y = neigh[1];
+            found_better = true;
+        }
+    }
+    if (found_better) {
+        cell_target = getCellFromXY(min_x, min_y);
+    }
+    return found_better;
+}
+function f231_no_less_danger_around() { return !f230_less_danger_around(); }
+function f232_will_die_if_i_stay() { return read_danger_map([getCellX(getCell()), getCellY(getCell())]) >= getLife(); }
+function f233_will_die_on_target() { return read_danger_map([getCellX(cell_target), getCellY(cell_target)]) >= getLife(); }
+
+function f300_is_pistol_not_equipped() { return getWeapon()!=WEAPON_PISTOL; }
+function f301_is_machinegun_not_equipped() { return getWeapon()!=WEAPON_MACHINE_GUN; }
+function f302_is_neutrino_not_equipped() { return getWeapon()!=WEAPON_NEUTRINO; }
+function f303_is_shotgun_not_equipped() { return getWeapon()!=WEAPON_SHOTGUN; }
+function f304_is_magnum_not_equipped() { return getWeapon()!=WEAPON_MAGNUM; }
+function f305_is_broadsword_not_equipped() { return getWeapon()!=WEAPON_BROADSWORD; }
+function f306_is_laser_not_equipped() { return getWeapon()!=WEAPON_LASER; }
+function f307_is_doublegun_not_equipped() { return getWeapon()!=WEAPON_DOUBLE_GUN; }
+
+function f325_is_pistol_equipped() { return getWeapon()==WEAPON_PISTOL; }
+function f326_is_machinegun_equipped() { return getWeapon()==WEAPON_MACHINE_GUN; }
+function f327_is_neutrino_equipped() { return getWeapon()==WEAPON_NEUTRINO; }
+function f328_is_shotgun_equipped() { return getWeapon()==WEAPON_SHOTGUN; }
+function f329_is_magnum_equipped() { return getWeapon()==WEAPON_MAGNUM; }
+function f330_is_broadsword_equipped() { return getWeapon()==WEAPON_BROADSWORD; }
+function f331_is_laser_equipped() { return getWeapon()==WEAPON_LASER; }
+function f332_is_doublegun_equipped() { return getWeapon()==WEAPON_DOUBLE_GUN; }
+
+function f501_go_toward_enemy() { if (moveToward(getNearestEnemy()) == 0) {return false;} return true; }
+
+function f503_move_toward_target() { if (moveTowardCell(cell_target) == 0) {return false;} return true; }
+function f504_move_toward_enemy_one_cell() { if (moveTowardCell(getCell(getNearestEnemy()), 1) == 0) {return false;} return true; }
+
+function f550_use_weapon() { 
+    var res = useWeapon(getNearestEnemy()); 
+    return (res == USE_CRITICAL || res == USE_SUCCESS); }
+function f551_use_shock() { var res = useChip(CHIP_SHOCK, getNearestEnemy()); return (res == USE_CRITICAL || res == USE_SUCCESS); }
+function f552_use_protein() { var res = useChip(CHIP_PROTEIN, getEntity()); return (res == USE_CRITICAL || res == USE_SUCCESS); }
+function f553_use_helmet() { var res = useChip(CHIP_HELMET, getEntity()); return (res == USE_CRITICAL || res == USE_SUCCESS); }
+function f554_use_pebble() { var res = useChip(CHIP_PEBBLE, getEntity()); return (res == USE_CRITICAL || res == USE_SUCCESS); }
+function f555_use_bandage() { var res = useChip(CHIP_BANDAGE, getEntity()); return (res == USE_CRITICAL || res == USE_SUCCESS); }
+function f556_use_rock() { var res = useChip(CHIP_ROCK, getNearestEnemy()); return (res == USE_CRITICAL || res == USE_SUCCESS); }
+function f557_use_motivation() { var res = useChip(CHIP_MOTIVATION, getEntity()); return (res == USE_CRITICAL || res == USE_SUCCESS); }
+function f558_use_stretching() { var res = useChip(CHIP_STRETCHING, getEntity()); return (res == USE_CRITICAL || res == USE_SUCCESS); }
+function f559_use_wall() { var res = useChip(CHIP_WALL, getEntity()); return (res == USE_CRITICAL || res == USE_SUCCESS); }
+function f560_use_spark() { var res = useChip(CHIP_SPARK, getNearestEnemy()); return (res == USE_CRITICAL || res == USE_SUCCESS); }
+function f561_use_cure() { var res = useChip(CHIP_CURE, getEntity()); return (res == USE_CRITICAL || res == USE_SUCCESS); }
+function f562_use_leatherboots() { var res = useChip(CHIP_LEATHER_BOOTS, getEntity()); return (res == USE_CRITICAL || res == USE_SUCCESS); }
+function f563_use_ice() { var res = useChip(CHIP_ICE, getNearestEnemy()); return (res == USE_CRITICAL || res == USE_SUCCESS); }
+function f564_use_flame() { var res = useChip(CHIP_FLAME, getNearestEnemy()); return (res == USE_CRITICAL || res == USE_SUCCESS); }
+function f565_use_knowledge() { var res = useChip(CHIP_KNOWLEDGE, getEntity()); return (res == USE_CRITICAL || res == USE_SUCCESS); }
+function f566_use_shield() { var res = useChip(CHIP_SHIELD, getEntity()); return (res == USE_CRITICAL || res == USE_SUCCESS); }
+function f567_use_solidification() { var res = useChip(CHIP_SOLIDIFICATION, getEntity()); return (res == USE_CRITICAL || res == USE_SUCCESS); }
+function f568_use_venom() { var res = useChip(CHIP_VENOM, getNearestEnemy()); return (res == USE_CRITICAL || res == USE_SUCCESS); }
+
+function f650_equip_pistol() { return setWeapon(WEAPON_PISTOL); }
+function f651_equip_machinegun() { return setWeapon(WEAPON_MACHINE_GUN); }
+function f652_equip_neutrino() { return setWeapon(WEAPON_NEUTRINO); }
+function f653_equip_shotgun() { return setWeapon(WEAPON_SHOTGUN); }
+function f654_equip_magnum() { return setWeapon(WEAPON_MAGNUM); }
+function f655_equip_broadsword() { return setWeapon(WEAPON_BROADSWORD); }
+function f656_equip_laser() { return setWeapon(WEAPON_LASER); }
+function f657_equip_doublegun() { return setWeapon(WEAPON_DOUBLE_GUN); }
+
+global MOVEMENT = 1;
+global ACTION = 2;
+global DEGAT = 3;
+global EQUIP = 4;
+global TARGET = 5;
+global CHIP = 6;
+
+// structure du dictionnaire de mémoire des conditions:
+// [[[plage1], [plage2], ...], [val1, val2, val3...]]
+// structure d'une plage : [min, max]
+// ex avec une action ACTION qui annule les plages 7-12 et 15-25, ainsi que les conditions 107 et 117:
+// ACTION : [[[7,12], [15,25]], [107, 117]]
+global dictPlage = [
+    MOVEMENT: [[[50,76], [149,169], [190,249]], [5,6,8]],
+    ACTION: [[[170,189]], []],
+    DEGAT: [[], []],
+    EQUIP: [[[300,349]], []],
+    TARGET: [[], [190,191,210,211,230,231,233]],
+    CHIP: [[[51,59], [64,67], [72,76]], []],
+]
+
+global dictGene = [
+    1: [f1_wild_card],
+    2: [f2_is_weapon_not_pistol],
+    3: [f3_is_it_first_turn],
+
+    5: [f5_line_of_sight],
+    6: [f6_is_aligned_with_enemy],
+    7: [f7_need_heal],
+    8: [f8_is_not_aligned_with_enemy],
+
+    50: [f50_can_use_weapon],
+    51: [f51_can_use_shock],
+    52: [f52_can_use_protein],
+    53: [f53_can_use_helmet],
+    54: [f54_can_use_pebble],
+    55: [f55_can_use_bandage],
+    56: [f56_can_use_rock],
+    57: [f57_can_use_motivation],
+    58: [f58_can_use_stretching],
+    59: [f59_can_use_wall],
+    60: [f60_can_use_pistol],
+    61: [f61_can_use_machinegun],
+    62: [f62_can_use_neutrino],
+    63: [f63_can_use_shotgun],
+    64: [f64_can_use_spark],
+    65: [f65_can_use_cure],
+    66: [f66_can_use_leatherboots],
+    67: [f67_can_use_ice],
+    68: [f68_can_use_magnum],
+    69: [f69_can_use_broadsword],
+    70: [f70_can_use_laser],
+    71: [f71_can_use_doublegun],
+    72: [f72_can_use_flame],
+    73: [f73_can_use_knowledge],
+    74: [f74_can_use_shield],
+    75: [f75_can_use_solidification],
+    76: [f76_can_use_venom],
+    
+    149: [f149_no_more_mp],
+    150: [f150_atleast_1_mp],
+    151: [f151_atleast_2_mp],
+    152: [f152_atleast_3_mp],
+    153: [f153_atleast_4_mp],
+    154: [f154_atleast_5_mp],
+    155: [f155_atleast_6_mp],
+    156: [f156_atleast_7_mp],
+    157: [f157_atleast_8_mp],
+    158: [f158_atleast_9_mp],
+    159: [f159_atleast_10_mp],
+    160: [f160_leq_1_mp],
+    161: [f161_leq_2_mp],
+    162: [f162_leq_3_mp],
+    163: [f163_leq_4_mp],
+    164: [f164_leq_5_mp],
+    165: [f165_leq_6_mp],
+    166: [f166_leq_7_mp],
+    167: [f167_leq_8_mp],
+    168: [f168_leq_9_mp],
+    169: [f169_leq_10_mp],
+
+    170: [f170_atleast_1_tp],
+    171: [f171_atleast_2_tp],
+    172: [f172_atleast_3_tp],
+    173: [f173_atleast_4_tp],
+    174: [f174_atleast_5_tp],
+    175: [f175_atleast_6_tp],
+    176: [f176_atleast_7_tp],
+    177: [f177_atleast_8_tp],
+    178: [f178_atleast_9_tp],
+    179: [f179_atleast_10_tp],
+    180: [f180_leq_1_tp],
+    181: [f181_leq_2_tp],
+    182: [f182_leq_3_tp],
+    183: [f183_leq_4_tp],
+    184: [f184_leq_5_tp],
+    185: [f185_leq_6_tp],
+    186: [f186_leq_7_tp],
+    187: [f187_leq_8_tp],
+    188: [f188_leq_9_tp],
+    189: [f189_no_more_tp],
+
+    190: [f190_better_around_damage, TARGET],
+    191: [f191_no_better_around_damage, TARGET],
+    192: [f192_can_i_do_damage_here],
+    193: [f193_cant_do_damage_here],
+
+    210: [f210_better_ratio_around, TARGET],
+    211: [f211_no_better_ratio_around, TARGET],
+
+    230: [f230_less_danger_around, TARGET],
+    231: [f231_no_less_danger_around, TARGET],
+    232: [f232_will_die_if_i_stay],
+    233: [f233_will_die_on_target, TARGET],
+
+    300: [f300_is_pistol_not_equipped],
+    301: [f301_is_machinegun_not_equipped],
+    302: [f302_is_neutrino_not_equipped],
+    303: [f303_is_shotgun_not_equipped],
+    304: [f304_is_magnum_not_equipped],
+    305: [f305_is_broadsword_not_equipped],
+    306: [f306_is_laser_not_equipped],
+    307: [f307_is_doublegun_not_equipped],
+
+    325: [f325_is_pistol_equipped],
+    326: [f326_is_machinegun_equipped],
+    327: [f327_is_neutrino_equipped],
+    328: [f328_is_shotgun_equipped],
+    329: [f329_is_magnum_equipped],
+    330: [f330_is_broadsword_equipped],
+    331: [f331_is_laser_equipped],
+    332: [f332_is_doublegun_equipped],
+
+    501: [f501_go_toward_enemy, MOVEMENT],
+    
+    503: [f503_move_toward_target, MOVEMENT],
+    504: [f504_move_toward_enemy_one_cell, MOVEMENT],
+    
+    550: [f550_use_weapon, ACTION, DEGAT],
+    551: [f551_use_shock, ACTION, CHIP],    
+    552: [f552_use_protein, ACTION, CHIP],
+    553: [f553_use_helmet, ACTION, CHIP],
+    554: [f554_use_pebble, ACTION, CHIP],
+    555: [f555_use_bandage, ACTION, CHIP],
+    556: [f556_use_rock, ACTION, CHIP],
+    557: [f557_use_motivation, ACTION, CHIP],
+    558: [f558_use_stretching, ACTION, CHIP],
+    559: [f559_use_wall, ACTION, CHIP],
+    560: [f560_use_spark, ACTION, CHIP],
+    561: [f561_use_cure, ACTION, CHIP],
+    562: [f562_use_leatherboots, ACTION, CHIP],
+    563: [f563_use_ice, ACTION, CHIP],
+    564: [f564_use_flame, ACTION, CHIP],
+    565: [f565_use_knowledge, ACTION, CHIP],
+    566: [f566_use_shield, ACTION, CHIP],
+    567: [f567_use_solidification, ACTION, CHIP],
+    568: [f568_use_venom, ACTION, CHIP],
+
+    650: [f650_equip_pistol, ACTION, EQUIP],
+    651: [f651_equip_machinegun, ACTION, EQUIP],
+    652: [f652_equip_neutrino, ACTION, EQUIP],
+    653: [f653_equip_shotgun, ACTION, EQUIP],
+    654: [f654_equip_magnum, ACTION, EQUIP],
+    655: [f655_equip_broadsword, ACTION, EQUIP],
+    656: [f656_equip_laser, ACTION, EQUIP],
+    657: [f657_equip_doublegun, ACTION, EQUIP],
+];
+
+// --------------------
+// MAP DANGER/DAMAGE
+// --------------------
+
+global OFFSET_X = 17;
+global OFFSET_Y = 17;
+global MAP_SIZE_X = 35;
+global MAP_SIZE_Y = 35; 
+global combo_dict = [:];
+
+// from : [x,y] / to : [x,y]
+// return number
+function manhattan_distance(from, to) {
+	return abs(from[0] - to[0]) + abs(from[1] - to[1]);
+}
+
+// from : [x,y] / to : [x,y]
+// return boolean
+function are_aligned(from, to) {
+	return (from[0] == to[0]) or (from[1] == to[1]);
+}
+
+// from : [x,y] / to : [x,y]
+// return boolean
+function are_diagonaled(from, to) {
+	return abs(from[0] - to[0]) == abs(from[1] - to[1]);
+}
+
+// weapon : id / from : [x,y] / to : [x,y]
+// return boolean
+// only calculate distance, don't take obstacles into account
+function can_weapon_touch_from_to(weapon, from, to) {
+	var dist = manhattan_distance(from, to);
+	if (weapon == WEAPON_PISTOL) {
+		return dist <= 7 and dist >= 1;
+	} else if (weapon == WEAPON_MACHINE_GUN) {
+		return dist <= 6 and dist >= 1 and are_aligned(from, to);
+	} else  if (weapon == WEAPON_NEUTRINO) {
+		return dist <= 6 and dist >= 2 and are_diagonaled(from, to);
+	} else if (weapon == WEAPON_SHOTGUN) {
+		return dist <= 5 and dist >= 1 and are_aligned(from, to);
+	} else if (weapon == WEAPON_MAGNUM) {
+		return dist <= 8 and dist >= 1;
+	} else if (weapon == WEAPON_BROADSWORD) {
+		return dist == 1;
+	} else if (weapon == WEAPON_LASER) {
+		return dist <= 9 and dist >= 2 and are_aligned(from, to);
+	} else if (weapon == WEAPON_DOUBLE_GUN) {
+		return dist <= 7 and dist >= 2;
+	}
+	return false;
+}
+
+// chip : id / from : [x,y] / to : [x,y]
+// return boolean
+// only calculate distance, don't take obstacles into account
+function can_chip_touch_from_to(chip, from, to) {
+	var dist = manhattan_distance(from, to);
+	if (chip == CHIP_SHOCK) {
+		return dist <= 6;
+	} else if (chip == CHIP_PEBBLE) {
+		return dist <= 5;
+	} else if (chip == CHIP_ICE) {
+		return dist <= 8;
+	} else if (chip == CHIP_ROCK) {
+		return dist <= 6 and dist >= 2;
+	} else if (chip == CHIP_SPARK) {
+		return dist <= 10;
+	} else if (chip == CHIP_FLASH) {
+		return dist <= 10 and dist >= 1 and are_aligned(from, to);
+	} else if (chip == CHIP_FLAME) {
+		return dist <= 7 and dist >= 2;
+	} else if (chip == CHIP_VENOM) {
+		return dist <= 10 and dist >= 1;
+	}
+	return false;
+}
+
+// weapons : [id1, id2 ...] / chips : [id1, id2 ...] / maxSize : number (size of the filter, 10 -> filter from -10 to 10)
+// return array of array (x,y) of array of ids (weapons and chips which can touch)
+// [y][x][[weapon1, weapon2 ...][chip1, chip2 ...]]
+// for each chip and weapon, add them to the cell if they can touch
+function create_filter_danger(weapons, chips, maxSize) {
+	var filter = [];
+	for (var y=-maxSize; y<=maxSize; y++) {
+		var line_filter = [];
+		for (var x=-maxSize; x<=maxSize; x++) {
+			var canTouch = [[], []];
+			for (var weapon in weapons) {
+				if (can_weapon_touch_from_to(weapon, [0,0], [x,y])) {
+					push(canTouch[0], weapon);
+				}
+			}
+			for (var chip in chips) {
+				if (can_chip_touch_from_to(chip, [0,0], [x,y])) {
+					push(canTouch[1], chip);
+				}
+			}
+            push(line_filter, canTouch);
+		}
+		push(filter, line_filter);
+	}
+	return filter;
+}
+
+// weapons : [id1, id2 ...] / chips : [id1, id2 ...] / maxSize : number (size of the filter, 10 -> filter from -10 to 10)
+// return array of array (x,y) of array of ids (weapons and chips which can touch)
+// [y][x][[weapon1, weapon2 ...][chip1, chip2 ...]]
+// for each chip and weapon, add them to the cell if they can touch
+function create_filter_damage(weapons, chips, maxSize) {
+	var filter = [];
+	for (var y=-maxSize; y<=maxSize; y++) {
+		var line_filter = [];
+		for (var x=-maxSize; x<=maxSize; x++) {
+			var canTouch = [[], []];
+			for (var weapon in weapons) {
+				if (can_weapon_touch_from_to(weapon, [x,y], [0,0])) {
+					push(canTouch[0], weapon);
+				}
+			}
+			for (var chip in chips) {
+				if (can_chip_touch_from_to(chip, [x,y], [0,0])) {
+					push(canTouch[1], chip);
+				}
+			}
+            push(line_filter, canTouch);
+		}
+		push(filter, line_filter);
+	}
+	return filter;
+}
+
+// weapon : id
+// return array of number (mean, min, max) or [0,0,0]
+function get_weapon_damage(weapon) {
+    // return [ceil(mean), min, max]
+    if (weapon == WEAPON_PISTOL) {
+		return [18, 15, 20];
+	} else if (weapon == WEAPON_MACHINE_GUN) {
+		return [38, 30, 45];
+	} else  if (weapon == WEAPON_NEUTRINO) {
+		return [28, 25, 30];
+	} else if (weapon == WEAPON_SHOTGUN) {
+		return [38, 33, 43];
+	} else if (weapon == WEAPON_MAGNUM) {
+		return [33, 25, 40];
+	} else if (weapon == WEAPON_BROADSWORD) {
+		return [40, 39, 41];
+	} else if (weapon == WEAPON_LASER) {
+		return [51, 43, 59];
+	} else if (weapon == WEAPON_DOUBLE_GUN) {
+		return [22, 18, 25];
+	}
+    return [0,0,0];
+}
+
+// chip : id
+// return array of number (mean, min, max) or [0,0,0]
+function get_chip_damage(chip) {
+    // return [ceil(mean), min, max]
+	if (chip == CHIP_SHOCK) {
+		return [8, 7, 9];
+	} else if (chip == CHIP_PEBBLE) {
+		return [17, 2, 34];
+	} else if (chip == CHIP_ICE) {
+		return [18, 17, 19];
+	} else if (chip == CHIP_ROCK) {
+		return [36, 35, 36];
+	} else if (chip == CHIP_SPARK) {
+		return [12, 8, 16];
+	} else if (chip == CHIP_FLASH) {
+		return [34, 32, 35];
+	} else if (chip == CHIP_FLAME) {
+		return [26, 25, 27];
+	} else if (chip == CHIP_VENOM) {
+		return [0,0,0];  // comment le coder ? Cumul ? Un seul tour ?
+	}
+	return [0,0,0];
+}
+
+// arr : array / elem : ?
+// return array with elem inserted
+// only compare arr[x][0] and elem[0], insert if arr[x][0] < elem[0]
+function insert_sorted_for_combo(arr, elem) {
+	// insertion sorted = O(n²) (slow)
+	for (var i=0; i < count(arr); i++) {
+		if (arr[i][0] < elem[0]) {
+			insert(arr, elem, i);
+			return;
+		}
+	}
+	insert(arr, elem, count(arr));
+}
+
+// weapons : array of ids / chips : array of ids / tp : number
+// return number (max damage)
+// use a greedy unbounded algorithm, for mean damages only (suboptimal, fast)
+// use a global combo_dict [:], to save the combo already calculated
+function best_combo(weapons, chips, tp) {
+    // check if combo already registered
+    var key = string([weapons, chips]);
+    if (mapContainsKey(combo_dict, key)) {
+        return mapGet(combo_dict, key);
+    }
+
+	var damages = 0;
+	var remaining_tp = tp;
+	var calc_damage_cost = [];
+	for (var weapon in weapons) {
+		var mean_damage = get_weapon_damage(weapon)[0];
+		var cost = getWeaponCost(weapon);
+		if (cost <= tp) {
+			var ratio = mean_damage/cost;
+			insert_sorted_for_combo(calc_damage_cost, [ratio, mean_damage, cost]);
+		}
+	}
+	for (var chip in chips) {
+		var mean_damage = get_chip_damage(chip)[0];
+		var cost = getChipCost(chip);
+		if (cost <= tp) {
+			var ratio = mean_damage/cost;
+			insert_sorted_for_combo(calc_damage_cost, [ratio, mean_damage, cost]);
+		}
+	}
+	var index = 0;
+	while (remaining_tp > 0 and index < count(calc_damage_cost)) {
+		if (calc_damage_cost[0][2] > remaining_tp) {
+			index++;
+		} else {
+			damages += calc_damage_cost[0][1];
+			remaining_tp -= calc_damage_cost[0][2];
+		}
+	}
+    mapPut(combo_dict, key, damages);
+	return damages;
+}
+
+// return array of array [x,y]
+// map[x][y] = 0 if no obstacle, 1 if obstacle
+function create_obstacle_map() {
+    var actual_map = [];
+    for (var y=0; y < MAP_SIZE_Y; y++) {
+        var line_map = [];
+        fill(line_map, 0, MAP_SIZE_X);
+        push(actual_map, line_map);
+    }
+
+    for (var obs in getObstacles()) {
+        actual_map[getCellY(obs)+OFFSET_Y][getCellX(obs)+OFFSET_X] = 1;
+    }
+
+    return actual_map;
+}
+
+// filter : filter_map / center : [x,y] / obstacle_map / weapons : array(ids) / chips : array(ids) / tp : number
+// return array of array of number (x,y) (damages)
+// use the filter to calculate semi-accurate damages if no obstacle and los ok
+// then extends the border, dividing the damage by 2 at each cell of distance
+// cost in OPS : 200-300k 
+function filter_to_map(filter, center, obstacle_map, weapons, chips, tp, entity) {
+    var actual_map = [];
+    var filter_map = [];
+    for (var y=0; y < MAP_SIZE_Y; y++) {
+        var line_map1 = [];
+        var line_map2 = [];
+        fill(line_map1, 0, MAP_SIZE_X);
+        fill(line_map2, 0, MAP_SIZE_X);
+        push(actual_map, line_map1);
+        push(filter_map line_map2);
+    }
+
+    var needLos = [:];
+    for (var w in weapons) {
+        if (weaponNeedLos(w)) {
+            mapPut(needLos, w, true);
+        } else {
+            mapPut(needLos, w, false);
+        }
+    }
+    for (var c in chips) {
+        if (chipNeedLos(c)) {
+            mapPut(needLos, c, true);
+        } else {
+            mapPut(needLos, c, false);
+        }
+    }
+
+    var center_x = center[0] + OFFSET_X;
+    var center_y = center[1] + OFFSET_Y;
+    var cell_center = getCellFromXY(center[0], center[1]);
+
+    var size_x_filter = count(filter[0]);
+    var size_y_filter = count(filter);
+    var half_size_x_filter = floor(size_x_filter/2);
+    var half_size_y_filter = floor(size_y_filter/2);
+
+    // calculate the best combo on each cell corresponding to the filter
+    for (var y=0; y < size_y_filter; y++) {
+        for (var x=0; x < size_x_filter; x++) {
+            var real_x = x-half_size_x_filter+center_x;
+            var real_y = y-half_size_y_filter+center_y;
+            if (real_x < 0 or real_y < 0 or real_x >= MAP_SIZE_X or real_y >= MAP_SIZE_Y or obstacle_map[real_y][real_x] == 1) {
+                continue;
+            }
+            var actual_cell = getCellFromXY(real_x - OFFSET_X, real_y - OFFSET_Y);
+
+            var list_weapons_chips = filter[y][x];
+            // recalculate all weapons and chips that can actually reach
+            var new_list_weapons_chips = [[], []];
+            var los = lineOfSight(cell_center, actual_cell)
+            for (var weapon in list_weapons_chips[0]) {
+                if (!mapGet(needLos, weapon) or los) {
+                    push(new_list_weapons_chips[0], weapon);
+                }
+            }
+            for (var chip in list_weapons_chips[1]) {
+                if (!mapGet(needLos, chip) or los) {
+                    if (getCooldown(chip, entity) == 0) {
+                        push(new_list_weapons_chips[1], chip);
+                    }
+                }
+            }
+
+            var damages = best_combo(new_list_weapons_chips[0], new_list_weapons_chips[1], tp);
+            filter_map[real_y][real_x] = damages;
+        }
+    }
+
+    // starting on the center, visit all cells and divide by 2 (arbitrary) the max of all surrounding
+    // on a cadran 11x11 around the center, insert all positions
+    var to_visit = [];
+    for (var y=-5; y<=5; y++) {
+        for (var x=-5; x<=5; x++) {
+            var nx = center_x + x;
+            var ny = center_y + y;
+            if (nx < 0 or ny < 0 or nx >= MAP_SIZE_X or ny >= MAP_SIZE_Y or obstacle_map[ny][nx] == 1) {
+                continue;
+            }
+            push(to_visit, [nx, ny]);
+        }
+    }
+    var index = 0;
+    while (index < count(to_visit)) {
+        var x = to_visit[index][0];
+        var y = to_visit[index][1];
+        index++;
+        if (x < 0 or y < 0 or x >= MAP_SIZE_X or y >= MAP_SIZE_Y or obstacle_map[y][x] == 1) {
+            continue;
+        }
+        var damages = max(actual_map[y][x], filter_map[y][x]);
+        actual_map[y][x] = damages;
+        damages /= 2;
+        for (var xy in [[-1,0], [1,0], [0,-1], [0,1]]) {
+            var nx = x+xy[0];
+            var ny = y+xy[1];
+            if (nx < 0 or ny < 0 or nx >= MAP_SIZE_X or ny >= MAP_SIZE_Y or obstacle_map[ny][nx] == 1) {
+                continue;
+            }
+            if (damages > actual_map[ny][nx]) {
+                actual_map[ny][nx] = damages;
+                push(to_visit, [nx,ny]);
+            }
+        }
+    }
+
+    return actual_map;
+}
+
+// from: [x,y] / to: [x,y]
+// return number (optimal damage if we use all weapons, with current TP)
+function calculate_optimal_damage(from, to) {
+	var los = lineOfSight(getCellFromXY(from[0], from[1]), getCellFromXY(to[0], to[1]));
+	var x_diff = to[0]-from[0];
+	var y_diff = to[1]-from[1];
+    if (abs(y_diff) > max_size_filter or abs(x_diff) > max_size_filter) {
+        return 0;
+    }
+	var list_weapons_chips = filter_damage[y_diff+max_size_filter][x_diff+max_size_filter]; 
+	var new_list_weapons_chips = [[], []];
+	for (var weapon in list_weapons_chips[0]) {
+        if (los or !weaponNeedLos(weapon)) {
+            push(new_list_weapons_chips[0], weapon);
+        }
+    }
+    for (var chip in list_weapons_chips[1]) {
+        if (los or !chipNeedLos(chip)) {
+            if (getCooldown(chip) == 0) {
+                push(new_list_weapons_chips[1], chip);
+            }
+        }
+    }
+    return best_combo(new_list_weapons_chips[0], new_list_weapons_chips[1], getTP());
+}
+
+// from: [x,y]
+// return array of (x,y) [(x,y), (x,y) ...]
+// only cells that are empty, not outside
+function get_neighboring_cells(from) {
+    var x = from[0];
+    var y = from[1];
+    var neighbors = [];
+    for (var diff in [[-1,0],[1,0],[0,-1],[0,1]]) {
+        var nx = x+diff[0];
+        var ny = y+diff[1];
+        if (nx < -OFFSET_X or ny < -OFFSET_Y or nx >= MAP_SIZE_X or ny >= MAP_SIZE_Y or obstacle_map[ny+OFFSET_Y][nx+OFFSET_X] == 1) {
+            continue;
+        }
+        push(neighbors, [nx,ny]);
+    }
+    return neighbors;
+}
+
+// from: [x,y]
+// return value in damage map in (x,y) [with offsets]
+function read_danger_map(from) {
+    return danger_map[from[1]+OFFSET_Y][from[0]+OFFSET_X];
+}
+
+// from: [x,y]
+// return value in damage map in (x,y) [with offsets]
+function read_damage_map(from) {
+    return damage_map[from[1]+OFFSET_Y][from[0]+OFFSET_X];
+}
+
+// filter_danger : arr/arr/arr[arr, arr] [x][y][[idWeapons][idChips]] / filter_damage
+// save into registers
+function save_filters(filter_danger, filter_damage) {
+    var str_danger = jsonEncode(filter_danger);
+    var str_damage = jsonEncode(filter_damage);
+    var nb_reg_danger = ceil(length(str_danger)/5000);
+    var nb_reg_damage = ceil(length(str_damage)/5000);
+    setRegister("sizeFilterDanger", string(nb_reg_danger));
+    setRegister("sizeFilterDamage", string(nb_reg_damage));
+    for (var i=0; i < nb_reg_danger; i++) {
+        setRegister("filterDanger"+string(i), substring(str_danger, i*5000, min((i+1)*5000,length(str_danger))-(i*5000)));
+    }
+    for (var i=0; i < nb_reg_damage; i++) {
+        setRegister("filterDamage"+string(i), substring(str_damage, i*5000, min((i+1)*5000,length(str_damage))-(i*5000)));
+    }
+}
+
+// return [filter_danger, filter_damage] | null if not saved
+function load_filters() {
+    if (getTurn() == 1) {
+        return null;
+    }
+    if (null == getRegister("sizeFilterDanger")) {
+        debug("filter not saved");
+        return null;
+    }
+    var nb_reg_danger = getRegister("sizeFilterDanger");
+    var nb_reg_damage = getRegister("sizeFilterDamage");
+    if (nb_reg_danger == null or nb_reg_damage == null) {
+        return null;
+    }
+    var str_danger = "";
+    var str_damage = "";
+    for (var i=0; i < nb_reg_danger; i++) {
+        var reg = getRegister("filterDanger"+string(i));
+        if (reg == null) {
+            return null;
+        }
+        str_danger += reg;
+    }
+    for (var i=0; i < nb_reg_damage; i++) {
+        var reg = getRegister("filterDamage"+string(i));
+        if (reg == null) {
+            return null;
+        }
+        str_damage += reg;
+    }
+    return [jsonDecode(str_danger), jsonDecode(str_damage)];
+}
+
+var enemy = getNearestEnemy();
+var cell_enemy = getCell(enemy);
+global max_size_filter = 10;
+global filter_danger; 
+global filter_damage;
+var filters = load_filters();
+if (filters == null) {
+    filter_danger = create_filter_danger(getWeapons(enemy), getChips(enemy), max_size_filter);
+    filter_damage = create_filter_damage(getWeapons(), getChips(), max_size_filter);
+} else {
+    filter_danger = filters[0];
+    filter_damage = filters[1];
+}
+global obstacle_map = create_obstacle_map();
+global danger_map;
+danger_map = filter_to_map(filter_danger, [getCellX(cell_enemy), getCellY(cell_enemy)], obstacle_map, getWeapons(enemy), getChips(enemy), getTotalTP(enemy), getNearestEnemy());
+global damage_map;
+damage_map = filter_to_map(filter_damage, [getCellX(cell_enemy), getCellY(cell_enemy)], obstacle_map, getWeapons(), getChips(), getTotalTP(), getEntity());
+
+// --------------------
+// LECTEUR DE SEQUENCES
+// --------------------
+
+// --------------------
+// TABLEAU DE CONDITION
+
+global conditions = []
+fill(conditions, false, 500);
+
+global useGene = [];
+if (getTurn() == 1) {
+    fill(useGene, 0, (lengthGene+1)/4);
+}
+
+// sauvegarde le tableau d'utilisation des gènes dans des registres
+function save_useGene(useGene) {
+    var str_useGene = jsonEncode(useGene);
+    var nb_reg_useGene = ceil(length(str_useGene)/5000);
+    setRegister("sizeUseGene", string(nb_reg_useGene));
+    for (var i=0; i < nb_reg_useGene; i++) {
+        setRegister("useGene"+string(i), substring(str_useGene, i*5000, min((i+1)*5000,length(str_useGene))-(i*5000)));
+    }
+}
+
+// incrémente chaque condition de [start, end[ dans useGene
+function saveUseGeneConditions(start, end) {
+    var i = start;
+    while (i != end) {
+        var g = getGenePositionInAdn(i);
+        useGene[g] += 1;
+
+        i += 4;
+        if (i >= lengthGene) {
+            i = 0;
+        }
+    }
+}
+
+// enrobage des tests, permet la conservation des conditions
+function testCondition(test) {
+    if (conditions[test]) {
+        return true;
+    }
+    if (dictGene[test][0]()) {
+        destroyConditions(test);
+        conditions[test] = true;
+        return true;
+    }
+    return false;
+}
+
+// détruit toutes les conditions correspondantes
+function destroyConditions(action) {
+    // pour chaque keyword de destruction
+    for (var i=0; i < count(dictGene[action])-1; i++) {
+        var keyword = dictGene[action][i+1];
+        // pour chaque plage 
+        for (var j=0; j < count(dictPlage[keyword][0]); j++) {
+            var minPlage = dictPlage[keyword][0][j][0];
+            var maxPlage = dictPlage[keyword][0][j][1];
+            for (var k=minPlage; k <= maxPlage; k++) {
+                conditions[k] = false;
+            }
+        }
+        // pour chaque valeur
+        for (var j=0; j < count(dictPlage[keyword][1]); j++) {
+            conditions[dictPlage[keyword][1][j]] = false;
+        }
+    }
+}
+
+// enrobage des actions, permet la destruction des conditions
+function testAction(action) {
+    if (dictGene[action][0]()) {
+        destroyConditions(action);
+        return true;
+    }
+    return false;
+}
+
+// --------------------
+// FONCTIONS DE LECTURE
+
+// nombre du gene courant
+function getCurrentGene() {
+    return number(substring(gene, currentPosGene, 3));
+}
+// nombre du gene posGene
+function getGene(posGene) {
+    return number(substring(gene, posGene, 3));
+}
+// position du gene (premier, second, etc)
+function getGenePositionInAdn(posGene) {
+    return posGene/4;
+}
+// positionne currentPosGene au cran suivant
+function advanceGene() {
+    currentPosGene += 4;
+    if (currentPosGene >= lengthGene) {
+        currentPosGene = 0;
+    }
+}
+// true si condition
+function isCodeCondition(code) { return code < 500; }
+// true si action
+function isCodeAction(code) { return code >= 500; }
+// true si on a pu aller au bout de la séquence de conditions
+function fullSequenceCondition() {
+    if (!isCodeCondition(getCurrentGene())) {
+        return false;
+    }
+    while (true) {
+        var test = getCurrentGene();
+        if (!isCodeCondition(test)) {
+            return true;
+        }
+        if (!testCondition(test)) {
+            return false;
+        }
+        advanceGene();
+    }
+}
+// true si au moins une action a été effectuée
+function fullSequenceAction() {
+    var actionDone = false;
+    while (true) {
+        var action = getCurrentGene();
+        if (isCodeCondition(action)) {
+            return actionDone;
+        }
+        if (!testAction(action)) {
+            advanceToNextCondition();
+            return actionDone;
+        }
+        actionDone = true;
+        useGene[getGenePositionInAdn(currentPosGene)] += 1;
+        advanceGene();
+    }
+}
+// positionne currentPosGene au début de la séquence de conditions suivante
+function advanceToNextCondition() {
+    advanceGene();
+    while (!isCodeCondition(getCurrentGene())) {
+        advanceGene();
+    }
+}
+// positionne currentPosGene au début de la séquence d'actions suivante
+function advanceToNextAction() {
+    advanceGene();
+    while (!isCodeAction(getCurrentGene())) {
+        advanceGene();
+    }
+}
+
+// --------
+// GLOBALES
+
+// passe à true si on fait le tour des séquences de condition et qu'elles sont toutes fausses
+var fullCircle = false; 
+// signale le début du cercle testé, -1 si on n'est pas en train de tester
+var startFullCircle = -1;
+
+// -----------------
+// BOUCLE PRINCIPALE
+save_useGene(useGene);
+
+while (!fullCircle and (getTP()!=0 or getMP()!=0)) {
+    var startSequence = currentPosGene;
+
+    if (fullSequenceCondition()) {
+        startFullCircle = -1;
+        var startAction = currentPosGene;
+
+        if (fullSequenceAction()) {
+            saveUseGeneConditions(startSequence, startAction);
+        }
+
+    } else {
+        if (startFullCircle == -1) {
+            startFullCircle = startSequence;
+        }
+        if (isCodeCondition(getCurrentGene())) {
+            advanceToNextAction();
+        }
+        advanceToNextCondition();
+        if (currentPosGene == startFullCircle) {
+            fullCircle = true;
+        }
+    }
+}
+
+save_filters(filter_danger, filter_damage);
+save_useGene(useGene);

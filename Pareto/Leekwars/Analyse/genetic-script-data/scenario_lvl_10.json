@@ -1,0 +1,62 @@
+{	"farmers": [
+		{	"id": 1,
+			"name": "J1",
+			"country": "fr"
+		},
+		{	"id": 2,
+			"name": "J2",
+			"country": "fr"
+		}
+	],
+	"teams": [
+		{	"id": 1,
+			"name": "j1"
+		},
+		{	"id": 2,
+			"name": "j2"
+		}
+	],
+	"entities": [
+		[
+			{	"id": 12,
+				"ai": "test/ai/gen1.leek",
+				"name": "J1",
+				"type": 1,
+				"farmer": 1,
+				"team": 1,
+				"level": 10,
+				"life": 200,
+				"strength": 20,
+				"tp": 10,
+				"mp": 4,
+				"cell": 123,
+				"weapons": [109, 184, 60, 108, 187, 40, 39, 44, 175, 46, 48, 43, 116, 115, 107, 42, 180, 38, 45, 47, 117, 182, 37, 119, 153, 151, 41, 118]
+			}
+		],
+		[
+			{	"id": 57,
+				"ai": "test/ai/gen2.leek",
+				"name": "J2",
+				"type": 1,
+				"farmer": 1,
+				"team": 1,
+				"level": 10,
+				"life": 200,
+				"strength": 20,
+				"tp": 10,
+				"mp": 4,
+				"cell": 566,
+				"weapons": [109, 184, 60, 108, 187, 40, 39, 44, 175, 46, 48, 43, 116, 115, 107, 42, 180, 38, 45, 47, 117, 182, 37, 119, 153, 151, 41, 118]
+			}
+		]
+	],
+	"map": {
+		"width": 17,
+		"height": 17,
+		"type": 3,
+		"obstacles": []
+	},
+	"random_seed": 1234567,
+	"max_turns": 64,
+	"max_operations_per_entity": 20000000
+}
