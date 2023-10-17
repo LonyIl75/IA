@@ -1,0 +1,234 @@
+include('../../auto')
+
+
+/*
+ * Cellule de jeu contenant l'id, 'les coordonnées, les voisins et le type
+ */ 
+class Cell {
+	id
+	isWall
+	neighbors
+	neighborsObstacles
+	x
+	y
+	_AREAS = []
+	constructor(id){
+		this.id = id
+		this.isWall = isObstacle(id)
+		this.x = getCellX(id)
+		this.y = getCellY(id)
+	}
+	
+	init(){
+		this.initNeighbors()
+		this.initNeighborsObstacles()
+		this.initAreas()
+	}
+	
+	/*
+	 * Initialise les cellules voisines
+	 */
+	initNeighbors(){
+		var result = []
+
+		var c = getCellFromXY(x, y-1);
+		if(c!=null && !Map.obstacles[Map.cells[c]]) push(result, Map.getCell(c));
+		c = getCellFromXY(x, y+1);
+		if(c!=null && !Map.obstacles[Map.cells[c]]) push(result, Map.getCell(c));
+		c = getCellFromXY(x-1, y);
+		if(c!=null && !Map.obstacles[Map.cells[c]]) push(result, Map.getCell(c));
+		c = getCellFromXY(x+1, y);
+		if(c!=null && !Map.obstacles[Map.cells[c]]) push(result, Map.getCell(c));
+
+		this.neighbors = result
+	}
+	
+	initNeighborsObstacles(){
+		var result = []
+
+		var c = getCellFromXY(x, y-1);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x, y+1);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x-1, y);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x+1, y);
+		if(c!=null) push(result, Map.getCell(c));
+
+		this.neighborsObstacles = result
+	}
+
+	/*
+	 * Retourne un tableau de Cell correspondant aux cases de l'@area en params depuis cette case
+	 */
+	getAreaCells(area){
+		if(!_AREAS[area]) debugE('unhandled AREA in Cell.getAreaCells(): '+ area)
+		return _AREAS[area]
+	}
+	
+	/*
+	 * Initialise le tableau _AREAS de la case
+	 * C'est long et pas joli, on pourrait faire plus concis avec des for surement, mais là c'est relativement opti en opération
+	 */
+	initAreas(){
+		var c, result = [this]
+		// AREA_POINT
+		_AREAS[AREA_POINT] = clone(result)
+		
+		//AREA_FIRST_INLINE
+		_AREAS[AREA_FIRST_INLINE] = clone(result)
+		
+		// AREA_CIRCLE_1
+		c = getCellFromXY(x, y-1);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x, y+1);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x-1, y);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x+1, y);
+		if(c!=null) push(result, Map.getCell(c));
+		_AREAS[AREA_CIRCLE_1] = clone(result)
+		
+		// AREA_PLUS_2
+		c = getCellFromXY(x, y-2);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x, y+2);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x-2, y);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x+2, y);
+		if(c!=null) push(result, Map.getCell(c));
+		_AREAS[AREA_PLUS_2] = clone(result)
+		
+		// AREA_CIRCLE_2
+		c = getCellFromXY(x+1, y-1);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x+1, y+1);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x-1, y-1);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x-1, y+1);
+		if(c!=null) push(result, Map.getCell(c));
+		_AREAS[AREA_CIRCLE_2] = clone(result)
+		
+		// AREA_CIRCLE_3
+		c = getCellFromXY(x+2, y-1);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x+2, y+1);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x+1, y-2);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x+1, y+2);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x-1, y-2);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x-1, y+2);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x-2, y-1);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x-2, y+1);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x, y-3);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x, y+3);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x-3, y);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x+3, y);
+		if(c!=null) push(result, Map.getCell(c));
+		_AREAS[AREA_CIRCLE_3] = clone(result)
+		
+		// AREA_PLUS_3
+		result = clone(_AREAS[AREA_PLUS_2])
+		c = getCellFromXY(x, y-3);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x, y+3);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x-3, y);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x+3, y);
+		if(c!=null) push(result, Map.getCell(c));
+		_AREAS[AREA_PLUS_3] = result
+		
+		// AREA_SQUARE_1
+		result = clone(_AREAS[AREA_CIRCLE_1])
+		c = getCellFromXY(x-1, y+1);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x+1, y+1);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x+1, y-1);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x-1, y-1);
+		if(c!=null) push(result, Map.getCell(c));
+		_AREAS[AREA_SQUARE_1] = result
+		
+		// AREA_SQUARE_2
+		result = clone(_AREAS[AREA_CIRCLE_2])
+		c = getCellFromXY(x+2, y-1);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x+2, y+1);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x+1, y-2);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x+1, y+2);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x-1, y-2);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x-1, y+2);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x-2, y-1);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x-2, y+1);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x-2, y+2);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x-2, y-2);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x+2, y-2);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x+2, y+2);
+		if(c!=null) push(result, Map.getCell(c));
+		_AREAS[AREA_SQUARE_2] = result
+		
+		result = []
+		// AREA_X_1
+		c = getCellFromXY(x-1, y-1);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x+1, y+1);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x-1, y+1);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x+1, y-1);
+		if(c!=null) push(result, Map.getCell(c));
+		_AREAS[AREA_X_1] = clone(result)
+
+		// AREA_X_2
+		c = getCellFromXY(x-2, y-2);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x+2, y+2);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x-2, y+2);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x+2, y-2);
+		if(c!=null) push(result, Map.getCell(c));
+		_AREAS[AREA_X_2] = clone(result)
+
+		// AREA_X_3
+		c = getCellFromXY(x-3, y-3);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x+3, y+3);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x-3, y+3);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x+3, y-3);
+		if(c!=null) push(result, Map.getCell(c));
+		_AREAS[AREA_X_3] = result
+	}
+
+	/*
+	 * Format chaîne de caractères utilisée pour des tests / debugs.
+	 */
+	string(){
+		return "<Cell "+this.id+">"
+	}
+}

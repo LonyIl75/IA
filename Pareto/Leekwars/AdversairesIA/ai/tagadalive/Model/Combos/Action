@@ -1,0 +1,38 @@
+/*
+ * Action réalisable d'une entité vers une autre
+ */
+include('../../auto')
+/*
+ * Action réalisable d'une entité vers une autre
+ */
+class Action {
+	public from
+	public to
+	public item
+	public consequences
+	public score
+
+	constructor(item, from, to){
+		this.item = item
+		this.from = from
+		this.to = to
+		this.consequences = Consequences(this)
+		this.score = this.consequences.getScore()
+	}
+	
+	constructor(action, consequences){
+		this.item = action.item
+		this.from = action.from
+		this.to = action.to
+		this.consequences = Consequences(this, consequences)
+		this.score = this.consequences.getScore()
+	}
+	
+	/*
+	 * Format chaîne de caractères utilisée pour des tests / debugs.
+	 */
+	string(){
+		var rounded = this.score != null ? round(this.score) : "None"
+		return "<Action score: "+rounded+" "+this.item.name+"|from:"+this.from.id+"|to:"+this.to.id+">"
+	}
+}

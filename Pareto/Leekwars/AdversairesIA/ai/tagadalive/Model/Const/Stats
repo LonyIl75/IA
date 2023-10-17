@@ -1,0 +1,110 @@
+class Stats {
+	// The Singleton's instance is stored in a static field.
+	private static _instance = null
+	private constructor(){}
+	
+	// This is the static method that controls the access to the singleton instance.
+	// On the first run, it creates a singleton object and places it into the static field.
+	// On subsequent runs, it returns the existing object stored in the static field.
+	public static getInstance(){
+		if (_instance == null){
+			_instance = new HiddenSingleton();
+		}
+		return _instance;
+	}
+	
+	public static getFields(){
+		return Stats.getInstance().class.fields
+	}
+
+	static HP 			= Stats.getInstance().HP
+	static HPTIME		= Stats.getInstance().HPTIME
+	static HPMAX		= Stats.getInstance().HPMAX
+	static ABSSHIELD 	= Stats.getInstance().ABSSHIELD
+	static RELSHIELD 	= Stats.getInstance().RELSHIELD
+	static DMGRETURN 	= Stats.getInstance().DMGRETURN
+	static STR 			= Stats.getInstance().STR
+	static MGC 			= Stats.getInstance().MGC
+	static RST 			= Stats.getInstance().RST
+	static WSD 			= Stats.getInstance().WSD
+	static AGI 			= Stats.getInstance().AGI
+	static SNC			= Stats.getInstance().SNC
+	static TP 			= Stats.getInstance().TP
+	static MP	 		= Stats.getInstance().MP
+	static PWR			= Stats.getInstance().PWR
+	
+	static DEBUFF 		= Stats.getInstance().DEBUFF // should i delete this ?
+	static ANTIDOTE 	= Stats.getInstance().ANTIDOTE // should i delete this ?
+	static RRS 		= Stats.getInstance().RRS
+	static KTP 	= Stats.getInstance().KTP
+	static RH 	= Stats.getInstance().RH
+	
+	static KILL			= Stats.getInstance().KILL
+	
+	
+	
+	static entityEffectType_to_stats = [
+		EFFECT_POISON: 					Stats.getInstance().HPTIME,
+		EFFECT_VULNERABILITY: 			Stats.getInstance().RELSHIELD,
+		EFFECT_ABSOLUTE_VULNERABILITY: 	Stats.getInstance().ABSSHIELD,
+		EFFECT_SHACKLE_AGILITY:			Stats.getInstance().AGI,
+		EFFECT_SHACKLE_WISDOM:			Stats.getInstance().WSD,
+		EFFECT_SHACKLE_MAGIC:			Stats.getInstance().MGC,
+		EFFECT_SHACKLE_STRENGTH:		Stats.getInstance().STR,
+		EFFECT_SHACKLE_MP:				Stats.getInstance().MP,
+		EFFECT_SHACKLE_TP:				Stats.getInstance().TP,
+		EFFECT_AFTEREFFECT: 			Stats.getInstance().HPTIME,
+
+		EFFECT_HEAL: 					Stats.getInstance().HPTIME,
+		EFFECT_RAW_ABSOLUTE_SHIELD: 	Stats.getInstance().ABSSHIELD,
+		EFFECT_RAW_BUFF_AGILITY: 		Stats.getInstance().AGI,
+		EFFECT_RAW_BUFF_MAGIC: 			Stats.getInstance().MGC,
+		EFFECT_RAW_BUFF_MP: 			Stats.getInstance().MP,
+		EFFECT_RAW_BUFF_RESISTANCE: 	Stats.getInstance().RST,
+		EFFECT_RAW_BUFF_SCIENCE: 		Stats.getInstance().SNC,
+		EFFECT_RAW_BUFF_STRENGTH: 		Stats.getInstance().STR,
+		EFFECT_RAW_BUFF_TP: 			Stats.getInstance().TP,
+		EFFECT_RAW_BUFF_WISDOM: 		Stats.getInstance().WSD,
+		EFFECT_BUFF_AGILITY: 			Stats.getInstance().AGI,
+		EFFECT_BUFF_MP: 				Stats.getInstance().MP,
+		EFFECT_BUFF_RESISTANCE: 		Stats.getInstance().RST,
+		EFFECT_BUFF_STRENGTH: 			Stats.getInstance().STR,
+		EFFECT_BUFF_TP: 				Stats.getInstance().TP,
+		EFFECT_BUFF_WISDOM: 			Stats.getInstance().WSD,
+		EFFECT_ABSOLUTE_SHIELD: 		Stats.getInstance().ABSSHIELD,
+		EFFECT_RELATIVE_SHIELD: 		Stats.getInstance().RELSHIELD,
+		EFFECT_DAMAGE_RETURN: 			Stats.getInstance().DMGRETURN,
+			
+		EFFECT_RAW_RELATIVE_SHIELD: 	Stats.getInstance().RRS,
+		EFFECT_KILL_TO_TP: 	Stats.getInstance().KTP,
+		EFFECT_RAW_HEAL: 	Stats.getInstance().RH,
+	]
+}
+
+// n'est utilisé que pour sa propriété class.fields pour parcourir les stats, ne jamais instancier ailleurs
+// OUI J'aurais pu faire un tableau "key":value, MAIS .fields c'est quand mm beaucoup plus class non ?
+class HiddenSingleton{
+	HP 			= 0
+	HPTIME		= 1
+	HPMAX		= 2
+	ABSSHIELD 	= 3
+	RELSHIELD 	= 4
+	DMGRETURN 	= 5
+	STR 		= 6
+	MGC 		= 7
+	RST 		= 8
+	WSD 		= 9
+	AGI 		= 10
+	SNC			= 11
+	TP 			= 12
+	MP	 		= 13
+	PWR			= 14
+
+	DEBUFF 		= 15
+	ANTIDOTE 	= 16
+	RRS 		= 17
+	KTP 	= 18
+	RH =19
+	
+	KILL		= 20
+}

@@ -1,0 +1,11 @@
+// useChip(CHIP_FORTRESS, getLeek());
+
+var enemy = getNearestEnemy();
+
+if (count(getWeapons())) {
+	setWeapon(getWeapons()[0]);
+}
+
+moveToward(enemy);
+
+useWeapon(enemy);
