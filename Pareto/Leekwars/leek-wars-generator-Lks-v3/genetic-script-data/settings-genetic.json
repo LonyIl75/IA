@@ -1,0 +1,92 @@
+{
+    "population": 30,
+    "generations": 50,
+    "combatsQuantity": 10,
+    "saveBestEachGeneration": true,
+    "usePreviousAdn": true,
+    "shortenAdn": false,
+    "randomPopGeneLength": 5000,
+    "numberOfConcurrentThreads": 1,
+    "timerPerBatch": 20,
+    "onlineSaving": true,
+    "serverAddress": "http://dianaetrobin.free.fr/genetic/genetic-dict.php",
+    "participants": 3,
+    "sendToServer": 10,
+    "analyseNewGenerations": false,
+    "write_outcome" : true , 
+
+    "evaluation": {
+        "victory": 1,
+        "defeat": -1,
+        "draw": -0.5,
+
+        "moreVerbose": -0.1,
+        "lessVerbose": 0.1,
+
+        "duration": -0.02,
+        "lifeRemaining": 0.2
+    },
+
+    "mutations": {
+        "ratioPopulation": 0.7,
+        "onlyOnBestAdn": true,
+        
+        "ratioMutations": 0.01,
+
+        "delete": 0.0,
+        "change": 1.0,
+        "switch": 0.0,
+        "duplicate": 0.0,
+        "duplicateMinLength": 1,
+        "duplicateMaxLength": 10,
+        "add": 0.0,
+        "meta-add": 0.0,
+        "meta-del": 0.0,
+        "threshold-meta": 0.01
+    },
+
+    "recombinations": {
+        "ratioPopulation": 0.0,
+        "onlyOnBestAdn": true,
+
+        "kRecombination": {
+            "ratio": 0.5,
+            "minLength": 1,
+            "maxLength": 100
+        },
+
+        "sequenceRecombination": {
+            "ratio": 0.5,
+            "minLength": 1,
+            "maxLength": 100,
+            "chanceRestart": 0.5
+        }
+    },
+
+    "elitism": {
+        "ratioPopulation": 0.3,
+        "onlyOnBestAdn": true,
+
+        "previousGeneration": 1.0,
+        "ancientGeneration": 0.0
+    },
+
+    "leekStats": {
+        "level": 30,
+        "life": 407,
+        "strength": 130,
+        "agility": 0,
+        "wisdom": 40,
+        "resistance": 10,
+        "science": 0,
+        "magic": 0,
+        "frequency": 100,
+        "tp": 11,
+        "mp": 4,
+        "ids":[12,62]
+    },
+
+    "mapStats": {
+        "max_turns": 64
+    }
+}

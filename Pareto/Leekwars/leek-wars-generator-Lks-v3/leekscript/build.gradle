@@ -1,0 +1,46 @@
+apply plugin: 'java'
+
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+sourceSets {
+    test {
+        java {
+            srcDirs = ['src/test/java']
+        }
+        resources {
+            srcDirs = ['src/test/resources']
+        }
+    }
+}
+
+libsDirName = '..'
+
+jar {
+    archiveBaseName = "leekscript"
+	manifest {
+        attributes "Main-Class": "leekscript.TopLevel"
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.12'
+    implementation group: 'com.alibaba', name: 'fastjson', version: '2.0.23'
+}
+
+task tests(type: Exec) {
+    group = "Execution"
+    description = "Run the main class with ExecTask"
+    commandLine "java", "-classpath", sourceSets.test.runtimeClasspath.getAsPath(), "test.TestMain"
+}
+test.dependsOn(tests)

@@ -1,0 +1,609 @@
+ Route :
+
+
+Première page :
+
+https://leekwars.com/encyclopedia/fr/Leek_Wars
+
+
+Dépôts :
+
+Leekscript : https://github.com/leek-wars/leekscript
+Leekwars : https://github.com/leek-wars/leek-wars-generator
+
+
+Le dépôt leekscript contient la définition du langage leek grâce au langage JAVA 
+Le dépôt leekwars-generator est un moyen de lancé des combats localement sur son ordinateur
+Chacun de ces dépôts sera détailler dans la partie ____ et ____ 
+
+Explication :
+
+Leekwars est un jeu qui fait s'affronter des IAs ces IAs sont codés en ammont par les joueurs (sur https://leekwars.com/editor/ )
+Pour vous faire une idée de ce a quoi ressemble un combat vous pouvez cliquer sur l'onglet Tester (en haut à gauche ) une fois sur l'Editeur , ajouter un poireau avec les button "+" et choisir une IA (cliquer sur l'IA "Lambda" ) , vous pourrez choisir les modalités de combats comme la seed .
+
+Programmation Leekwars :
+
+Cette suite d'instruction correspond à créer un "Scenario" en leekscript (https://github.com/leek-wars/leek-wars-generator/blob/master/src/main/java/com/leekwars/generator/scenario/Scenario.java ) , 
+
+Scenario :
+
+La classe scénario définit comment  écrire un fichier scénario et créer un scenario à partir d'un fichier .
+Vous pouvez trouver un exemple de fichier scénario ici : https://github.com/leek-wars/leek-wars-generator/blob/master/test/scenario/scenario1.json
+
+(Les fichiers de ressources utilisateurs : ia , scenario ect sont stockés dans le dossier test à la racine du projet )
+
+Fichier Scenario : 
+
+Les premières choses à connaitre sont les ids , il existe 2 types d'ids les ids propre au combat (FightID) et les ids universelle (utilisés par le site ) pour constater le distinguo voir (https://github.com/leek-wars/leek-wars-generator/blob/27f8e0fde04d0c32c913ae2668e146d2314a2c41/src/main/java/com/leekwars/generator/fight/Fight.java#L251 ), dans la fonction addEntity ligne 274-275 on constate que il y a deux types de maps mEntitiesByID et mEntities l'une est indexer par l'id universelle de l'entité l'autre l'id du combat .
+Généralement l'id du combat est 0 pour la première entité 1 pour la seconde ect alors que l'id de l'entité peuvent être diverses .
+
+Vous n'allez surement utiliser que le fightID pour identifier l'entité pendant votre traitement interne au combat tandis que vous utiliserez l'id universelle pour des programmes extérieur au combat . 
+
+
+La deuxième chose notable est le champs maps en bas du scénario , il contient un champ obstacle ce qui indique que vous pouvez en imposés mais sachez que leekwars en ajoutera sauf si vous modifier sont codes internes : à savoir Scenario.map != null 
+
+Code :
+(Generator#L129 setCustomMap et Fight.java#L492  ) custom_map=Scenario.map =null   et obstacle_count = getRandom().getInt(30, 80) >  Map.generateMap(...,obstacle_count,custom_map) > (Map.java#L88 ) si custom_map == null { /* rempli obstacles */ }   
+
+La troisièmre chose est le tableau des entities (il contient toutes les entités qui s'affronte pendant le combat ) ces entités sont définis par leur statistique mais aussi l'IA qui les encodes ( le champ type est une feature abandonné il était destiné a encodé plusieurs type d'IA : distingué plusieurs implémentation d'EntityAI en JAVA ) et leur position sur la carte  .
+La position est décrites par le champ cell , très important pour que vos poireaux commence a la même place et donc que leur trajectoire puisse être comparable (ssi les obstacles sont intégralement imposés ) .
+
+Code: 
+Scenario.java#L87 j'ai personnellement rajouter : 				
+				```
+				//_map contient les champs a changer 
+				JSONObject e = (JSONObject) entityJson;//INTERCEPT HERE
+				for( String key : _map.keySet() ){
+					e.put(key, _map.get(key)); //on écrase la valeur du champ:key 
+				}
+				EntityInfo entity = new EntityInfo(e);
+				Log.i(TAG, "Created entity " + entity.name);
+                team.add(entity);
+				```
+Ca me permets de remplacer la valeur des champs caractérisant l'entité décrite par entityJson et implémenter par entity à l'instanciation du scénario si je ne le faisais pas je devrais créer des scénarios différents pour chaque configurations d'IA . 
+Une autre façon de faire pourrait être dans 	runScenario#L143 :
+
+```		for (List<EntityInfo> team : scenario.entities) {
+			for (EntityInfo entityInfo : team) {
+
+				// Create farmer logs
+				int aiOwner = entityInfo.aiOwner;
+				if (!outcome.logs.containsKey(aiOwner)) {
+					outcome.logs.put(aiOwner, new FarmerLog(fight, entityInfo.farmer));
+				}
+				if( modifiers!=null )
+				for ( modifierField modif : modifierField.values() ) { 
+					JSONArray _arr = (JSONArray)readAdn.getFromFile(genConfig.getSettingFilename(), genConfig.getGenFight(), String.valueOf(entityInfo.id), modifyFieldsAI.getLabel(modif))  ;
+					//récupère dans le fichier de configuration os.path.join(genConfig.getSettingFilename(),genConfig.getGenFight()) l'attribut  modif de l'entité entityInfo.id
+					//a noter on utilise l'id universelle car le fichier de configuration est dans un contexte extérieur au fight (exemple de fichier : adn_json.json) 
+					ArrayList<Integer> items= new ArrayList<Integer>();
+					for(int i=0;i<_arr.size();i++){
+						items.add(_arr.getInteger(i));
+					}
+					switch(modif){
+						case   WEAPONS	 :
+							entityInfo.setWeapons(items);;
+							break;
+						case   CHIPS	 :
+							entityInfo.setChips(items);;
+							break;
+
+					}
+				}
+```
+Comme les entités qui seront créer pendant un fight sont issu des EntityInfo modifier les EntityInfo permettront de modifier les Entities (voir createEntity dans EntityInfo )
+
+Finalement on peut constater la présence du champ le plus important de tous : "ai" .
+
+AI:
+
+L'AI d'une entité est décrite par un path dans le fichier scénario la première chose dont il faille s'assurer est que le path menant à l'IA est dans les ressources ( sinon nous ne pourrions pas le lire ) pour ce fait il suffit de l'ajouter au classpath (Add Folder to Java Source Path sur vscode) mais aussi de l'inclure au gradle : 
+```sourceSets {
+	/* ... */ 
+		 resources {
+            srcDirs =["test/ai"]
+        }
+	}
+``` si mon path était "ai": "test/ai/basic.leek" ou "ai":"basic.leek" et "ai_folder":"test/ai" ou encore"ai_path" :"test/ai/basic.leek" // voir méthode AIFile resolve EntityAI#L104
+
+
+PS : Je conseil d'utiliser ai_path ou ai plutot que ai_folder 
+
+
+
+entity.setAIFile(EntityAI.resolve(this, entityInfo, entity)); // Generator > runScenario.java #L165 
+
+<=>
+
+Une fois que le fichier est résolu (trouvé)  et que l'AIFile correspondant est lié à notre EntityAI [ et dans le cas d'un ai_path que la version est initialisé ( la version "ai_version" distingue une IA qui marche en LS3 d'une qui fonctionne en  LS4 ect )  ] on peut passer au BUILD .
+
+
+
+---- FIN SCENARIO --- 
+
+BUILD  :
+
+
+StartFight Generation#L172 
+
+InitFight : rien de notable
+
+StartFight#L379
+```for (Entity entity : mEntities.values()) {
+
+			// Build AI after the fight is ready (static init)
+			var ai = EntityAI.build(this.generator, entity.getAIFile(), entity);
+```
+Le Build va permettre d'avoir une IA exécutable java => .class pour chaque entités impliqué dans le Fight .
+Le tricks pour faire en sorte que cette étape ne se produise qu'une fois est d'utilisé la même IA (même ai_path) pour toutes les entités  . Ceci est rendu possible par nos IAs qui sont des IAs génétiques , ainsi elles possèdent les mêmes fonctions mais leur comportement diffère uniquement par une séquence de gène .Donc on peut utiliser le même fichier .java pour chacune d'entre elles puis à l'éxécution lire la séquence dans un fichier de stockage (cf adn_json.json ) ou la demander a un serveur .
+
+
+			```file.setJavaClass("AI_" + file.getId());
+			file.setRootClass("com.leekwars.generator.fight.entity.EntityAI");
+
+			EntityAI ai = (EntityAI) file.compile(generator.use_leekscript_cache);
+				> JavaCompiler#L57 : AI compile(AIFile file, boolean useClassCache)
+								//Verifie si IA encore en RAM correspond à ID: file.getJavaClass() si oui lance avec ca 
+								//Verifie si Fichier déjà compiler correspond à file.getJavaClass() si oui instancie une IA avec et lance avec 
+								//Sinon :
+									/* IACompiler#L75 AIFile Compile 
+										 #L80: WordParser(ai, ai.getVersion()); 
+										 #L83: MainLeekBlock(...  ) // certains mots/TOKEN/types ne sont pas autorisés en fonction de la version par exemple les LeekHashMap/Map sont dispos qu'a partir de LS4
+
+										 #L85 :readCode()
+										 	> compile(WordCompiler compiler) WorParser (marche pas top sur Window : caractère spécial)
+										 	//compile vérifie qu'il n'y a pas d'erreur de syntaxe : déclaration mal formé , absence virgule , parenthèse ect
+
+										 	NB:
+										 	Sur window vous devez avoir un fichier .leek qui répond à ces critères :
+										 		- Pas de commentaires de type "// commentaire" (seul autoriser "/* commentaire */")
+										 		- Il est préférable que les fonctions soit déclarer avant d'être appelé 
+										 		(- Il est conseillé que le scénario ait "ia_version":4 pour chaque IA (=> LS4) , car nos tests ont été effectuer en LS4 mais LS3 semble aussi fonctionné ) 
+
+										 	Autre modification : 
+										 		- commenter tous les "assert(mLeftValue && !mTabular.nullable());"  dans compiler>expression>LeekArrayAccess.java sinon ils proquent dés que l'on souhaite accéder à un tableau 
+
+
+
+										 #L86 : analyze()
+										 	> analyze va être appelé sur tous les blocs empiler par le compiler (Classe , fonction ect , voir repertoire leekscript>compiler>bloc)
+										 	> ensuite analyse va être appelé sur tous les sous blocs ect jusqu'a être appelé sur les expressions 
+										 	AINSI:
+										 	Si on veut rajouter des fonctions à leekscript : au .leek
+										 	Il faut :
+										 			//SEMANTIQUE : Code JAVA associé TOKEN
+										 			MainLeekBlock.java#L196 , writeJavaCode() :
+										 				- ajouter writer.addLine("import leekscript.runner.julien_append.*;"); parmis les imports
+										 				(permets de faire le liens entre les tokens qu'on rajoutera et leur définitions)
+
+										 			//SYNTAXE : TOKEN
+										 			LeekVariable.java#L20 :
+										 				-ajouter votre type personnel à l'enumeration VariableType exemple : enum VariableType { ... , ITERATOR ,JUSTAT_FUNCTION}
+
+										 			LeekExpression.java#L817 :
+										 				- if (v.getVariableType() == VariableType.JUSTAT_FUNCTION ||v.getVariableType() == VariableType.SYSTEM_FUNCTION || v.getVariableType() == VariableType.FUNCTION)
+										 				et #L831 
+										 				//on rajoute notre type de function à SYSTEM_FUNCTION <=> JAVA pur et VariableType.FUNCTION <=> défini par leek
+										 				//désormais y a aussi JUSTAT_FUNCTION <=> défini par Julien
+
+										 			LeekExpressionFunction.java :
+										 				- ajouter import leekscript.runner.julien_append.JuStatFunctions;
+										 				- suivre le ctrl+F "JuStatFunctions" dans le fichier d'exemple LeekExpressionFunction
+									IACompiler#L96:
+										> WordCompiler.java#L294 ,writeJavaCode
+											MainLeekBlock.java#L217 ,writeJavaCode
+												//On suit le même procéder qu'avec analyse mais cette fois ci avec les Instructions chaque Instruction va appelé writeJavaCode sur ces sous Instructions ,la création des instructions et comme suit : mCurentBlock.addInstruction(this, new LeekExpressionInstruction(exp)); #L290 WordCompiler , chaque expression est représenter par une instruction 
+											Finalement writeJavaCode écrira le code Java que vous pourrez trouver https://github.com/Chocov951/TER-Algo-Genetique/tree/15116d01cb283edbdf63fb088a78fdf07cc5e55f/ai ou dans votre repertoire "./ai" créer a la racine de votre fichier generator ou leekscript( après avoir lancer gradle test dans le repretoire leekscript ) 
+											Vous constaterez aussi la présence d'un fichier lines , un fichier java et plusieurs .class , le fichier lines est générer au fur à mesure de l'écriture du code .java grâce à JavaWriter.java#L50 addLine il indique la position des instructions (pas sûr ) , le .java est une classe qui étend et permet d'instancier une classe EntityAI (plusieurs fonctions sont laissé abstract dans ce but tel que runIA() EnityAI#L436 ).
+
+
+											.java :
+
+											Il commence avec les imports définit : MainLeekBlock.java#L196 
+											puis étends la classe EntityAI le chiffre après AI_ est l'identifiant de notre AIFile 
+											ensuite le constructeur : la seconde valeur indique la version de l'IA la première le nombre d'instruction (mais il n'est pas utilisé)
+											après on a le staticInit MainLeekBlock.java#L259  il sert a initialisé les champs static qui seraient dans votre fichier .leek mais le keyword static a été retirer de LS4 donc il est laissé vide désormais (pas sûr)
+
+											Remarque :
+
+												J'ai préféré en créer un initialiseur pour moi au cas ou Pilow réutiliserait le sien 
+												AI.java#L158
+												```
+												public void staticInit( ) throws Exception {} //pilow ,effectuer au premier tour 
+
+												public void setConfig( ) throws Exception {}//moi , effectuer au premier tour 
+												public void init() throws Exception {}//pilow , effectuer après l'instanciation Fight.java#L381 ai.init()
+
+												```
+
+
+												MainLeekBlock#L224 writeJavaCode.java (import nécessaires au setConfig )
+												```		
+												writer.addLine("import leekscript.runner.utilGen.*;");
+												writer.addLine("import java.util.concurrent.TimeUnit ;");
+												```
+
+												MainLeekBlock#L275 ,writeJavaCode.java 
+
+												```
+												writer.addLine("public void  setConfig( )throws LeekRunException {");
+												writer.addLine("if( isAvaibleFromFile() ){ g_gene = getAdnFromFile();while(g_gene == null){System.out.println(\"WAIT : \"); try {TimeUnit.SECONDS.sleep(2);} catch (InterruptedException e) {e.printStackTrace();}g_gene = getAdnFromFile();}g_init_gene = true;}");
+												writer.addLine("}");
+												```
+												#getAdnFromFile() est une fonction que j'ai rajouté dans EntityAI elle permet de lire dans un fichier l'attribut Adn correspondant à l'id universelle associé à l'instance courante EntityAI (comme on l'a vue précedemment )
+
+												Les variables globales annotés par "g_" MainLeekBlock#L282 writeJavaCode sont initalisé à null et associé à un booléen "g_init_"
+												si le booléen est vrai alors la variable globale n'est plus re-évaluer 
+												Ainsi ma fonction setConfig() permet d'initialiser la variable globale gene .
+
+
+											MainLeekBlock#L282 ,writeJavaCode.java 
+											On déclare les variables globales et leur booléen , //prefixe : "g_" et "g_init_"
+											puis les re-définitions et définitions de fonctions //prefixe : "f_"
+
+											Finalement MainLeekBlock#L302 ,writeJavaCode.java 
+											On déclare runIA() (la fonction abstraite laissé à null dans EntityAI)
+											première ligne : resetCounter() #reset le nombre d'opération effectuer par l'IA
+											à ce stade le curseur du writer est positionner sur le code écrit dans le "main" du .leek ainsi runIA() est le main du .leek ,ce main contient les définitions des variables  mais aussi les appels de fonctions qui n'appartiennent à aucune scope ect de notre .leek 
+											on return null 
+											et on ferme notre runIA()
+											Puis on écrit les fonctions générique de AI ( getErrorFiles,getAIString)  et anonyme de LS utilisé dans notre .leek (pas sûr )
+											et on ferme la définition de AI_ID (héritière de EntityAI)
+
+                                    On retourne le code générer 
+									FIN IACompiler
+				Une fois le code java Générer (.getJavaCode()) on le compile avec :
+
+				J'ai corriger 
+				```
+					static {
+						classpath = new File(LeekScript.class.getProtectionDomain().getCodeSource().getLocation().getPath()).getPath();
+						//classpath += ":/home/pierre/dev/leek-wars/generator/bin/main"; //prelicat de pilow repo
+						arguments.addAll(Arrays.asList("-classpath", classpath, "-nowarn"));
+						//ajouter les arguments que vous souhaitez , le classpath et le repertoire ou le fichier sera compilé (aps sûr) 
+						try {
+							urlLoader = new URLClassLoader(new URL[] { new File(IA_PATH).toURI().toURL() }, new ClassLoader() {});
+						} catch (MalformedURLException e) {
+							e.printStackTrace();
+						}
+					}
+				```
+
+				var compilationUnits = Collections.singletonList(new SimpleSourceFile(fileName, file.getCompiledCode().getJavaCode()));
+
+				//https://docs.oracle.com/javase/7/docs/api/javax/tools/JavaCompiler.CompilationTask.html
+				var task = compiler.getTask(output, fileManager,diagnosticListener, arguments, null, compilationUnits);
+
+				boolean result = task.call();
+
+				J'ai notamment rajouter :
+				```
+				for (Diagnostic<? extends JavaFileObject> diagnostic : diagnosticListener.getDiagnostics()) {
+		            System.err.format("%s%n", diagnostic.getMessage(null));
+		        }
+		        ```
+		        pour permettre de détecter les erreurs de compilation
+
+		        Après avoir génerer le bytecode ect 
+
+		        On essaye l'etape de chargement de l'IA  via la nouvelle classe AI_ID(.java) , cette étape est la suivante:  on instancie AI_ID dans une variable de type AI (car AI_ID extends EntityAI extends AI ) , on lui associe son fichier AIFile , son id et son .lines (#L199 à 219 : fin du fichier JavaCompiler.java)
+
+
+INIT:
+entity.setAI(ai);
+ai.init();//la fonction init vue précédemment dans l'onglet .java > Remarque 
+//init seed 
+//init statistique avec stat et characteristique de base de l'entité
+
+FIGHT: while loop
+// On lance les tours
+		while (order.getTurn() <= max_turns && mState == Fight.STATE_RUNNING) {
+			startTurn();
+				>Fight.java#L552
+				 actions.log // On parlera de cette classe dans le chapitre outcome >Champ : "actions"
+
+				 //current est l'entité qui est entrain de faire son tour x , chaque entité participe au tour x sauf si elle est morte 
+
+				 current.applyCoolDown();//applique cooldown , autre chapitre
+				 current.startTurn();//applique les effets sur l'entité e.g DOT autre chapitre
+				 //...
+				 current.getAI().runTurn(order.getTurn()); 
+				 	> EntityAI.java#L278
+				 		#L288 :
+				 		```
+				 		if (turn == 1) {
+				 				staticInit();
+								setConfig();
+						}
+						```
+						 //si c'est le premier tour on initialise les variables statique du main et la configuration de l'IA : (g_gene /code génétique/ADN)
+						Ligne suivante :
+						````
+						runIA();
+						```
+						On lance notre main écrit/définit par MainLeekBlock#L302 
+						S'il y a une levé d'exception lors du runIA on la gère dans les catch succédant à runIA (on ajoute l'erreur aux logs suivant : addSystemLog + fight.log + statistics.error ) après l'éxécution du fight on aura les erreurs dans le champs "logs" de l'outcome 
+
+				current.endTurn(); //propage les effets appliquer à l'entité je crois que ce n'est que pour la puce COVID (pas sûr)
+					> Entity.java#L666 , endTurn()
+					//...
+					J'ai rajouter
+					```
+					if(fight != null)fight.addHistory(this.fight_id);
+					```
+					qui ajoute un tableau de tableau indexer par l'id de l'entité : this.fight_id et dont la valeur est un tableau de tableau qui contient respectivement les statistiques de base de l'entité (les stats de bases peuvent fluctués , e.g effect:diminue pv max ) et les statistiques actuelles ( je ne mets pas le code car ce n'est pas une bonne façon de faire )
+
+				actions.log(new ActionEndTurn(current));
+
+				endTurn();//prépare new turn
+		if (order.current() == null) {
+			finishFight();
+			break;
+		}
+		}//FIN WHILE
+		//finishFight
+
+	}
+
+OUTCOME :
+	Generator.java#L176:
+		L'outcome est le résultat du fight , on peut le voir comme un json récapitulant toutes les actions du fight , les erreurs mais aussi les statistiques décrites dans le scénario , le temps de compilation ,d'execution total , l'équipe gagnante et les poireaux morts pendant la partie 
+
+		Dans ce chapitre on va décortiquer toutes les entités encoder dans ce outcome.json :
+			>Champ : "actions" :
+				J'ai rajouter deux fichier qui sont écrit automatiquement par la fonction Data.mcheckData() :
+
+
+					- Data.writeStaticFieldsActions() : FICHIER leek-wars-generator-Lks-v3 > data> df_Actions.json
+
+
+						String content = Data.actionStaticFieldsToJson(Action.interval_size,Action.headers ); //écris les attributs statiques de Action et les classes par intervalles de taille Action.interval_size intitulés par Action.headers  résultat disponible sur : df_Actions.json 
+
+						Les actions d'une IA se classifie en 5 types :
+							- "Times" : Debut combat , fin combat , debut tour, fin de tour mais aussi utilise/équipe un item , ouvre un coffre ect
+							- "Buffs" : Tous les effets qui peuvent impacter les statistiques d'un poireau
+							- "Funs" : action qui n'ont aucun impact sur la partie : parler , montrer une case ,ect
+							-"Effects" : Tous les effets qui applique ou enleve un effet ex: ajoute un DOT a une entité , enleve un DOT , fin du délai du DOT , ect
+							-"Others" : Erreur de combat , erreur de AI_ID.class et chemin de deplacement du poireau
+
+						Ces type se partages des plages de 100 valeurs chacun Times \in [0;99[ , Buffs:[100;200[  , ...
+
+
+					-Data.writeActions() :  FICHIER leek-wars-generator-Lks-v3 > data> df_value_Actions.json
+
+
+						String content =   Data.actionsToJson(); 
+							> JSON.toJSONString(Action.actionsToJson(),SerializerFeature.DisableCircularReferenceDetect); 
+							// Détail JAVA : SerializerFeature.DisableCircularReferenceDetect si on le précise pas AlibabaJSON utilisera des $refs pour ne pas re-écrire une valeur déjà écrites
+							> Action.java#L153 :
+								```
+								static Class<?>[] arr_class_actions = {
+										ActionAddEffect.class,
+										...
+								}
+								``` //tableau de tous les Action instanciable pendant une partie
+								```
+								public static JSONObject actionsToJson(){
+									JSONObject json_obj =  new  JSONObject();
+
+									for (Class<?> action : arr_class_actions) {
+										json_obj.putAll(((Action)action.getDeclaredConstructor().newInstance()).getDfJson());
+											> Action#L132 , getDfJson
+
+													JSONArray arr_str = getFieldsStrJson();// récupère les noms des champs décrivant le json de l'Action 
+													ArrayList<JSONArray> arr_value  = getDefaultJSONs() ; // récupère les valeurs par défaut des champs du json de l'Action
+													//...
+													//retourne un JSONObject 
+														/*, par exemple :
+															"10":{"path":[0],"name_fields":["type","leek","end","path"],"end":0,"type":10,"leek":0}
+															name_fields indique l'ordre dans lequel le script originel leekwars écrit les membres de ce quatuor:
+															ainsi si dans mon outcome j'ai :
+																[10,0,182,[74,92,110,128,146,164,182]] alors je lis 
+															Action 10 , 
+															Je sais que le premier entier est le type donc type == 10 =>
+																10 <99 donc Action de type Times , 10 = TOKEN : Action.MOVE_TO (class ActionMove )
+															Je sais que le second entier est l'id_Fight du leek :0  
+															Je sais que le troisième est la fin du chemin : 182
+															Finalement je sais que le quatrième est le chemin entier :[74,92,110,128,146,164,182]
+
+															En Procédant identiquement pour chaque éléments du tableau actions de l'outcome on arrive a déchiffrer ce qu'il représente , un déchiffrement partiel est proposer dans le fichier ReadActionsFromScenario.py
+														*/
+
+
+
+SUPER-LEEKWARS :
+
+J'ai "re-organiser" les éléments manipulables par les leeks durant le combats dans le répertoire SuperLeekwars :
+J'y définit une surcouche des effets divers de leekwars , des items : chips et weapons et du concept de Cell 
+Même si j'ai détruit une partie de l'implémentation ce peut être bon de les lires ainsi que le liens internet associés pour comprendre briévement ce que sont ces éléments
+
+
+Items :
+On distingue 2 type d'items dans leekwars , les armes et les puces , ces items seront encodé par la classe ItemsUtil :
+
+La classe WeaponsUtil.java implémente ItemsUtil elle permet d'écrire les effets de l'armes et son pattern , 
+Le pattern d'une arme est constitué d'un filtre de dégat direct et de dégat par AOE , les dégâts direct sont la portée de l'arme et les dégâts AOE sont ce qui peut être touché aussi par AOE .
+
+Ces patterns sont écrits dans le  FICHIER leek-wars-generator-Lks-v3 > data> weaponPattern.json et ( ?chipPattern ,pas fait )
+
+
+Les effets d'une arme sont découpé en  2 parties :
+	- AffectBy : les statistique qui amplifie l'effet ,
+	- Affect : les statistique qui est affecté par l'effet
+Et ce pour la target (ou receveur) et le caster(ou lanceur) .
+Donc en tout 4 champs 
+
+Le fichier FICHIER leek-wars-generator-Lks-v3 > data> df_enumEffect.json  renseigne sur l'identifiant de chaque effet  
+
+Ces champs sont divisés en 3 :
+	- stat_atm : statistique actuelle e.g dégât infligés multiplier par la force actuelle
+	- stat_base : statistique totale/base e.g soin de la puce multiplier par le nombre de pv max 
+	- stat_dot : type de dot appliquer e.g attaque directe (temps du DOT = 1 tour ), attaque poison (temps du DOT > 1) , ect
+
+Les fichiers FICHIER leek-wars-generator-Lks-v3 > data> df_enumCaracteristique.json renseigne sur l'index du bit pour chaque statistique ,
+FICHIER leek-wars-generator-Lks-v3 > data>  df_enumDot.json indique l'index du bit correspondant à chaque type de dot  
+
+Les setters qui me permettent de binariser les effets : 
+_AffectStat.java#L110
+	```
+	public void addAffectDot(enumDot dot) ;
+	public void addAffectBaseStat(enumCaracteristique cara) ;
+	public void addAffectAtmStat(enumCaracteristique cara);
+	```							
+
+Ces effects sont écrits dans le FICHIER leek-wars-generator-Lks-v3 > data>myEffect_weapons.json et (?myEffect_chips) grâce à la fonction getIndexEffectEntrave de ComputeEffect.java
+
+
+
+
+MAP :
+La MAP leekwars est définit comme suit 17 x 17 en diagonale l'idée est que se devant/arrière => +/- 17 , droite/gauche => +/- 18  diagonal pos => +25 diagonal neg => +1 , 
+J'ai tenté de trouver une formule pour calculer en fonction de l'id la coordonnée sur l'axe ([0,17],[0,-17])  et ([-17,0] , [17,0]) 
+
+def _fx(z):
+    return (-((306-z)+289)/35,(289-(306-z))/35)
+def _fy(z):
+    min_x , max_x = _fx(z)
+    min_x = int(min_x)
+    max_x = int(max_x)
+    for x in range(min_x ,max_x+1):
+        y = (-18*x-(306-z))/17
+        y=int(y)
+        if((abs(x)+abs(y)<=17) and z==(306+18*x+17*y)) :
+            return(x,y)
+
+Pilow  associe à chaque id une coordoonée  plutot que de faire le calcul 
+
+AREA :
+
+Les aires de dégâts direct sont construit suivant 3 patterns : line ( en forme de plus en + ) , diagonal (en forme de croix en X ) , cercle (en forme de cercle)
+On construit des étoiles tel que WEAPON_LIGHTNINGER
+
+/*
+public static int[] getLaunchArea( Attack attack ){
+
+    byte launchType = attack.getLaunchType() ;
+    if (launchType == Attack.LAUNCH_TYPE_LINE)
+        return _launchLine(attack);
+    else if (launchType == Attack.LAUNCH_TYPE_DIAGONAL)
+        return _launchDiagonal(attack);
+    else if (launchType ==Attack.LAUNCH_TYPE_STAR )
+        return _launchStar(attack);
+    else if (launchType == Attack.LAUNCH_TYPE_STAR_INVERTED)
+        return _launchStarInverted(attack);
+    else if (launchType == Attack.LAUNCH_TYPE_DIAGONAL_INVERTED)
+        return _launchDiagonalInverted(attack);
+    else if (launchType == Attack.LAUNCH_TYPE_LINE_INVERTED)
+        return _launchLineInverted(attack);
+    else if (launchType == Attack.LAUNCH_TYPE_CIRCLE)
+        return _launchCircle(attack);
+    return null;
+}
+*/
+
+Attention  : le launch_type a changé entre LS3 et LS4 l'implémentation ci dessus est celle de LS3 (en LS4 Attack.LAUNCH_TYPE_... n'existe pas )
+
+voir https://github.com/Chocov951/TER-Algo-Genetique/blob/15116d01cb283edbdf63fb088a78fdf07cc5e55f/data/weapons.json
+
+
+Les aires de dégâts indirect/AOE :
+
+public static int[][] _getArea(Attack attack, byte type) {
+  
+    if( type ==Area.TYPE_SINGLE_CELL )
+        return getNeutreAOE2D() ;
+    else if (type == Area.TYPE_CIRCLE1 || type == Area.TYPE_AREA_PLUS_1)
+        return MaskAreaCell.generateCircleMask(0, 1);
+    else if (type == Area.TYPE_CIRCLE2)
+        return MaskAreaCell.generateCircleMask(0, 2);
+    else if (type == Area.TYPE_CIRCLE3)
+        return MaskAreaCell.generateCircleMask(0, 3);
+    else if (type == Area.TYPE_AREA_PLUS_2)
+        return MaskAreaCell.generatePlusMask(2);
+    else if (type == Area.TYPE_AREA_PLUS_3)
+        return MaskAreaCell.generatePlusMask(3);
+    else if (type == Area.TYPE_X_1)
+        return MaskAreaCell.generateXMask(1);
+    else if (type == Area.TYPE_X_2)
+        return MaskAreaCell.generateXMask(2);
+    else if (type == Area.TYPE_X_3)
+        return MaskAreaCell.generateXMask(3);
+    else if (type == Area.TYPE_SQUARE_1)
+        return MaskAreaCell.generateSquareMask(1);
+    else if (type == Area.TYPE_SQUARE_2)
+        return MaskAreaCell.generateSquareMask(2);
+    else  if (type == Area.TYPE_LASER_LINE)
+        return null ; //new AreaLaserLine(attack); //TODO 
+
+    return null;
+}
+
+Voici les divers type d'AOE , voir MaskAreaCell si vous voulez continuer dans cette voie 
+
+
+MAP DE DANGER & MAP DEGAT :
+
+
+La map de danger sert à indiquer le danger d'une cellule (e.g degat potentiellement subis ) resp map de dégat : dégat potentiellement infligé
+
+Tout d'abord il est important de noté que les fonctions leekscript sont assez couteuse comme on peut le voir : 
+https://github.com/leek-wars/leek-wars-generator/blob/5759ee198544961173e8bf0ae1a330f9e4d7066e/src/main/java/com/leekwars/generator/maps/Pathfinding.java
+
+Nous allons présenté l'approche la plus complète disponible sur internet est celle publié par tagadanar  et le projet Wolf proposé tout deux en 2020-2021 :
+https://github.com/Mathieu-Berthet/IA-Wolf-Leek
+https://github.com/tagadanar/tagadalive/blob/master/Controlers/Maps/MapDanger (IMPORTANT ) 
+
+Le code proposé par tagadanar se doit d'être modifier pour fonctionner sur le site (car KTP : kill to tp et d'autre effet n'était pas présent ) ainsi que certains effet et armes qui ont été modifié ,j'ai proposé un correctif bundle en un seul fichier (en annexe ) .
+A noté des soucis sur la chip marque du diable ( je ne me rappelle plus si je les ai fix ^^' )
+
+
+Voir le forums leekwars en annexe pour comprendre plus précisément ce que sont ces maps 
+
+
+BAPTISTE :
+
+Baptiste a proposé une implémentation d'algo génétique pour entrainer un fichier de poids/coefs e.g https://github.com/tagadanar/tagadalive/blob/master/AI/Scoring
+
+Nous ne l'avons personnellement pas utilisé mais le code est très propre et facilement extensible , cela dit tout ce qui est proposé pourrait être remplacé par une librairie génétique JAVA (Jenetics bonne documentation ) 
+
+voir le rapport clickup 
+
+LOUIS :
+
+Le code de Louis pour la partie python pourrait être remplacé par une librairie génétique python comme par exemple PyGad
+
+En revanche les actions atomiques sont hyper pertinentes voir le rapport clickup 
+
+TAGADANAR :
+Le code a performer longtemps au top du classement deplus tagadanar sait se montrer disponible (avec son serv discord et sa chaine twitch) 
+Il est de loin le plus complet proposé bien que pas aboutit car écrit durant quelques lives 
+
+RECHERCHE :
+	Component thesis : Chapter 5 GENETIC PROGRAMMING ,John R. Koza	
+	Mapp ELITE : Illuminating search spaces by mapping elites ( voir NEAT Kenneth O. Stanley ) [assez-important]
+	NEAT exemple : Evolving and training of Neural Network to Play DAMA Board Game Using NEAT Algorithm 
+	MetaHeuristique : Essentials of Metaheuristics A Set of Undergraduate Lecture Notes by Sean Luke ( résumé de toutes les heuristiques/méthodes pour faire des algos génétiques )	
+	CPNN : Compositional Pattern Producing Networks: A Novel Abstraction of Development (voir NEAT Kenneth O. Stanley  )
+	Review des crossovers : CROSSOVER OPERATORS IN GENETIC ALGORITHMS: A REVIEW A.J. Umbarkar1 and P.D. Sheth2	
+	Genetic Programming : Creating AI Characters for Fighting Games using Genetic Programming Giovanna Mart´ınez-Arellano, Richard Cant and David Woods [ important ]
+	Convergence Measure : Convergence Measurement in Evolutionary Computation using Price’s Theorem [assez important ]
+	Exemple pratique : PRACTICAL GENETIC ALGORITHMS SECOND EDITIONRandy L. Haupt Sue Ellen Haupt  [assez important ]
+	Base théorique (building block hypothesis ect ) [historique] : Genetic Algorithms David E.Goldbers [très important ]
+	NEAT : Evolving Neural Networks through Augmenting Topologies Kenneth O. Stanley [très important ]  + Real-Time Neuroevolution in the NERO Video Game Kenneth O. Stanley
+	Review Algo genetic : A review on genetic algorithm: past, present, and future Sourabh Katoch1 [important ]
+	Review Selection method : Selection Methods for Genetic Algorithms [ assez important ]
+	Introduction : Hands-On Genetic Algorithms with Python , Eyal Wirsansky  [très important ]
+
+	Fields : Modular Tactical Influence Maps Dave Mark
+	Fields : GAMER: A Genetic Algorithm with Motion Encoding Reuse for Action-Adventure Video Games Tasos Papagiannis
+	Fields : Multi-Agent Potential Field Based Architectures for Real-Time Strategy Game Bots Johan Hagelbäck [ important ]
+	Fields : Potential-Field Based navigation in StarCraft Johan Hagelb¨ack, Member, IEEE  [très important ]
+	Fields : Multi-objective evolution for 3D RTS Micro Sushil J. Louis [très important ]
+	Fields : Using Multi-agent Potential Fields in Real-time Strategy Games Johan Hagelbäck [très important ]
+
+
+	Choosing Mutation and Crossover Ratios forGenetic Algorithms—A Review with a New Dynamic Approach
+
+
+Website fav : 
+	https://getliner.com/user-profile/7246921?hashKey=NzQ0OTM0NA==

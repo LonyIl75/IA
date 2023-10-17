@@ -1,0 +1,12 @@
+/bin/
+.vscode/
+.tmp/
+/build/
+.gradle/
+*.jar
+.project
+/leekscript/*.jar
+/leekscript/bin/
+/leekscript/build/
+/leekscript/test/
+/ai/*

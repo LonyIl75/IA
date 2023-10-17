@@ -1,0 +1,3786 @@
+/** Exporté le 22/01/2023 21:23:50 **/
+
+/** mi/main **/
+
+/** auto **/
+
+/** API-compatibility **/
+
+global compa = false 
+global _getWeapon = clone(getWeapon)
+getWeapon = function(entity){
+	if(entity instanceof Entity) return _getWeapon(entity.id)
+	else {
+		if(compa)debugW('getWeapon should always be called with an <Entity> and not int')
+		return _getWeapon(entity)
+	}
+}
+
+global _setWeapon = clone(setWeapon)
+setWeapon = function(item){
+	if(item instanceof Item) return _setWeapon(item.id)
+	else {
+		if(compa)debugW('setWeapon should always be called with an <Item> and not int')
+		return _setWeapon(item)
+	}
+}
+
+global _getCellDistance = clone(getCellDistance)
+getCellDistance = function(c1, c2){
+	if(c1 instanceof Cell && c2 instanceof Cell) return _getCellDistance(c1.id, c2.id)
+	else {
+		if(compa)debugW('getCellDistance should always be called with <Cell> and not int')
+		return _getCellDistance(c1, c2)
+	}
+}
+
+global _lineOfSight = clone(lineOfSight)
+lineOfSight = function(c1, c2, entityToIgnore){
+	if(c1 instanceof Cell && c2 instanceof Cell) return _lineOfSight(c1.id, c2.id, entityToIgnore)
+	else {
+		if(compa)debugW('lineOfSight should always be called with <Cell> and not int')
+		return _lineOfSight(c1, c2, entityToIgnore)
+	}
+}
+
+global _isEmptyCell = clone(isEmptyCell)
+isEmptyCell = function(cell){
+	if(cell instanceof Cell) return _isEmptyCell(cell.id)
+	else {
+		if(compa)debugW('isEmptyCell should always be called with <Cell> and not int')
+		return _isEmptyCell(cell)
+	}
+}
+
+global _getEntityOnCell = clone(getEntityOnCell)
+getEntityOnCell = function(cell){
+	if(cell instanceof Cell) return _getEntityOnCell(cell.id)
+	else {
+		if(compa)debugW('getEntityOnCell should always be called with <Cell> and not int')
+		return _getEntityOnCell(cell)
+	}
+}
+
+global _getCooldown = clone(getCooldown)
+getCooldown = function(item, entity){
+	if(item instanceof Item && entity instanceof Entity) return _getCooldown(item.id, entity.id)
+	else {
+		if(compa)debugW('getCooldown should always be called with <Item> and <Entity> and not int')
+		return _getCooldown(item, entity)
+	}
+}
+
+global _moveTowardCell = clone(moveTowardCell)
+moveTowardCell = function(cell){
+	if(cell instanceof Cell) return _moveTowardCell(cell.id)
+	else {
+		if(compa)debugW('moveTowardCell should always be called with <Cell> and not int')
+		return _moveTowardCell(cell)
+	}
+}
+
+global _getCellsToUseWeaponOnCell = clone(getCellsToUseWeaponOnCell)
+getCellsToUseWeaponOnCell = function(item, cell, ignoredCells){
+	if(item instanceof Item && cell instanceof Cell) return _getCellsToUseWeaponOnCell(item.id, cell.id, ignoredCells)
+	else {
+		if(compa)debugW('getCellsToUseWeaponOnCell should always be called with <Item> and <Cell> and not int')
+		return _getCellsToUseWeaponOnCell(item, cell, ignoredCells)
+	}
+}
+
+global _getCellsToUseChipOnCell = clone(getCellsToUseChipOnCell)
+getCellsToUseChipOnCell = function(item, cell, ignoredCells){
+	if(item instanceof Item && cell instanceof Cell) return _getCellsToUseChipOnCell(item.id, cell.id, ignoredCells)
+	else {
+		if(compa)debugW('getCellsToUseChipOnCell should always be called with <Item> and <Cell> and not int')
+		return _getCellsToUseChipOnCell(item, cell, ignoredCells)
+	}
+}
+
+function getCellsToUseItemOnCell(item, cell, ignoredCells){
+	if(item instanceof Item)
+		return item.isWeap ? getCellsToUseWeaponOnCell(item, cell, ignoredCells) : getCellsToUseChipOnCell(item, cell, ignoredCells)
+	else
+		if(compa)debugE('getCellsToUseItemOnCell MUST be called with <Item> and not int')
+}
+
+global _getWeaponTargets = clone(getWeaponTargets)
+getWeaponTargets = function(item, cell) {
+	if(item instanceof Item && cell instanceof Cell) return _getWeaponTargets(item.id, cell.id)
+	else {
+		if(compa)debugW('getWeaponTargets should always be called with <Item> and <Cell> and not int')
+		return _getWeaponTargets(item, cell)
+	}
+}
+
+global _getChipTargets = clone(getChipTargets)
+getChipTargets = function(item, cell) {
+	if(item instanceof Item && cell instanceof Cell) return _getChipTargets(item.id, cell.id)
+	else {
+		if(compa)debugW('getChipTargets should always be called with <Item> and <Cell> and not int')
+		return _getChipTargets(item, cell)
+	}
+}
+
+function getItemTargets(item, cell){
+	if(item instanceof Item && cell instanceof Cell){
+		var targetsId = item.isWeap ? getWeaponTargets(item, cell) : getChipTargets(item, cell)
+		var targets = []
+		for(var targetId in targetsId){
+			if(targetId == Fight.self.id && cell != Fight.self.cell ) continue // skip moi mm si c'est pas getEntity()cast
+			// TODO better, handle minrange & fromcell ?
+			push(targets, Fight.getEntity(targetId))
+		}
+		return targets
+	} 
+	else if(compa)debugE('getItemTargets MUST be called with <Item> and <Cell>, not int')
+}
+
+global _mark = clone(mark)
+mark = function(cell, color) {
+	if(cell instanceof Cell) return _mark(cell.id, color)
+	else {
+		if(compa)debugW('mark should always be called with <Cell> and not int')
+		return _mark(cell, color)
+	}
+}
+
+global _markText = clone(markText)
+markText = function(cell, text) {
+	if(cell instanceof Cell) return _markText(cell.id, text)
+	else {
+		if(compa)debugW('markText should always be called with <Cell> and not int')
+		return _markText(cell, text)
+	}
+}
+/** Model-GameObject-Cell **/
+
+/*
+ * Cellule de jeu contenant l'id, 'les coordonnées, les voisins et le type
+ */ 
+class Cell {
+	id
+	isWall
+	neighbors
+	neighborsObstacles
+	x
+	y
+	_AREAS = []
+	constructor(id){
+		this.id = id
+		this.isWall = isObstacle(id)
+		this.x = getCellX(id)
+		this.y = getCellY(id)
+	}
+	
+	init(){
+		this.initNeighbors()
+		this.initNeighborsObstacles()
+		this.initAreas()
+	}
+	
+	/*
+	 * Initialise les cellules voisines
+	 */
+	initNeighbors(){
+		var result = []
+
+		var c = getCellFromXY(x, y-1);
+		if(c!=null && !Map.obstacles[Map.cells[c]]) push(result, Map.getCell(c));
+		c = getCellFromXY(x, y+1);
+		if(c!=null && !Map.obstacles[Map.cells[c]]) push(result, Map.getCell(c));
+		c = getCellFromXY(x-1, y);
+		if(c!=null && !Map.obstacles[Map.cells[c]]) push(result, Map.getCell(c));
+		c = getCellFromXY(x+1, y);
+		if(c!=null && !Map.obstacles[Map.cells[c]]) push(result, Map.getCell(c));
+
+		this.neighbors = result
+	}
+	
+	initNeighborsObstacles(){
+		var result = []
+
+		var c = getCellFromXY(x, y-1);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x, y+1);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x-1, y);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x+1, y);
+		if(c!=null) push(result, Map.getCell(c));
+
+		this.neighborsObstacles = result
+	}
+
+	/*
+	 * Retourne un tableau de Cell correspondant aux cases de l'@area en params depuis cette case
+	 */
+	getAreaCells(area){
+		if(!_AREAS[area]) debugE('unhandled AREA in Cell.getAreaCells(): '+ area)
+		return _AREAS[area]
+	}
+	
+	/*
+	 * Initialise le tableau _AREAS de la case
+	 * C'est long et pas joli, on pourrait faire plus concis avec des for surement, mais là c'est relativement opti en opération
+	 */
+	initAreas(){
+		var c, result = [this]
+		// AREA_POINT
+		_AREAS[AREA_POINT] = clone(result)
+		
+		//AREA_FIRST_INLINE
+		_AREAS[AREA_FIRST_INLINE] = clone(result)
+		
+		// AREA_CIRCLE_1
+		c = getCellFromXY(x, y-1);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x, y+1);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x-1, y);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x+1, y);
+		if(c!=null) push(result, Map.getCell(c));
+		_AREAS[AREA_CIRCLE_1] = clone(result)
+		
+		// AREA_PLUS_2
+		c = getCellFromXY(x, y-2);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x, y+2);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x-2, y);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x+2, y);
+		if(c!=null) push(result, Map.getCell(c));
+		_AREAS[AREA_PLUS_2] = clone(result)
+		
+		// AREA_CIRCLE_2
+		c = getCellFromXY(x+1, y-1);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x+1, y+1);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x-1, y-1);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x-1, y+1);
+		if(c!=null) push(result, Map.getCell(c));
+		_AREAS[AREA_CIRCLE_2] = clone(result)
+		
+		// AREA_CIRCLE_3
+		c = getCellFromXY(x+2, y-1);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x+2, y+1);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x+1, y-2);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x+1, y+2);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x-1, y-2);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x-1, y+2);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x-2, y-1);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x-2, y+1);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x, y-3);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x, y+3);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x-3, y);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x+3, y);
+		if(c!=null) push(result, Map.getCell(c));
+		_AREAS[AREA_CIRCLE_3] = clone(result)
+		
+		// AREA_PLUS_3
+		result = clone(_AREAS[AREA_PLUS_2])
+		c = getCellFromXY(x, y-3);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x, y+3);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x-3, y);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x+3, y);
+		if(c!=null) push(result, Map.getCell(c));
+		_AREAS[AREA_PLUS_3] = result
+		
+		// AREA_SQUARE_1
+		result = clone(_AREAS[AREA_CIRCLE_1])
+		c = getCellFromXY(x-1, y+1);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x+1, y+1);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x+1, y-1);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x-1, y-1);
+		if(c!=null) push(result, Map.getCell(c));
+		_AREAS[AREA_SQUARE_1] = result
+		
+		// AREA_SQUARE_2
+		result = clone(_AREAS[AREA_CIRCLE_2])
+		c = getCellFromXY(x+2, y-1);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x+2, y+1);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x+1, y-2);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x+1, y+2);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x-1, y-2);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x-1, y+2);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x-2, y-1);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x-2, y+1);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x-2, y+2);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x-2, y-2);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x+2, y-2);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x+2, y+2);
+		if(c!=null) push(result, Map.getCell(c));
+		_AREAS[AREA_SQUARE_2] = result
+		
+		result = []
+		// AREA_X_1
+		c = getCellFromXY(x-1, y-1);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x+1, y+1);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x-1, y+1);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x+1, y-1);
+		if(c!=null) push(result, Map.getCell(c));
+		_AREAS[AREA_X_1] = clone(result)
+
+		// AREA_X_2
+		c = getCellFromXY(x-2, y-2);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x+2, y+2);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x-2, y+2);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x+2, y-2);
+		if(c!=null) push(result, Map.getCell(c));
+		_AREAS[AREA_X_2] = clone(result)
+
+		// AREA_X_3
+		c = getCellFromXY(x-3, y-3);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x+3, y+3);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x-3, y+3);
+		if(c!=null) push(result, Map.getCell(c));
+		c = getCellFromXY(x+3, y-3);
+		if(c!=null) push(result, Map.getCell(c));
+		_AREAS[AREA_X_3] = result
+	}
+	static _getCell(){
+	return Cell(getCell())
+	}
+
+	/*
+	 * Format chaîne de caractères utilisée pour des tests / debugs.
+	 */
+	string(){
+		return "<Cell "+this.id+">"
+	}
+}/** Model-GameObject-Entity **/
+
+/*
+ * L'objet Entity contient la synthèse des informations d'une entité allié ou adversaire.
+ * Il y a un objet Entity instancié pour chacune des entités présente sur le champ de bataille.
+ */
+class Entity {
+	id
+	name
+	cell
+	// stats
+	totalLife
+	life
+	pwr
+	str
+	mgc
+	wsd
+	rst
+	agi
+	snc
+	tp
+	mp
+	relShield
+	absShield
+	dmgReturn
+	// déplacement
+	reachableCells
+	// inventaire organisé en fonction des cibles
+	items
+	offensiveItems // will have a value on enemy leeks only
+	offensiveItemsByTargets = [] // will have a value on ally leeks only
+	// play order
+	turnOrder
+	entityWhoPlayBefore
+	cellsToIgnore = []
+	// booleans
+	isFriend
+	isBulb
+	// gestions des effets
+	effects = []
+	items_effectOverTime = []
+	psnTurn = 0
+	psnTotal = 0
+	psnlife
+	altStr = 0
+	altMgc = 0
+	altAgi = 0
+	altTP = 0
+	altMP = 0
+	// todo add more alt ?
+	// todo add passive effect
+	launchedEffects
+	
+	constructor(id){
+		this.id = id
+		this.name = getName(id)
+		this.cell = Map.getCell(getCell(id))
+		this.totalLife = getTotalLife(id)
+		this.life = getLife(id)
+		this.pwr = getPower(id)
+		this.str = getStrength(id)
+		this.mgc = getMagic(id)
+		this.wsd = getWisdom(id)
+		this.rst = getResistance(id)
+		this.agi = getAgility(id)
+		this.snc = getScience(id)
+		this.tp = getTP(id)
+		this.mp = getMP(id)
+		this.relShield = getRelativeShield(id)
+		this.absShield = getAbsoluteShield(id)
+		this.dmgReturn = getDamageReturn(id)
+		this.items = Items.getItems(id)
+		//debug("items: "+this.items)
+		this.turnOrder = getEntityTurnOrder(id)
+		this.isFriend = isAlly(id)
+		this.isBulb = isSummon(id)
+		/*
+		this.launchedEffects = []
+		for(var e in getLaunchedEffects(id)){
+			push(this.launchedEffects, 
+		}
+		*/
+		
+		for(var e in getEffects(id)){
+			var effect = EntityEffect(e)
+			push(effects, effect)
+			if(!this.items_effectOverTime[effect.item]) this.items_effectOverTime[effect.item] = []
+			push(this.items_effectOverTime[effect.item], EffectOverTime(effect))
+			// piste d'optimisation en ayant une meilleure structure pour les effets ici ?
+			// les eval en dessous pourrait être déléguer à un tab pour éviter les ifelseif?
+			// et ptete ajouter d'autres alt pour les autres stats ?
+			if(effect.type == EFFECT_POISON){
+				this.psnTurn+= effect.value
+				this.psnTotal+= effect.value * effect.turns
+			}else if(effect.type == EFFECT_HEAL){
+				this.psnTurn+= -effect.value
+				this.psnTotal+= -effect.value * effect.turns
+			}else if(effect.type == EFFECT_SHACKLE_STRENGTH){
+				this.altStr += -effect.value;
+			//	}else if(effect.type == EFFECT_SHACKLE_MAGIC){
+			//		this.altMgc -= value;
+			}else if(effect.type == EFFECT_SHACKLE_TP){
+				this.altTP += -effect.value;
+			}else if(effect.type == EFFECT_SHACKLE_MP){
+				this.altMP += -effect.value;
+			}else if(effect.type == EFFECT_BUFF_STRENGTH || effect.type == EFFECT_RAW_BUFF_STRENGTH){
+				this.altStr += effect.value;
+			}else if(effect.type == EFFECT_BUFF_TP || effect.type == EFFECT_RAW_BUFF_TP){
+				this.altTP += effect.value;
+			}else if(effect.type == EFFECT_BUFF_MP || effect.type == EFFECT_RAW_BUFF_MP){
+				this.altMP += effect.value;
+			}else if(effect.type == EFFECT_BUFF_AGILITY || effect.type == EFFECT_RAW_BUFF_AGILITY){
+				this.altAgi += effect.value;
+			}
+		}
+		this.psnlife= this.life-this.psnTurn
+	}
+
+	/*
+	 * Initialise certaines informations de l'objet Entity
+	 * Certaines peuvent être dépendantes d'autres classes.
+	 */
+	init(){
+		this.entityWhoPlayBefore = Fight.getListOfLeekWhoPlayBefore(this)
+		for(var entity in this.entityWhoPlayBefore) {
+			push(this.cellsToIgnore, entity.cell)
+		}
+		this.reachableCells = MapPath.getCachedReachableCells(
+			this.cell,
+			this.mp,
+			this.cellsToIgnore
+		)
+		//debug("Entity "+this.reachableCells)
+	}
+	
+	/*
+	 * Retourne l'objet Item correspondant à l'arme dans les mains de l'entité
+	 * @return une Item
+	 */
+	getWeaponInHand(){
+		return Items.getItem(getWeapon(this))
+	}
+	moiReachable(){
+		this.reachableCells = MapPath.getCachedReachableCells(
+			this.cell,
+			this.mp,
+			this.cellsToIgnore
+		)
+	}
+	
+	// n'est used que pour check les !stackable item, d'où le count(-1) et [0], maybe rename pour préciser ?
+	getCurrentItemEffect(item, consequences){
+		if(consequences && consequences._altEffects[this] && consequences._altEffects[this][item]){
+			return consequences._altEffects[this][item][count(consequences._altEffects[item])-1]
+		}
+		return this.items_effectOverTime[item] ? this.items_effectOverTime[item][0] : null
+	}
+	
+	getCurrentMaxHP(consequences){
+		return consequences && consequences.getAlteration(this, Stats.HPMAX) ? this.totalLife+consequences.getAlteration(this, Stats.HPMAX) : this.totalLife 
+	}
+	getCurrentHP(consequences){
+		return consequences && consequences.getAlteration(this, Stats.HP) ? this.life+consequences.getAlteration(this, Stats.HP) : this.life 
+	}
+	getCurrentHPMissing(consequences){
+		return this.getCurrentMaxHP(consequences) - this.getCurrentHP(consequences) 
+	}
+	getCurrentTP(consequences){
+		return consequences && consequences.getAlteration(this, Stats.TP) ? this.tp+consequences.getAlteration(this, Stats.TP) : this.tp 
+	}
+	getCurrentMP(consequences){
+		return consequences && consequences.getAlteration(this, Stats.MP) ? this.mp+consequences.getAlteration(this, Stats.MP) : this.mp 
+	}
+	getCurrentStr(consequences){
+		return consequences && consequences.getAlteration(this, Stats.STR) ? this.str+consequences.getAlteration(this, Stats.STR) : this.str 
+	}
+	getCurrentMgc(consequences){
+		return consequences&& consequences.getAlteration(this, Stats.MGC)  ? this.mgc+consequences.getAlteration(this, Stats.MGC) : this.mgc 
+	}
+	getCurrentPwr(consequences){
+		return consequences && consequences.getAlteration(this, Stats.PWR) ? this.pwr+consequences.getAlteration(this, Stats.PWR) : this.pwr 
+	}
+	getCurrentWsd(consequences){
+		return consequences && consequences.getAlteration(this, Stats.WSD) ? this.wsd+consequences.getAlteration(this, Stats.WSD) : this.wsd 
+	}
+	getCurrentRst(consequences){
+		return consequences && consequences.getAlteration(this, Stats.RST) ? this.rst+consequences.getAlteration(this, Stats.RST) : this.rst 
+	}
+	getCurrentAgi(consequences){
+		return consequences && consequences.getAlteration(this, Stats.AGI) ? this.agi+consequences.getAlteration(this, Stats.AGI) : this.agi 
+	}
+	getCurrentSnc(consequences){
+		return consequences && consequences.getAlteration(this, Stats.SNC) ? this.snc+consequences.getAlteration(this, Stats.SNC) : this.snc 
+	}
+	getCurrentAbs(consequences){
+		return consequences  && consequences.getAlteration(this, Stats.ABSSHIELD) ? this.absShield+consequences.getAlteration(this, Stats.ABSSHIELD) : this.absShield 
+	}
+	getCurrentRel(consequences){
+		return consequences  && consequences.getAlteration(this, Stats.RELSHIELD)  ? this.relShield+consequences.getAlteration(this, Stats.RELSHIELD) : this.relShield
+	}
+	getCurrentDmgReturn(consequences){
+		return consequences  && consequences.getAlteration(this, Stats.DMGRETURN)  ? this.dmgReturn+consequences.getAlteration(this, Stats.DMGRETURN) : this.dmgReturn
+	}
+	
+	/*
+	 * Actualise les informations de l'entité
+	 * FIXME: UNUSED FUNCTION
+	 */
+	refresh() {
+		// TODO make a real full refresh based on consequences? might be used for bulb?
+		// OR delete this shit ? full refresh by instantiating the entity again, and replacing it in Fight ?
+		this.mp = getMP(this.id)
+		this.cell = Map.getCell(getCell(this.id))
+		this.reachableCells = MapPath.getCachedReachableCells(
+			this.cell,
+			this.mp,
+			this.cellsToIgnore
+		)
+	}
+
+	/*
+	 * Format chaîne de caracteres utilisée pour des tests / debugs.
+	 */
+	string() {
+		return "<Entity "+this.name+">"
+	}
+static _getEntity ( ){
+	return Entity( getEntity() )
+	
+}
+
+}
+
+
+// TODO
+
+	//scoreLibe: scoreLibe
+	//nbBulbs: count(bulbs)//todo check si ça vaut le coup de garder cette info..
+	//bulbs: @bulbs
+	//antidoteCD: inArray(getChips(leek), CHIP_ANTIDOTE) ? getCooldown(CHIP_ANTIDOTE) : 5
+	//liberationCD: inArray(getChips(leek), CHIP_LIBERATION) ? getCooldown(CHIP_LIBERATION) : 6
+	//canJump: inArray(getChips(leek), CHIP_JUMP) && getCooldown(CHIP_JUMP, leek)<=1
+/** Model-GameObject-EntityEffect **/
+
+class EntityEffect {
+	type
+	value
+	caster
+	turns
+	critical
+	item
+	target
+	modifiers
+	constructor(effect){
+		// [type, value, caster_id, turns, critical, item_id, target_id, modifiers]
+		//debug("EFFAIT " +effect)
+		this.type = effect[0]
+		this.value = effect[1]
+		this.caster = Fight.getEntity(effect[2])
+		this.turns = effect[3]
+		// special case, infinite duration is ==-1, MUST handle this or any *duration later will inverse everything
+		if(this.turns==-1) this.turns = 7 // TODO this should probably be in scoring... //66-getTurn()
+		// TODO add a this.duration field, and check entities order to set duration to the right amount of time.
+		this.critical = effect[4]
+		this.item = Items.getItem(effect[5])
+		this.target = Fight.getEntity(effect[6])
+		// pas sur d'avoir besoin des modifiers ici, je save ocazou
+		this.modifiers = effect[7]
+	}
+	
+	string(){
+		return "<EntityEffect type:"+ this.type +" |value:"+ this.value +">"
+	}
+}
+/** Model-GameObject-Item **/
+
+/*
+ * Objet contenant les informations correspondante a une item
+ * On en instancie un pour chacun des équipements du jeu
+ */
+class Item {
+	id
+	name
+	isWeap
+	haveCD
+	minRange
+	maxRange
+	launchType
+	needLOS
+	cost
+	area
+	isAOE
+	onCaster = false
+	mgo = false 
+	effects = []
+	
+	targetKey
+	targetEmptyCell = false
+	
+	static ALL = 0
+	static ALLLEEKS = 1
+	static ALLBULBS = 2
+	static ALLIES = 3
+	static ALLIESLEEKS = 4
+	static ALLIESBULBS = 5
+	static ENEMIES = 6
+	static ENEMIESLEEKS = 7
+	static ENEMIESBULBS = 8
+	static NONE = 9
+			
+	constructor(id) {
+		this.id = id
+		this.name = getWeaponName(id)+getChipName(id)
+		this.isWeap = isWeapon(id)
+		if(this.isWeap){
+			this.haveCD = false
+			this.minRange = getWeaponMinRange(id)
+			this.maxRange = getWeaponMaxRange(id)
+			this.launchType = getWeaponLaunchType(id)
+			this.needLOS = weaponNeedLos(id)
+			this.cost = getWeaponCost(id)
+			this.area = getWeaponArea(id)
+			var i = 0
+			for(var e in getWeaponEffects(id)){
+				//debug("id " +id + "Effect"+e)
+				
+				push(this.effects, ItemEffect(e, this, i++))
+			}
+		} else {
+			this.haveCD = getChipCooldown(id)!=0
+			this.minRange = getChipMinRange(id)
+			this.maxRange = getChipMaxRange(id)
+			this.launchType = getChipLaunchType(id)
+			this.needLOS = chipNeedLos(id)
+			this.cost = getChipCost(id)
+			this.area = getChipArea(id)
+			var i = 0
+			for(var e in getChipEffects(id)){
+				push(this.effects, ItemEffect(e, this, i++))
+			}
+		}
+
+		if(this.area == AREA_POINT || this.area == AREA_LASER_LINE) this.isAOE = false
+		else this.isAOE = true
+		// on cherche à trouver quels sont les cibles valides et intéressante de l'item
+		// on set targetKey pour que targetSet pointe vers la fonction qui renvera uniquement les entités intéressante à cibler
+		var allies = false, enemies = false, onBulbs = false, onLeeks = false;
+		for(var e in this.effects){
+			if(!allies) allies = e.targetType.allies
+			if(!enemies) enemies = e.targetType.enemies
+			if(!onBulbs) onBulbs = e.targetType.onBulbs
+			if(!onLeeks) onLeeks = e.targetType.onLeeks
+			if(!this.onCaster) this.onCaster = e.targetType.onCaster
+		}
+		
+		if(false){ // TODO FAIRE UNE PASSE SUR LES ITEMS POUR CHECK SI TOUT EST COMME JE LE SOUHAITE §
+			// + coder les items chelous dans TargetType
+			if(mgo)debug(this)
+			if(mgo)debug("allies:"+allies)
+			if(mgo)debug("enemies:"+enemies)
+			if(mgo)debug("onBulbs:"+onBulbs)
+			if(mgo)debug("onLeeks:"+onLeeks)
+			pause()
+		}
+		
+		// si c'est un lazer, je veux potentiellement tirer à travers tout le monde ^^
+		if(this.area == AREA_LASER_LINE){
+			allies = true
+			enemies = true
+			onBulbs = true
+			onLeeks = true
+		}
+		
+		if(allies && enemies){ // ALL
+			if(onLeeks && onBulbs) this.targetKey = Item.ALL
+			else if(onLeeks && !onBulbs) this.targetKey = Item.ALLLEEKS
+			else if(!onLeeks && onBulbs) this.targetKey = Item.ALLBULBS
+			else{
+				if(mgo)debugW('strange targetKey in <Item> for '+this)
+				this.targetKey = Item.NONE
+			}
+		} else if(allies && !enemies){ // only ALLIES
+			if(onLeeks && onBulbs) this.targetKey = Item.ALLIES
+			else if(onLeeks && !onBulbs) this.targetKey = Item.ALLIESLEEKS
+			else if(!onLeeks && onBulbs) this.targetKey = Item.ALLIESBULBS
+			else{
+				if(mgo)debugW('strange targetKey in <Item> for '+this)
+				this.targetKey = Item.NONE
+			}
+
+		} else if(!allies && enemies){ // only ENEMIES
+			if(onLeeks && onBulbs) this.targetKey = Item.ENEMIES
+			else if(onLeeks && !onBulbs) this.targetKey = Item.ENEMIESLEEKS
+			else if(!onLeeks && onBulbs) this.targetKey = Item.ENEMIESBULBS
+			else{
+				if(mgo)debugW('strange targetKey in <Item> for '+this)
+				this.targetKey = Item.NONE
+			}
+		} else { // none: cas des actions avec des items de déplacements teleport, ou des invocs
+			this.targetKey = Item.NONE
+			targetEmptyCell = true // TODO handle this param in IA
+		}
+	}
+	
+	targetSet(){
+		if(this.targetKey==ALL) return Fight.getAllAlive()
+		if(this.targetKey==ALLLEEKS) return Fight.getAllLeeksAlive()
+		if(this.targetKey==ALLBULBS) return Fight.getAllBulbsAlive()
+		if(this.targetKey==ALLIES) return Fight.getAlliesAlive()
+		if(this.targetKey==ALLIESLEEKS) return Fight.getAlliesLeeksAlive()
+		if(this.targetKey==ALLIESBULBS) return Fight.getAlliesBulbsAlive()
+		if(this.targetKey==ENEMIES) return Fight.getEnemiesAlive()
+		if(this.targetKey==ENEMIESLEEKS) return Fight.getEnemiesLeeksAlive()
+		if(this.targetKey==ENEMIESBULBS) return Fight.getEnemiesBulbsAlive()
+		if(this.targetKey==NONE) return []
+	}
+	
+	/*
+	 * tente d'utiliser l'item
+	 * @param cell cellule de type Cell représentant l'endroit ou je veux utiliser l'Item avec id: (this.id)
+	 */
+	useItemOnCell(cell){
+		if(this.isWeap){
+			if(getWeapon(Fight.self)!=this.id) setWeapon(this)
+			useWeaponOnCell(cell.id)
+		} else useChipOnCell(this.id, cell.id)
+	}
+	
+	/*
+	 * tente d'utiliser l'item
+	 * @param cell cellule de type Cell représentant l'endroit ou je veux utiliser l'Item avec id: (this.id)
+	 */
+	useItem(entity){
+		if(this.isWeap){
+			if(getWeapon(Fight.self)!=this.id) setWeapon(this)
+			useWeapon(entity.id)
+		} else useChip(this.id, entity.id)
+	}
+	
+	/*
+	 * Format chaîne de caracteres utilisée pour des tests / debugs.
+	 */
+	string() {
+		return "<Item "+this.name+">"
+	}
+}/** Model-GameObject-ItemEffect **/
+
+/*
+ * Objet contenant les effets calculés correspondants à un item de type Item
+ */
+ class ItemEffect {
+	name
+	item
+	type
+	min
+	max
+	avg
+	avgmax
+	avgmin
+	duration
+	targets
+	modifiers
+	targetType
+	stackable = false
+	multiplyByTarget = false
+	modifCaster = false
+	irreductible = false
+	notReplaceable = false
+	constructor(effect, item, id){
+		//debug("Name " +item.name + "EFFAIT 2 " + effect)
+		this.name = item.name+'-'+id
+		this.item = item
+		this.type = effect[0]
+		this.min = effect[1]
+		this.max = effect[2]
+
+		this.avg = (effect[1]+effect[2])/2
+		this.avgmax = (effect[1]+effect[2]*3)/4
+		this.avgmin = (effect[1]*3+effect[2])/4
+
+		this.duration = effect[3] == 0 ? 1 : effect[3]
+		this.targets = effect[4]
+		this.modifiers = effect[5]
+		
+		
+		// désigne le type de cible intéressante pour cet effet
+		this.targetType = TargetType(this)
+		
+		if(this.modifiers & EFFECT_MODIFIER_STACKABLE) this.stackable = true 
+		if(this.modifiers & EFFECT_MODIFIER_MULTIPLIED_BY_TARGETS) this.multiplyByTarget = true
+		if(this.modifiers & EFFECT_MODIFIER_ON_CASTER) this.modifCaster = true
+		if(this.modifiers & EFFECT_MODIFIER_IRREDUCTIBLE) this.irreductible = true
+		if(this.modifiers & EFFECT_MODIFIER_NOT_REPLACEABLE) this.notReplaceable = true
+	}
+	
+	/*
+	 * Format chaîne de caracteres utilisée pour des tests / debugs.
+	 */
+	string() {
+		return "<ItemEffect "+this.name+">"
+	}
+}/** Model-GameObject-TargetType **/
+
+class TargetType {
+	enemies = false
+	allies = false
+	
+	onEmpty = false
+	onBulbs = false // FIXME le nomage bulb/leek pu, summon/notsummon est très moche, maybe summon/primary ?
+	onLeeks = false
+	onCaster = false
+	// TODO when onCaster, peut justifier des cibles autres que celle normalement autorisé par les types d'effet
+	// exemple broadsword / j_lazer
+	// TODO target empty cell for item that target nothing : summon, resu, teleport, broadsword to selfboost, etc... ?
+
+	// ALLIES et ENEMIES permettent de définir un effet positif ou négatif, et sont utilisés pour savoir
+	// si la value d'un entityEffect doit être négative ou positive
+	static ENEMIES = -1
+	static ALLIES = 1
+	static ALL = 2
+	static EMPTY = 3
+	
+	static CONVERTER = [
+		EFFECT_DAMAGE: 					TargetType.ENEMIES,
+		EFFECT_POISON: 					TargetType.ENEMIES,
+		EFFECT_NOVA_DAMAGE:				TargetType.ENEMIES,
+		EFFECT_LIFE_DAMAGE: 			TargetType.ENEMIES,
+		EFFECT_VULNERABILITY: 			TargetType.ENEMIES,
+		EFFECT_ABSOLUTE_VULNERABILITY: 	TargetType.ENEMIES,
+		EFFECT_KILL: 					TargetType.ENEMIES,
+		EFFECT_SHACKLE_AGILITY:			TargetType.ENEMIES,
+		EFFECT_SHACKLE_WISDOM:			TargetType.ENEMIES,
+		EFFECT_SHACKLE_MAGIC:			TargetType.ENEMIES,
+		EFFECT_SHACKLE_STRENGTH:		TargetType.ENEMIES,
+		EFFECT_SHACKLE_MP:				TargetType.ENEMIES,
+		EFFECT_SHACKLE_TP:				TargetType.ENEMIES,
+		// présent uniquement sur un item de boost réservé aux allys, mais c'est un effet négatif
+		// et j'utilise ça pour valuer libération... 
+		// tant pis pour les économies d'opés en mettant ça sur allies, au moins mon code est cohérent..
+		EFFECT_AFTEREFFECT: 			TargetType.ENEMIES,
+		// présent uniquement sur covid, TODO .ALL target si on code bien ensuite ;)
+		EFFECT_PROPAGATION:				TargetType.ENEMIES,
+		
+		EFFECT_ANTIDOTE: 				TargetType.ALLIES,
+		EFFECT_REMOVE_SHACKLES: 		TargetType.ALLIES,
+		EFFECT_HEAL: 					TargetType.ALLIES,
+		EFFECT_BOOST_MAX_LIFE: 			TargetType.ALLIES,
+		EFFECT_RAW_ABSOLUTE_SHIELD: 	TargetType.ALLIES,
+		EFFECT_RAW_BUFF_AGILITY: 		TargetType.ALLIES,
+		EFFECT_RAW_BUFF_MAGIC: 			TargetType.ALLIES,
+		EFFECT_RAW_BUFF_MP: 			TargetType.ALLIES,
+		EFFECT_RAW_BUFF_RESISTANCE: 	TargetType.ALLIES,
+		EFFECT_RAW_BUFF_SCIENCE: 		TargetType.ALLIES,
+		EFFECT_RAW_BUFF_STRENGTH: 		TargetType.ALLIES,
+		EFFECT_RAW_BUFF_TP: 			TargetType.ALLIES,
+		EFFECT_RAW_BUFF_WISDOM: 		TargetType.ALLIES,
+		EFFECT_BUFF_AGILITY: 			TargetType.ALLIES,
+		EFFECT_BUFF_MP: 				TargetType.ALLIES,
+		EFFECT_BUFF_RESISTANCE: 		TargetType.ALLIES,
+		EFFECT_BUFF_STRENGTH: 			TargetType.ALLIES,
+		EFFECT_BUFF_TP: 				TargetType.ALLIES,
+		EFFECT_BUFF_WISDOM: 			TargetType.ALLIES,
+		EFFECT_ABSOLUTE_SHIELD: 		TargetType.ALLIES,
+		EFFECT_RELATIVE_SHIELD: 		TargetType.ALLIES,
+		EFFECT_DAMAGE_RETURN: 			TargetType.ALLIES,
+		EFFECT_NOVA_VITALITY: 			TargetType.ALLIES,
+		EFFECT_REMOVE_SHACKLES: 		TargetType.ALLIES,
+		
+		EFFECT_RAW_RELATIVE_SHIELD: 	TargetType.EMPTY,
+		EFFECT_KILL_TO_TP: 	TargetType.EMPTY,
+		EFFECT_RAW_HEAL: 	TargetType.EMPTY,
+		
+		
+		
+		
+		//
+		EFFECT_DEBUFF: 					TargetType.ALL,
+		
+		EFFECT_ATTRACT: 				TargetType.ALL,
+		EFFECT_INVERT: 					TargetType.ALL,
+		EFFECT_PUSH: 					TargetType.ALL,
+		
+		EFFECT_STEAL_ABSOLUTE_SHIELD:	TargetType.ALL,
+				
+		EFFECT_RESURRECT: 				TargetType.EMPTY, // FIXME ???
+		EFFECT_TELEPORT: 				TargetType.EMPTY,
+		EFFECT_SUMMON: 					TargetType.EMPTY
+	]
+
+	constructor(effect){
+		// THIS is the fact that effect does hit caster if in aoe (like CHIP_LIGHTNING is false)
+		if(effect.targets & EFFECT_TARGET_CASTER) this.onCaster = true;
+		
+		//debug("Effect   " + effect.type )
+		var tt = TargetType.CONVERTER[effect.type]
+		//debug("TARGET " + tt)
+		//debug("TARGETS EN" +TargetType.ENEMIES+ " ALLIE "+TargetType.ALLIES +"  ALL "+ TargetType.ALL + " EMPTY " +TargetType.EMPTY)
+		if(!tt) debugE('unhandled type in TargetType on effect: ' + effect)
+		if(tt == TargetType.ENEMIES) this.enemies = true
+		else if(tt == TargetType.ALLIES) this.allies = true
+		else if(tt == TargetType.ALL){
+			this.enemies = true
+			this.allies = true
+		}else if(tt == TargetType.EMPTY){
+			this.onEmpty = true
+		}else{
+			// else everything should be on false for .NONE
+			debugE("Strange behavior in TargetType, should never get there")
+		}
+		
+		
+
+		if(!(effect.targets & EFFECT_TARGET_ALLIES)) this.allies = false
+		if(!(effect.targets & EFFECT_TARGET_ENEMIES)) this.enemies = false
+		if(effect.targets & EFFECT_TARGET_SUMMONS) this.onBulbs = true
+		if(effect.targets & EFFECT_TARGET_NON_SUMMONS) this.onLeeks = true
+	}
+	
+	string(){
+		return "<TargetType ally:" + this.allies + " enemy:" + this.enemies + " leek:" + this.onLeeks + " bulb:" + this.onBulbs + " caster:" + this.onCaster + ">"
+	}
+}/** Model-Const-Stats **/
+
+class Stats {
+	// The Singleton's instance is stored in a static field.
+	private static _instance = null
+	private constructor(){}
+	
+	// This is the static method that controls the access to the singleton instance.
+	// On the first run, it creates a singleton object and places it into the static field.
+	// On subsequent runs, it returns the existing object stored in the static field.
+	public static getInstance(){
+		if (_instance == null){
+			_instance = new HiddenSingleton();
+		}
+		return _instance;
+	}
+	
+	public static getFields(){
+		return Stats.getInstance().class.fields
+	}
+
+	static HP 			= Stats.getInstance().HP
+	static HPTIME		= Stats.getInstance().HPTIME
+	static HPMAX		= Stats.getInstance().HPMAX
+	static ABSSHIELD 	= Stats.getInstance().ABSSHIELD
+	static RELSHIELD 	= Stats.getInstance().RELSHIELD
+	static DMGRETURN 	= Stats.getInstance().DMGRETURN
+	static STR 			= Stats.getInstance().STR
+	static MGC 			= Stats.getInstance().MGC
+	static RST 			= Stats.getInstance().RST
+	static WSD 			= Stats.getInstance().WSD
+	static AGI 			= Stats.getInstance().AGI
+	static SNC			= Stats.getInstance().SNC
+	static TP 			= Stats.getInstance().TP
+	static MP	 		= Stats.getInstance().MP
+	static PWR			= Stats.getInstance().PWR
+	
+	static DEBUFF 		= Stats.getInstance().DEBUFF // should i delete this ?
+	static ANTIDOTE 	= Stats.getInstance().ANTIDOTE // should i delete this ?
+	static RRS 		= Stats.getInstance().RRS
+	static KTP 	= Stats.getInstance().KTP
+	static RH 	= Stats.getInstance().RH
+	
+	static KILL			= Stats.getInstance().KILL
+	
+	
+	
+	static entityEffectType_to_stats = [
+		EFFECT_POISON: 					Stats.getInstance().HPTIME,
+		EFFECT_VULNERABILITY: 			Stats.getInstance().RELSHIELD,
+		EFFECT_ABSOLUTE_VULNERABILITY: 	Stats.getInstance().ABSSHIELD,
+		EFFECT_SHACKLE_AGILITY:			Stats.getInstance().AGI,
+		EFFECT_SHACKLE_WISDOM:			Stats.getInstance().WSD,
+		EFFECT_SHACKLE_MAGIC:			Stats.getInstance().MGC,
+		EFFECT_SHACKLE_STRENGTH:		Stats.getInstance().STR,
+		EFFECT_SHACKLE_MP:				Stats.getInstance().MP,
+		EFFECT_SHACKLE_TP:				Stats.getInstance().TP,
+		EFFECT_AFTEREFFECT: 			Stats.getInstance().HPTIME,
+
+		EFFECT_HEAL: 					Stats.getInstance().HPTIME,
+		EFFECT_RAW_ABSOLUTE_SHIELD: 	Stats.getInstance().ABSSHIELD,
+		EFFECT_RAW_BUFF_AGILITY: 		Stats.getInstance().AGI,
+		EFFECT_RAW_BUFF_MAGIC: 			Stats.getInstance().MGC,
+		EFFECT_RAW_BUFF_MP: 			Stats.getInstance().MP,
+		EFFECT_RAW_BUFF_RESISTANCE: 	Stats.getInstance().RST,
+		EFFECT_RAW_BUFF_SCIENCE: 		Stats.getInstance().SNC,
+		EFFECT_RAW_BUFF_STRENGTH: 		Stats.getInstance().STR,
+		EFFECT_RAW_BUFF_TP: 			Stats.getInstance().TP,
+		EFFECT_RAW_BUFF_WISDOM: 		Stats.getInstance().WSD,
+		EFFECT_BUFF_AGILITY: 			Stats.getInstance().AGI,
+		EFFECT_BUFF_MP: 				Stats.getInstance().MP,
+		EFFECT_BUFF_RESISTANCE: 		Stats.getInstance().RST,
+		EFFECT_BUFF_STRENGTH: 			Stats.getInstance().STR,
+		EFFECT_BUFF_TP: 				Stats.getInstance().TP,
+		EFFECT_BUFF_WISDOM: 			Stats.getInstance().WSD,
+		EFFECT_ABSOLUTE_SHIELD: 		Stats.getInstance().ABSSHIELD,
+		EFFECT_RELATIVE_SHIELD: 		Stats.getInstance().RELSHIELD,
+		EFFECT_DAMAGE_RETURN: 			Stats.getInstance().DMGRETURN,
+			
+		EFFECT_RAW_RELATIVE_SHIELD: 	Stats.getInstance().RRS,
+		EFFECT_KILL_TO_TP: 	Stats.getInstance().KTP,
+		EFFECT_RAW_HEAL: 	Stats.getInstance().RH,
+	]
+}
+
+// n'est utilisé que pour sa propriété class.fields pour parcourir les stats, ne jamais instancier ailleurs
+// OUI J'aurais pu faire un tableau "key":value, MAIS .fields c'est quand mm beaucoup plus class non ?
+class HiddenSingleton{
+	HP 			= 0
+	HPTIME		= 1
+	HPMAX		= 2
+	ABSSHIELD 	= 3
+	RELSHIELD 	= 4
+	DMGRETURN 	= 5
+	STR 		= 6
+	MGC 		= 7
+	RST 		= 8
+	WSD 		= 9
+	AGI 		= 10
+	SNC			= 11
+	TP 			= 12
+	MP	 		= 13
+	PWR			= 14
+
+	DEBUFF 		= 15
+	ANTIDOTE 	= 16
+	RRS 		= 17
+	KTP 	= 18
+	RH =19
+	
+	KILL		= 20
+}/** Controlers-Fight **/
+
+class Fight {
+	private static _aliveEnemies
+	private static _aliveAllies
+	private static _aliveAll
+	private static _aliveAllLeeks
+	private static _aliveAllBulbs
+	private static _aliveEnemiesLeeks
+	private static _aliveEnemiesBulbs
+	private static _aliveAlliesLeeks
+	private static _aliveAlliesBulbs
+	static allEntitiesId
+	static self
+	//static getEntity()Cell = Cell(1312)
+
+	/*
+	 * Actualise les tableaux contenant les entités vivante alliée et ennemie ainsi que l'ensemble des entités alliées + ennemies
+	 */
+	static refresh(){
+		//debug("REFRESH")
+		_aliveEnemies = []
+		_aliveAllies = []
+		_aliveAll = []
+		_aliveAllLeeks = []
+		_aliveAllBulbs = []
+		_aliveEnemiesLeeks = []
+		_aliveEnemiesBulbs = []
+		_aliveAlliesLeeks = []
+		_aliveAlliesBulbs = []
+		allEntitiesId = []
+		for(var e in getAliveEnemies()) {
+			var entity = Entity(e)
+			_aliveEnemies[e] = entity
+			_aliveAll[e] = entity
+			if(entity.isBulb){
+				_aliveEnemiesBulbs[e] = entity
+				_aliveAllBulbs[e] = entity
+			} else {
+				_aliveEnemiesLeeks[e] = entity
+				_aliveAllLeeks[e] = entity
+			}
+		}
+		for(var a in getAliveAllies()) {
+			var entity = Entity(a)
+			_aliveAllies[a] = entity
+			_aliveAll[a] = entity
+			if(entity.isBulb){
+				_aliveAlliesBulbs[a] = entity
+				_aliveAllBulbs[a] = entity
+			} else {
+				_aliveAlliesLeeks[a] = entity
+				_aliveAllLeeks[a] = entity
+			}
+		}
+		self = _aliveAll[getLeek()]
+	
+		
+	}
+	
+	/*
+	 * initialise les entités, doit être call à la fin du refresh de la Map pour bien init les reachableCells avec les bonnes cases occupés dans la Map
+	 */
+	static refreshEntities(){
+		for(var entity in _aliveAll){
+			entity.init()
+			push(allEntitiesId, entity.id)
+		}
+	}
+	
+	/*
+	 * Renvoie Entity correspondant a l'id de l'entity demandée si elle est vivante
+	 * @param entityId Id de l'Entity
+	 * @return une Entity 
+	 */
+	static getEntity(entityId) {
+		return _aliveAll[entityId]
+	}
+	
+	/*
+	 * Renvoie un tableau contenant les ennemis vivants
+	 * @return un tableau d'Entity
+	 */
+	static getEnemiesAlive() {
+		return _aliveEnemies
+	}
+	
+	/*
+	 * Renvoie un tableau contenant les ennemis non bulbes vivants
+	 * @return un tableau d'Entity
+	 */
+	static getEnemiesLeeksAlive() {
+		return _aliveEnemiesLeeks
+	}
+	
+	/*
+	 * Renvoie un tableau contenant les ennemis bulbes vivants
+	 * @return un tableau d'Entity
+	 */
+	static getEnemiesBulbsAlive() {
+		return _aliveEnemiesBulbs
+	}
+	
+	/*
+	 * Renvoie un tableau contenant les alliés vivants (moi compris dedans)
+	 * @return un tableau d'Entity
+	 */
+	static getAlliesAlive() {
+		return _aliveAllies
+	}
+	
+	/*
+	 * Renvoie un tableau contenant les alliés non bulbes vivants (moi compris dedans)
+	 * @return un tableau d'Entity
+	 */
+	static getAlliesLeeksAlive() {
+		return _aliveAlliesLeeks
+	}
+	
+	/*
+	 * Renvoie un tableau contenant les alliés bulbes vivants (moi compris dedans si je suis un bulbe)
+	 * @return un tableau d'Entity
+	 */
+	static getAlliesBulbsAlive() {
+		return _aliveAlliesBulbs
+	}
+	
+	/*
+	 * Renvoie un tableau contenant les ennemis et les alliés vivants (moi compris dedans)
+	 * @return un tableau d'Entity
+	 */
+	static getAllAlive() {
+		return _aliveAll
+	}
+	
+	/*
+	 * Renvoie un tableau contenant les ennemis et les alliés non bulbes vivants (moi compris dedans)
+	 * @return un tableau d'Entity
+	 */
+	static getAllLeeksAlive() {
+		return _aliveAllLeeks
+	}
+	
+	/*
+	 * Renvoie un tableau contenant les ennemis et les alliés bulbes vivants (moi compris dedans)
+	 * @return un tableau d'Entity
+	 */
+	static getAllBulbsAlive() {
+		return _aliveAllBulbs
+	}
+	
+	/*
+	 * Détecte les entités vivantes qui jouent avant l'entité entity en paramètre de la fonction
+	 * cette fonction return une list avec @entity inclus, WORKING AS INTENDED !
+	 * cette fonction est utile pour les cases à ignorer dans les fonctions de déplacement, je dois m'ignorer aussi
+	 * ne devrait pas poser de problème ailleurs, mais je laisse ces commentaires pour qu'on y fasse attention
+	 * quand on reviendra sur l'ordre de jeu, il est possible que cette fonction mérite un rename pour la distinguer d'une autre sans getEntity()
+	 * @param entity Entity 
+	 * @return liste des entités vivantes alliés et ennemies 
+	 */
+	static getListOfLeekWhoPlayBefore(entity) {
+		if(entity == self) return [Fight.self];
+		var list = [self]
+		var selfT = self.turnOrder
+		var limit = entity.turnOrder
+		for(var e in _aliveAll) {
+			if(selfT < limit){
+				if(selfT < e.turnOrder && e.turnOrder < limit) push(list, e)
+			} else {
+				if(selfT < e.turnOrder) push(list, e)
+				if(e.turnOrder < limit) push(list, e)
+			}
+		}
+		return list;
+	}
+}/** Controlers-Map **/
+
+/*
+ * Contient les informations de la map (obstacles, cells, placement des Entity)
+ */
+class Map {
+	static obstacles = []
+	static cells = []
+	static entityCells
+	
+	/*
+	 * Fonction d'initialisation, initialise les Cellules Cell, et pour chaque Cell, les obstacles et leurs voisins.
+	 */
+	static init(){
+		for(var i = 0; i < 613; i++) Map.cells[i] = new Cell(i)
+		for(var i in getObstacles()) Map.obstacles[Map.cells[i]]=true
+		for(var cell in Map.cells) cell.init()
+	}
+	
+	/*
+	 * Actualise la map contenant l'emplacement sous forme de Cell des Entity vivantes
+	 */
+	static refresh(){
+		Map.entityCells = []
+		for(var entity in Fight.getAllAlive()){
+			// FIXME à vérif mais je pense qu'il faut que je m'ignore là, je me bloque jamais moi mm non ?
+			if(entity==Fight.self) continue
+			Map.entityCells[entity.cell] = entity
+		}
+		Fight.refreshEntities() // init des entities après avoir refresh les positions sur la map
+	}
+	
+	/*
+	 * Renvoie un objet Cell correspondant à l'id de la cellule
+	 * @param id id de la cellule
+	 * @return Cell
+	 */	
+	static getCell(id) {
+		if(id==null) return null // sinon ça retourne la cell 0 !
+		return Map.cells[id]
+	}
+	
+	/*
+	 * Colorie des cellules pour des tests / debugs.
+	 * @param cells tableau de Cell
+	 * @param color couleur choisie pour colorier les cellules
+	 */	
+	static color(cells, color) {
+		if(typeOf(cells) != TYPE_ARRAY){
+			if(cells instanceof Cell) mark(cells.id, color)
+			else mark(cells, color)
+		}else{
+			for(var cell in cells){
+				if(cell instanceof Cell) mark(cell.id, color)
+				else mark(cell, color)
+			}
+		}
+	}
+	
+	/*
+	 * colorie des cellules accessibles en fonction des mp pour des tests / debugs.
+	 * @param cells tableau de Cell
+	 * @param color couleur choisie pour colorier les cellules
+	 */
+	static colorKey(cells, color){
+		for(var cell:var mp in cells){
+			if(cell instanceof Cell){
+				mark(cell.id, color)
+				markText(cell.id, mp)	
+			} else {
+				mark(cell, color)
+				markText(cell, mp)
+			}
+			
+		}
+	}
+}
+/** Controlers-Items **/
+
+/*
+ * Ensemble de méthodes et d'algorithmes permettant d'instancier les items de type Item et de les classer par ordre d'importance
+ */
+class Items {
+	private static _items = []
+	private static _stuff = []
+	
+	
+	/*
+	 * Initialise toutes les équipements disponible dans le jeu
+	 */
+	static init() {
+		for(var i in getAllWeapons()+getAllChips()) {
+			_items[i] = new Item(i)
+		}
+	}
+	
+	/*
+	 * Renvoie toutes les informations de l'arme / puce en paramètre
+	 * @param itemId id de l'item 
+	 * @return Item 
+	 */
+	static getItem(itemId){
+		return _items[itemId]
+	}
+	
+	/*
+	 * Renvoie toutes les informations de l'arme / puce en paramètre
+	 * @param itemId id de l'item 
+	 * @return Item 
+	 */
+	static getAllItems(){
+		return _items
+	}
+	
+	/*
+	 * Renvoie un tableau d'items équipé sur une Entity 
+	 * @param entityId id de l'Entity
+	 * @return tableau d'Item
+	 */
+	static getItems(entityId) {
+		if(!_stuff[entityId]){
+			_stuff[entityId] = []
+			for(var i in getWeapons(entityId)+getChips(entityId)){
+				push(_stuff[entityId], _items[i]);
+			}
+		}
+		return _stuff[entityId]
+	}
+	
+	/*
+	 * Appel la fonction getOrderedOffensiveItems avec moi en guise de cible d'une entité en paramètre
+	 * @param entity Entity ennemie
+	 * @return tableau d'Item classé par dangerosité
+	 */
+	static getOrderedOffensiveItems(entity) {
+		return Items.getOrderedOffensiveItems(entity, Fight.self)
+	}
+	
+	/*
+	 * Classifie les Item items d'une Entity entity par dangerosité sur une Entity target
+	 * @param entity Entity attaquant
+	 * @param target Entity ciblé
+	 * @return tableau d'Item classé par dangerosité
+	 */
+	static getOrderedOffensiveItems(entity, target) {
+		var dmg, cost, effects, allItems = [], stuff = Items.getItems(entity.id)
+		var absShield = target.absShield, relShield = target.relShield;
+		for(var item in stuff){
+			// reminder le cd est décrément au début du round, donc 1 est utilisable next rnd, sauf pour moi même
+			var limitCD = entity == Fight.self ? 0 : 1
+			if(item.haveCD && getCooldown(item, entity)>limitCD) continue;
+			dmg=0;
+			for(var e in item.effects){
+				if(e.type == EFFECT_DAMAGE ){
+					dmg += (e.avg*(1+(entity.str/100))*(1+(entity.pwr/100))*(1-(relShield/100)))-absShield;
+				}
+				else if(e.type == EFFECT_POISON){
+					dmg += e.avg*(1+(entity.mgc/100))*(1+(entity.pwr/100))*e.duration;
+				}
+				else if(e.type == EFFECT_HEAL){
+					dmg -= e.avg*(1+(entity.wsd/100));
+				}
+				// ici add les effets d'entrave en score pts->dmg
+			}
+			if(dmg>0) allItems[item] = dmg/item.cost;
+		}
+		allItems = arraySort(allItems, function(a,b){	
+			if(a<b) return 1;
+			else if(a>b) return -1;
+			return 0;
+		});
+		return allItems;
+	}
+	
+	/*
+	 * Classifie les Item items d'une Entity entity par effet bénéfique défensif
+	 * @param entity Entity 
+	 * @return tableau d'Item classé par effet bénéfique défensif
+	 */
+	static getOrderedDefensiveItems(entity){
+		var dmg, cost, effects, allItems = [], stuff = Items.getItems(entity.id)
+		var absShield = Fight.self.absShield, relShield = Fight.self.relShield
+		for(var item in stuff){
+			// reminder le cd est décrément au début du round, donc 1 est utilisable next rnd
+			if(item.haveCD && getCooldown(item, entity)>1) continue;
+			dmg=0;
+			for(var e in effects){
+				if(e.type == EFFECT_HEAL){
+					dmg+= e.avg*(1+(entity.wsd/100));
+				}
+				else if(e.type == EFFECT_ABSOLUTE_SHIELD){
+					dmg += e.avg*(1+(entity.rst/100)) *e.duration;
+				}
+				else if(e.type == EFFECT_RELATIVE_SHIELD){
+					dmg += e.avg*(1+(entity.rst/100)) *e.duration *4; // FIXME le *4 devrait être une global de ratio abs/rel
+				}
+			}
+			if(dmg>0) allItems[item] = dmg/item.cost;
+		}
+		allItems = arraySort(allItems, function(a,b){	
+			if(a<b) return 1;
+			else if(a>b) return -1;
+			return 0;
+		});
+		return allItems;
+	}
+	
+	
+}/** Controlers-Maps-MapPath **/
+
+class MapPath{
+	static _cache_reachable
+	static _cache_reachable_size
+	
+	static refresh(){
+		MapPath._cache_reachable = [] // [hash:[cell:distance]]
+		MapPath._cache_reachable_size = [] // [hash:[cell:maxmp]]
+	}
+	
+	/*
+	 * Renvoie l'ensemble de cellules accessibles depuis la cellule (cells) avec la quantité de points de mouvements (mp) en utilisant les voisins.
+	 * @param cells -> cellule à partir de laquelle je veux checker (format [Cell:distance]) donc par exemple ma [cellule courante:0]
+	 * @param mp -> les points de mouvements
+	 * @param ignoreCells -> cellules à ignorer par l'algorithme
+	 * @return  un tableau contenant pour chaque cellules accessible [Cell:distance]
+	 * 
+	 */
+	static getReachableCells(cells, mp, ignoreCells){
+
+		var stack = cells
+		//Map.refresh()
+		var tmp = cells
+		var next = []
+		while(mp-->0){
+			for(var currentWorkingCell: var dist in tmp){
+				if(! currentWorkingCell.neighbors)currentWorkingCell.init()
+				for(var c in currentWorkingCell.neighbors){
+					if(stack[c] == null && (!Map.entityCells || !Map.entityCells[c] || (ignoreCells!=null && !isEmpty(ignoreCells) && inArray(ignoreCells, c)))){
+						stack[c] = dist+1
+						next[c] = dist+1
+					}
+				}
+			}
+			tmp = next
+			next = []
+		}
+		return stack
+	}
+	
+	static getHashcode(from, ignoreCells){
+		var hash = 31
+		hash = hash*37+from.id
+		for(var c in ignoreCells){
+			hash = hash*37+c.id
+		}
+		return hash
+	}
+		
+	static getCachedReachableCells(from, mp, ignoreCells){
+		var hash = MapPath.getHashcode(from, ignoreCells)
+		var result = MapPath._cache_reachable[hash]
+		if(result==null){
+			result = MapPath.getReachableCells([from:0], mp, ignoreCells)
+			_cache_reachable_size[hash] = mp
+			_cache_reachable[hash] = result
+		}else if(MapPath._cache_reachable_size[hash] < mp){
+			result = getReachableCells(MapPath._cache_reachable[hash], mp-MapPath._cache_reachable_size[hash], ignoreCells)
+			MapPath._cache_reachable_size[hash] = mp
+			MapPath._cache_reachable[hash] = result
+		}
+		return result
+	}
+	
+	static updateReachableCellsAfterJump(howToJump, origin, pathToJump, reachableWithJump, reachableWithoutJump, mp, ignoreCells){
+		//handling the case I jump to:	
+		if(reachableWithoutJump[howToJump.to] == null
+		&& reachableWithJump[howToJump.to]==null){
+			pathToJump[howToJump.to]=howToJump;
+			reachableWithJump[howToJump.to] = origin[howToJump.to];
+		}
+		var stack = origin;
+		var tmp = origin;
+		var next = [];
+		while(mp-->0){
+			for(var currentWorkingCell : var dist in tmp){
+				for(var c in currentWorkingCell.neighbors){
+					if((reachableWithoutJump[c]==null ||reachableWithoutJump[c]>dist+1)
+					  && stack[c] == null 
+					  && (isEmptyCell(c) || inArray(ignoreCells, c))){
+						//add to jumpCells if faster or inexistant
+						if(reachableWithoutJump[c] == null
+						&&(reachableWithJump[c]==null || reachableWithJump[c]>dist+1)){
+							pathToJump[c]=howToJump;
+							reachableWithJump[c] = dist+1;
+						}
+						stack[c] = dist+1;
+						next[c] = dist+1;
+					}
+				}
+			}
+			tmp = next;
+			next = [];
+		}
+	}
+
+	// cells [idcell:mp]
+	static getJumpReachableCells(cells, mp, ignoreCells, pathToJump){
+		var stack = cells;
+		var tmp = cells;
+		var next = [];
+		var maxmp = mp
+		var could_jump_from = [];
+		// normal walking reachableCells
+		while(mp-->0){
+			for(var currentWorkingCell : var dist in tmp){
+				for(var c in currentWorkingCell.neighborsObstacles){
+					if(Map.obstacles[c]){ // try jumping
+						// TODO FIXME BUG HERE, I SHOULD TRY TO JUMP OVER LEEK ALSO !!!
+						// careful, for enemy mp I shouldnt jump over leek I ignore in ignoreCells !
+						could_jump_from[currentWorkingCell] = mp+1;
+					}else if(stack[c] == null && (!Map.entityCells[c] || inArray(ignoreCells, c))){
+						stack[c] = dist+1;
+						next[c] = dist+1;
+					}
+				}
+			}
+			tmp = next;
+			next = [];
+			if(mp==0){
+				for(var c:var m in tmp){
+					could_jump_from[c]=0;
+				}
+			}
+		}
+		// adding jump only cells
+		var jumpCells = [];
+		var stackJump = [];
+		// TODO cette boucle devrait être basé sur min/maxrange de jump pour rester dynamique en cas de maj
+		for(var cellFrom:var mpleft in could_jump_from){
+			jumpCells[cellFrom] = [];
+			for(var c in cellFrom.neighbors){
+				if(stack[c]==null
+				|| stack[c] > maxmp-mpleft+1){ // shortcut
+					MapPath.updateReachableCellsAfterJump(Jump(cellFrom, c), [c:mpleft], pathToJump, stackJump, stack, mpleft, ignoreCells);
+					//debugW("jump1case?");
+				}
+			}
+			for(var c in cellFrom.getArea(AREA_CIRCLE_2)){ // todo only area2 circle?
+				if(stack[c]==null
+				|| stack[c] > maxmp-mpleft+2){ // shortcut
+					MapPath.updateReachableCellsAfterJump(Jump(cellFrom, c), [c:mpleft], pathToJump, stackJump, stack, mpleft, ignoreCells);
+					//debugW("jump2case?");
+				}
+			}
+			for(var c in cellFrom.getArea(AREA_CIRCLE_3)){ // todo only area3 circle?
+				if(stack[c]==null
+				|| stack[c] > maxmp-mpleft+3){ // shortcut
+					MapPath.updateReachableCellsAfterJump(Jump(cellFrom, c), [c:mpleft], pathToJump, stackJump, stack, mpleft, ignoreCells);
+					//debugW("jump3case?");
+				}
+			}
+		}
+		//for(var @c:var @mpp in stack){
+			//mark(c, COLOR_GREEN);
+		//}
+		//pause();
+		for(var c:var mpp in stackJump){
+			if(stack[c]!=null)debugE("BUG INSIDE MAPPATH.REACHABLEJUMP!!");
+			stack[c]=mpp;
+			//mark(c, COLOR_RED);
+		}
+		//pause();
+		return stack;
+	}
+}/** Controlers-Maps-MapDanger **/
+
+/*
+ *  Ensemble de méthodes et d'algorithmes permettant de calculer le Danger et les maps de dommages
+ */
+class MapDanger {
+	// cache du danger estimé sur la case, reset à chaque tour, pour la v1 du danger, sera amener à évoluer quand on améliorera la map
+	static _danger = [] // [cell:danger]
+	static _hash_danger = [] // [consequences.hash:[cell:danger]]
+	
+	// cache contenant pour chaque item, pour chaque case, les cases qu'on peut toucher si rien ne bloque la LOS
+	// ne doit pas être reset en début de tour, l'info reste valide, et est lazyloader à la demande.
+	static _cache_item_targetableCells = [] // [item:[fromCell:[targetCells]]]
+	
+	// cache contenant pour chaque ally, pour chaque item, pour chauqe case, les cases qu'on peut toucher, en prenant en compte la LOS
+	// doit être refresh à chaque tour, car on prend en compte la LOS
+	// TODO faire des tests de performances quand on rencontrera des problèmes d'opérations, c'est surement nettement + couteux...
+	static _cache_allies_item_targetableCells = [] // [ally:[item:[fromCell:[targetCells]]]]
+	
+	// cache pour chaque enemy des maps des cases où il peut tirer
+	// refresh à chaque tour
+	static _map_entity_item_danger = [] // [e:[item:[cell:ratio]]]
+	
+	/*
+	 * Actualise les informations en fonctions des enemies et alliés encore vivant 
+	 */
+	static refresh(){
+		// reset du cache
+		_danger = []
+		_hash_danger = []
+		_map_entity_item_danger = []
+		// pour chaque adv
+		for(var e in Fight.getEnemiesAlive()){
+			_map_entity_item_danger[e] = [];//reset de la map
+			e.offensiveItems = Items.getOrderedOffensiveItems(e)
+			// pour chaque item offensif
+			for(var item : var dmgPerTp in e.offensiveItems){
+				// on trouve les cases qu'il peut toucher avec son item
+				_map_entity_item_danger[e][item] = MapDanger.getEnemiesDmgMap(e, item)
+			}
+		}
+		_cache_allies_item_targetableCells = []
+		// pour chaque ally
+		for(var a in Fight.getAlliesAlive()){
+			_map_entity_item_danger[a] = [];//reset de la map
+			for(var e in Fight.getEnemiesAlive()){
+				// on récup les items offensif pour chaque adv
+				a.offensiveItemsByTargets[e] = Items.getOrderedOffensiveItems(a, e)
+			}
+			// pour chaque set d'items, chaque item, on récup la map des cases touchables
+			for(var offensiveItems in a.offensiveItemsByTargets){
+				for(var item : var dmgPerTp in offensiveItems){
+					_map_entity_item_danger[a][item] = MapDanger.getAlliesDmgMap(a, item)
+				}
+				break
+			}
+		}
+	}
+	
+	/*
+	 * Calcule le danger d'une Cell, version sans Conséquences
+	 * @param <Cell> cell la case sur laquel on veut le danger
+	 * @return <Danger>
+	 */
+	static getCellDanger(cell){
+		return MapDanger.getCellDanger(cell, null)
+	}
+		
+	/*
+	 * renvoie le cache du danger d'une Cell, la calcule si elle n'a pas déjà été calculé.
+	 * @param cell Cellule sur laquelle le danger va être calculé
+	 * @param consequences Consequences qui contient les altérations de la série d'action précédente dans le combo
+	 * @return un objet <Danger>
+	 */
+	static getCellDanger(cell, consequences) {
+		if(consequences && consequences.isAlteringDanger){
+			if(!_hash_danger[consequences.hashcode]) _hash_danger[consequences.hashcode] = []
+			if(!_hash_danger[consequences.hashcode][cell]){
+				_hash_danger[consequences.hashcode][cell] = MapDanger.computeDanger(cell, consequences)
+			}
+			return _hash_danger[consequences.hashcode][cell]
+		}else{
+			if(!_danger[cell]) {
+				_danger[cell] = MapDanger.computeDanger(cell, null)
+			}
+			return _danger[cell]
+		}
+	}
+
+	/*
+	 * TODO gestion des consequences
+	 * Pour chaque ennemis vivants somme les dommages de leurs items en fonction des TP et des temps de récupérations
+	 * @param cell Cellule sur laquelle le danger va être calculé
+	 * @param consequences Consequences qui contient les altérations de la série d'action précédente dans le combo
+	 * @return un objet <Danger>
+	 */
+	static computeDanger(cell, consequences){
+		var dmg = 0
+		var str = ""
+		for(var e in Fight.getEnemiesAlive()){ // TODO boucle sur ordered all
+			if(consequences && consequences.isKilled(e)) continue
+			var tpleft = e.getCurrentTP(consequences)
+			for(var item : var dmgPerTp in e.offensiveItems){
+				var ratioDmg = _map_entity_item_danger[e][item][cell]
+				var tmpdmg = MapDanger.getDamage(e, Fight.self, item, ratioDmg, consequences)
+				if(tmpdmg>0){
+					while(item.cost<=tpleft){
+						str+=" "+item.name
+						dmg+=tmpdmg
+						tpleft-=item.cost
+						if(item.haveCD) break
+					}
+				}
+			}
+		}
+		return Danger(cell, dmg, str, consequences)
+	}
+	
+	/*
+	 * Calcule les dommages que peux faire eSource sur eTarget avec une Item en fonction des effets de celle-ci
+	 * @param eSource attaquant
+	 * @param eTarget receveur
+	 * @param item Item
+	 * @return dmg Dommages calculés
+	 */
+	static getDamage(eSource, eTarget, item, ratioDmg, conseq){
+		var dmg = 0;
+		for(var e in item.effects){
+			if(e.type == EFFECT_DAMAGE){
+				var tmp = e.avgmax *(1+(eSource.getCurrentStr(conseq))/100) *(1+(eSource.pwr/100));
+				tmp = tmp *ratioDmg *(1-(eTarget.getCurrentRel(conseq))/100) - (eTarget.getCurrentAbs(conseq))
+				dmg+= tmp>0?tmp:0
+			}
+			else if(e.type == EFFECT_POISON){
+				var duration = Scoring.defensive_duration_mitigation[e.duration]
+				// TODO if(_CAN_ANTIDOTE) duration = 1;
+				// TODO add consequences for pwr !
+				dmg += e.avgmax *(1+(eSource.getCurrentMgc(conseq))/100) *(1+(eSource.pwr/100)) *ratioDmg*duration
+			}
+		}
+		return dmg
+	}
+
+	/*
+	 * Pour les cellules accessible par l'allié, initialise un tableau contenant les cases qu'il peut cibler avec l'item passé en paramètre
+	 * @info cette fonction est appelé pour chaque items de l'allié
+	 * @param ally Entity allié
+	 * @item Item item
+	 * @return map de Cells ciblables par l'Entity ally
+	 */
+	static getAlliesDmgMap(ally, item){
+		var map = []//, map_mp = []
+		for(var cell:var dist in ally.reachableCells){
+			var targetableCells = MapDanger.getAlliesTargetableCells(item, cell);
+			for(var c in targetableCells){
+				if(map[c]==null){
+					map[c]=1;//coef
+					//map_mp[cell]=dist;
+				}
+			}
+		}
+		//aoe TODO
+		
+		return map // TODO add map_mp
+	}
+
+	/*
+	 * Retourne les Cells pouvant être touché depuis la @cell avec l'@item (prend en compte les los)
+	 * @param item Item
+	 * @param cell une Cellule accesible par l'entité en question
+	 * @return cache sous forme de double tableau
+	 */
+	static getAlliesTargetableCells(item, cell){ // TODO add ignoreleeks to ignore leeks who play before
+		// init du cache si nécessaire
+		if(MapDanger._cache_allies_item_targetableCells[item]==null) 
+			MapDanger._cache_allies_item_targetableCells[item] = []
+		if(MapDanger._cache_allies_item_targetableCells[item][cell]==null){
+			MapDanger._cache_allies_item_targetableCells[item][cell] =
+				Targets.getTargetableCells(item, cell, [])
+		}
+			
+		return MapDanger._cache_allies_item_targetableCells[item][cell];
+	}
+		
+	
+		
+		
+	/*
+	 * Pour les cellules accessible par l'ennemi, initialise un tableau contenant les cases qu'il peut cibler avec l'item passé en paramètre
+	 * @info cette fonction est appelé pour chaque items de l'ennemi'
+	 * @param enemy Entity ennemi
+	 * @item Item item
+	 * @return map de Cells ciblables par l'Entity enemy
+	 */
+	static getEnemiesDmgMap(enemy, item){
+		var map = []//, map_mp = []
+		for(var cell:var dist in enemy.reachableCells){
+			var targetableCells = MapDanger.getEnemiesTargetableCells(item, cell);
+			for(var c in targetableCells){
+				if(map[c]==null){
+					map[c]=1;//coef
+					//map_mp[c]=dist;
+				}
+			}
+		}
+		
+		//aoe TODO AREA_PLUS_, AREA_X_, AREA_SQUARE_
+		if(item.area==AREA_CIRCLE_1 || item.area==AREA_CIRCLE_2 || item.area==AREA_CIRCLE_3){
+			for(var distance = 1; distance<=item.area-2; distance++){ // ici trick pour réduire les opé, par du principe que AREA_CIRCLE_1 = 3 et AREA_CIRCLE_3 = 5
+				var ratio = 1 - 0.2 * distance
+				if(ratio ==0) break;
+				var circle = [];
+				for(var c:var value in map){
+					if(value>0)
+						for(var cell in c.neighborsObstacles)
+							if(map[cell]==null || map[cell]==0) push(circle, cell);
+				}
+				for(var cell in circle){
+					map[cell] = ratio;
+					//map_mp[cell] = eMp;
+				}
+			}
+		}
+		
+		return map // TODO add map_mp
+	}
+	
+	/*
+	 * Retourne les Cells pouvant être touché avec le parametre item par les ennemis, ignore la los
+	 * ce qui permet de garder en cache le résultat pour des bonnes perfs
+	 * @see getAlliesTargetableCells
+	 * @param item Item
+	 * @param cell une Cellule accesible par l'entité en question
+	 */
+	// TODO memoisé lineOfSight ignoring allEntitiesId
+	// fonction avec cache qui considère que los est tjr pareil.
+	static getEnemiesTargetableCells(item, cell){
+		// init du cache si nécessaire
+		if(MapDanger._cache_item_targetableCells[item]==null) MapDanger._cache_item_targetableCells[item] = []
+		if(MapDanger._cache_item_targetableCells[item][cell]==null){
+			MapDanger._cache_item_targetableCells[item][cell] =
+				Targets.getTargetableCells(item, cell, Fight.allEntitiesId)
+		}
+		return MapDanger._cache_item_targetableCells[item][cell];
+	}
+		
+	static showDanger(from, mpleft, consequences) {
+		var reachableCells = MapPath.getReachableCells([from:0], mpleft, Fight.self.cellsToIgnore)
+		var arrayDanger = []
+		for(var c : var d in reachableCells) {
+			var danger = MapDanger.getCellDanger(c, consequences)
+			var red = (danger.dmg*255)/Fight.self.life
+			if(red>255) mark(c, getColor(0, 0, 0))
+			else mark(c, getColor(red, 255-red, 0))
+			markText(c, round(danger.dmg))
+			arrayDanger[round(danger.dmg)] = danger
+		}
+		for(var danger in arrayDanger){
+			debug(danger)
+		}
+	}
+
+}/** Controlers-Maps-MapPosition **/
+
+class MapPosition{
+	static _placement_cell_distance = []
+	static _placement_cell_coef = []
+	
+	static refresh(){
+		for(var ally in Fight.getAlliesLeeksAlive()){
+			if(ally.isBulb){
+				
+			}else if(ally != Fight.self){
+				
+			}
+		}
+	}
+}/** Controlers-Maps-MapAction **/
+
+class MapAction {
+	static _item_cell_actions // [item:[cell:[actions]]]
+	static _cell_item_actions // [cell:[item:[actions]]]
+	static _cell_item_bestAction // [cell:[item:action]]
+	
+	static refresh() {
+
+		// remise à zéro des maps
+		_item_cell_actions = []
+		_cell_item_actions = []
+		_cell_item_bestAction = []
+		// pour chaque item
+
+		for(var item in Fight.self.items){
+
+			// si j'ai le cooldown
+			if(getCooldown(item, Fight.self) > 0) continue
+			// selon l'area de l'item
+			if(item.area == AREA_POINT){
+				// pour chaque cible valide de l'item
+
+				for(var entity in item.targetSet()){
+					if(entity==Fight.self){
+						// si c'est moi la cible, je peux le lancer sur moi même que si la minrange le permet
+						if(item.minRange == 0){
+							MapAction.addAction(item, Fight.self.cell, Fight.self.cell)
+						}
+					} else {
+						// sinon je liste toutes les cases depuis lesquelles je peux tirer sur la cible
+						var cells = Targets.getCellsToUseItemOnCell(item, entity.cell, [Fight.self.cell])
+						for(var c in cells) MapAction.addAction(item, c, entity.cell)
+					}
+				}
+			}else if(item.area == AREA_LASER_LINE){
+				for(var entity in item.targetSet()){
+					if(entity==Fight.self) continue // on peut jamais se tirer dessus au lazer
+					var cellsFrom = Targets.getLazerCellsToUseItemOnCell(item, entity.cell)
+					for(var cell in cellsFrom){
+						MapAction.addAction(item, cell, entity.cell)
+					}
+				}
+				// maybe here I should handle AREA_FIRST_INLINE ? 
+			}else{ // every aoe
+				for(var entity in item.targetSet()){
+					if(entity==Fight.self) continue
+					// TODO réfléchir à l'implem de ce genre de move sur case vide..
+					// si c'est moi la cible, si la minrange le permet, visez les cells proche ?
+					// if(entity==Fight.self && item.minRange <= ?){}
+					for(var cell in entity.cell.getAreaCells(item.area)){
+						var cells = Targets.getCellsToUseItemOnCell(item, cell, [Fight.self.cell])
+						for(var c in cells) MapAction.addAction(item, c, cell)
+					}
+				}
+			}
+		}
+	}
+	
+	static getMapBestAction(){
+		return _cell_item_bestAction
+	}
+	
+	static addAction(item, from, targetCell){
+	
+		if(targetCell != Fight.self.cell && 
+		   (Fight.self.reachableCells[from]==null || Fight.self.reachableCells[from] > Fight.self.mp)) return;
+
+		Benchmark.start("addAction")
+		var action = Action(item, from, targetCell)
+		debug("ACT2 "+ action)
+		
+		// ajout dans la map par item puis cells
+		if(!_item_cell_actions[item]) _item_cell_actions[item] = []
+		if(!_item_cell_actions[item][from]) _item_cell_actions[item][from] = []
+		push(_item_cell_actions[item][from], action)
+		
+		// ajout dans la map par cell puis items
+		if(!_cell_item_actions[from]) _cell_item_actions[from] = []
+		if(!_cell_item_actions[from][item]) _cell_item_actions[from][item] = []
+		push(_cell_item_actions[from][item], action)
+		
+		// ici, je ne set sur chaque case, pour chaque item, que la meilleure action et pas les autres:
+		// => réduction forte de la complexité
+		// => pas de perte normalement si j'ai déjà check avant les effets qui change drastiquement le scoring, genre kill un leek
+		// limitation > changement drastique de score après certain effet, genre libération.
+		// maybe solution > implem un préscoring envisageant l'action précédente de debuff, doit pas y en avoir 40
+		if(!_cell_item_bestAction[from]) _cell_item_bestAction[from] = []
+		if(!_cell_item_bestAction[from][item]) _cell_item_bestAction[from][item] = action
+		else if(_cell_item_bestAction[from][item].score < action.score) _cell_item_bestAction[from][item] = action
+		
+		Benchmark.stop("addAction")
+	}
+}/** Model-Combos-Jump **/
+
+class Jump {
+	from
+	to
+	
+	constructor(from, to){
+		this.from = from
+		this.to = to
+	}
+	
+	string(){
+		return '<Jump from:'+this.from+' to:'+this.to+'>'
+	}
+}/** Model-Combos-Danger **/
+
+/*
+ * L'objet Danger contient un combo représentant un ensemble d'actions et les dommages approximatifs de ces actions.
+ * Le combo est une chaîne de caractères et est utilisé à des fins de tests / debugs.
+ */
+class Danger{
+	cell
+	dmg
+	combo
+	score
+	constructor(cell, dmg, str, consequences){
+		this.cell = cell
+		this.dmg = dmg
+		this.combo = str
+		this.score = -dmg // je souhaite le min de dmg, à raison de -1score par dmg, == dmg dealt pour le moment
+		var self  =  Fight.self //Entity._getEntity() //Fight.self.
+		if(dmg >= Fight.self.getCurrentHP(consequences)) // TODO gérer les conséquences de heal dans le danger ?
+			this.score += Scoring.DEATH_VALUE
+	}
+	
+	/*
+	 * Format chaîne de caracteres utilisée pour des tests / debugs.
+	 */
+	string() {
+		return '<Danger '+this.cell+':'+round(this.dmg)+':'+this.combo+'>'
+	}
+}
+/** Model-Combos-Position **/
+
+class Position{
+	danger
+	consequences
+	
+	constructor(){
+	
+	}
+}/** Model-Combos-Action **/
+
+/*
+ * Action réalisable d'une entité vers une autre
+ */
+/*
+ * Action réalisable d'une entité vers une autre
+ */
+class Action {
+	public from
+	public to
+	public item
+	public consequences
+	public score
+
+	constructor(item, from, to){
+		this.item = item
+		this.from = from
+		this.to = to
+		this.consequences = Consequences(this)
+		this.score = this.consequences.getScore()
+	}
+	
+	constructor(action, consequences){
+		this.item = action.item
+		this.from = action.from
+		this.to = action.to
+		this.consequences = Consequences(this, consequences)
+		this.score = this.consequences.getScore()
+	}
+	
+	/*
+	 * Format chaîne de caractères utilisée pour des tests / debugs.
+	 */
+	string(){
+		var rounded = this.score != null ? round(this.score) : "None"
+		return "<Action score: "+rounded+" "+this.item.name+"|from:"+this.from.id+"|to:"+this.to.id+">"
+	}
+}/** Model-Combos-Consequences **/
+
+class Consequences {
+	_alterations = []// [entity:[caracteristic:value]]
+	_altEffects = []// [entity:[item:[EffectOverTime]]]
+	_killed = []
+	score = null
+	isAlteringDanger = false
+	hashcode = 20
+	targets
+	currentCell
+	currentMP
+	private _boostMP_before = 0
+	
+	constructor(action){
+		Benchmark.start("Consequences")
+		this.currentCell = Fight.self.cell
+		this.currentMP = Fight.self.mp
+		construct(action)
+		Benchmark.stop("Consequences")
+	}
+	
+	constructor(action, consequences){
+		Benchmark.start("Consequences.fromConseq")
+		this.currentCell = consequences.currentCell
+		this.currentMP = consequences.currentMP
+		this._alterations = clone(consequences._alterations, 2)
+		this._altEffects = clone(consequences._altEffects, 3)
+		this._killed = clone(consequences._killed)
+		this.hashcode = consequences.hashcode
+		construct(action)
+		Benchmark.stop("Consequences.fromConseq")
+	}
+	
+	construct(action){
+
+		// actualisation du placement virtuel :
+		var reachableCells = MapPath.getCachedReachableCells(this.currentCell, this.currentMP, Fight.self.cellsToIgnore)
+		var myCell = Fight.self.cell  //Cell._getCell() //Fight.self.cell //
+		// déplacement jusqu'à la case de l'action
+		if(action.from.id != myCell.id){
+			if(reachableCells[action.from] != null) this.currentMP = this.currentMP - reachableCells[action.from] 
+			else 
+			{
+			debugW('Impossible action: unreachable cell !!\n'+action.from+" vs "+myCell+'\n'+this) 
+			
+			}
+			if(this.currentMP < 0) debugW('Impossible action: negative MP !!\n'+action+'\n'+this)
+			// actualisation de la case actuelle
+			this.currentCell = action.from
+		}
+		// on retient les boosts mp déjà appliquer à soit mm pour après
+		var boostMPbefore = (this._alterations && Fight.self && Stats.MP  && this._alterations[Fight.self] && !isEmpty(this._alterations[Fight.self]) ?this._alterations[Fight.self][Stats.MP] :[])
+		
+		// actualisation des conséquences de l'action sur le jeu
+		this.targets = Targets.getTargets(action)
+		for(var target in this.targets){
+			if(this._killed[target]) continue
+			var ratioDmg = action.item.isAOE ? max(0,1-(0.2*getCellDistance(action.to, target.cell)))  : 1
+			if(ratioDmg==0)continue
+		
+			for(var effect in action.item.effects) {
+				this.updateConsequences(effect, Fight.self, target, ratioDmg)
+			}
+		}
+		
+		// actualisation des MP en cas de self boost de mp
+		var boostMP = (this._alterations && this._alterations[Fight.self] && !isEmpty(this._alterations[Fight.self])?this._alterations[Fight.self][Stats.MP]:null)
+		// si je viens de m'ajouter des MP
+		if(boostMP && boostMP > boostMPbefore){
+			this.currentMP += boostMP - boostMPbefore // j'ajoute les mp gagnés
+		}
+	}
+	
+	add(entity, key, effect){
+		if(!_alterations[entity]) _alterations[entity] = []
+		var isOverTime = effect instanceof EffectOverTime
+		var value = isOverTime ? effect.value : effect
+		if(isOverTime){
+			if(!_altEffects[entity]) _altEffects[entity] = []
+			if(!_altEffects[entity][effect.item]) _altEffects[entity][effect.item] = []
+		
+			push(_altEffects[entity][effect.item], effect)
+		}
+		_alterations[entity][key] += value // pour null, devrait se comporter comme si ça contenait 0
+		// ça ne marche qu'avec += en leekscriptv1, pas tester en v1.1 comment ça marche...
+		// j'avais des bugs sur les -=, donc il faut faire += -value si le comportement est le mm ici.
+		
+		if(entity==Fight.self && (
+			   key==Stats.HP
+			|| key==Stats.ABSSHIELD
+			|| key==Stats.RELSHIELD
+			|| key==Stats.DEBUFF)){
+				this.isAlteringDanger=true
+				this.hashcode = 31 * this.hashcode + (value|0)
+		} else if(!entity.isFriend && (
+			   key==Stats.DEBUFF
+			|| key==Stats.STR
+			|| key==Stats.TP
+			|| key==Stats.MP)){
+				this.isAlteringDanger=true
+				this.hashcode = 31 * this.hashcode + entity.id
+				this.hashcode = 31 * this.hashcode + (value|0)
+		}
+		
+		// update du score
+		if(!isOverTime) this.score+= value * Scoring.getCoef(entity, key)
+		else this.score+=value*Scoring.getCoef(entity, key)*Scoring.offensive_duration_mitigation[effect.duration]
+	}
+	
+	addKill(entity){
+		this.isAlteringDanger=true
+		this.hashcode = 31 * this.hashcode + entity.id
+		this._killed[entity]=entity
+		this.score+= Scoring.KILL_VALUE * Scoring.getCoef(entity, Stats.KILL)
+	}
+	
+	getAlterations(){
+		return _alterations
+	}
+		
+	isKilled(entity){
+		return _killed[entity] != null
+	}
+	
+	getAlteration(entity, key){
+		return this._alterations && this._alterations[entity] &&  !isEmpty(this._alterations[entity]) ?_alterations[entity][key]:null
+	}
+	
+	getScore(){
+		return this.score
+	}
+	
+	updateConsequences(effect, entitySource, entityTarget, ratioDmg) {
+		// fixme: ce if marche pas, j'ai tjr true mm pour EFFECT_DAMAGE :'(
+		//if(!Consequences.convertToValue[effect.type]) debugW('unhandledEffect on effect: '+ effect)
+		var target = effect.modifCaster ? entitySource : entityTarget
+		ratioDmg = effect.modifCaster ? 1 : ratioDmg
+		return Consequences.convertToValue[effect.type](effect, entitySource, target, ratioDmg, this)
+	}
+
+	// TODO reste à faire l'agi/les crit, et avgmin/avgmax ?
+	// TODO EROSION sur la durée ?
+	static convertToValue = [
+		EFFECT_DAMAGE: function(effect, entitySource, entityTarget, ratioDmg, conseq) {
+			var targetsCount = effect.multiplyByTarget ? count(conseq.targets) : 1
+			var beforeShield = effect.avg *targetsCount *ratioDmg *(1+(entitySource.getCurrentStr(conseq)/100))
+				*(1+(entitySource.getCurrentPwr(conseq)/100)) // TODO power in consequences !!!!
+			var value = (beforeShield *(1-(entityTarget.getCurrentRel(conseq)/100))) 
+				- entityTarget.getCurrentAbs(conseq)
+			value = value < 0 ? 0 : value // on ne fait pas de dmg négatif
+			conseq.add(entityTarget, Stats.HP, -value)
+			
+			if(entityTarget.getCurrentHP(conseq) <= 0) 
+				conseq.addKill(entityTarget)
+			// TODO if killed leek, add all bulb in kill, if tower add win score ?
+
+			// érosion !
+			conseq.add(entityTarget, Stats.HPMAX, -value/20) // TODO le 20 ici devrait être dans une constante
+			
+			// vol de vie
+			var lifeSteal = value * (entitySource.getCurrentWsd(conseq)/1000)
+			var lifeMissing = entitySource.getCurrentHPMissing(conseq)
+			lifeSteal = lifeSteal>lifeMissing ? lifeMissing : lifeSteal
+			if(lifeSteal>0) conseq.add(entitySource, Stats.HP, lifeSteal)
+
+			// dmg return
+			var dmgReturn = beforeShield * (entityTarget.getCurrentDmgReturn(conseq)/100)
+			if(dmgReturn>0){
+				conseq.add(entitySource, Stats.HP, -dmgReturn)
+				
+				// érosion !
+				conseq.add(entitySource, Stats.HPMAX, -dmgReturn/20) // TODO le 20 ici devrait être dans constante
+				
+				if(dmgReturn>=entitySource.getCurrentHP(conseq)) 
+					conseq.addKill(entitySource) 
+			}
+		},
+		EFFECT_POISON: function(effect, entitySource, entityTarget, ratioDmg, conseq){
+			// pas de tests sur stackable car tous les poisons sont stackable actuellement
+			// devrait être au niveau au dessus si d'autres items que covid ont notReplaceable, en attendant, ici on économise des opérations.
+			if(effect.notReplaceable){
+				if(entityTarget.getCurrentItemEffect(effect.item, conseq)) return;
+			}
+			
+			// FIXME: dans mon autre IA, je gère deux notions, les dmgNextTurn, qui pemettent de définir un kill
+			// en solo, et les dmg*duration, qui doivent être minoré plus ça dure
+			// TODO handle kill condition selon si la cible peut s'antidote/libé ?
+			
+			var value = effect.avg *(1+(entitySource.getCurrentMgc(conseq)/100)) *ratioDmg
+				*(1+(entitySource.getCurrentPwr(conseq)/100)) *effect.duration // TODO power in consequences !!!!
+			var eot = EffectOverTime(effect.item, -value, effect.duration)
+			conseq.add(entityTarget, Stats.HPTIME, eot)
+			
+			// érosion ! c'est moche de rediv par durée, FIXME quand j'aurais géré la durée dans les conseq
+			conseq.add(entityTarget, Stats.HPMAX, -value/effect.duration/10)
+			//TODO le 10 au dessus devrait être dans une constante
+		},
+		EFFECT_LIFE_DAMAGE: function(effect, entitySource, entityTarget, ratioDmg, conseq){
+			var beforeShield = entitySource.life*(effect.avg/100)
+			var value = (beforeShield *(1-(entityTarget.getCurrentRel(conseq)/100))) 
+				- entityTarget.getCurrentAbs(conseq)
+			value = value < 0 ? 0 : value // on ne fait pas de dmg négatif
+			conseq.add(entityTarget, Stats.HP, -value)
+			
+			if(entityTarget.getCurrentHP(conseq) <= 0) 
+				conseq.addKill(entityTarget)
+			// TODO if killed leek, add all bulb in kill, if tower add win score ?
+
+			// érosion !
+			conseq.add(entityTarget, Stats.HPMAX, -value/20) // TODO le 20 ici devrait être dans une constante
+			
+			if(entityTarget != entitySource){
+				// dmg return
+				var dmgReturn = beforeShield * (entityTarget.getCurrentDmgReturn(conseq)/100)
+				if(dmgReturn>0){
+					conseq.add(entitySource, Stats.HP, -dmgReturn)
+					// érosion !
+					conseq.add(entitySource, Stats.HPMAX, -dmgReturn/20) // TODO le 20 ici devrait être dans constante
+					
+					if(dmgReturn>=entitySource.getCurrentHP(conseq))
+						conseq.addKill(entitySource) 
+				}
+			}
+		},
+		EFFECT_NOVA_DAMAGE: function(effect, entitySource, entityTarget, ratioDmg, conseq){
+			var value = effect.avg *(1+(entitySource.getCurrentSnc(conseq)/100)) *ratioDmg
+			value = min(value, entityTarget.getCurrentHPMissing(conseq))
+			conseq.add(entityTarget, Stats.HPMAX, -value)
+		},
+		EFFECT_HEAL: function(effect, entitySource, entityTarget, ratioDmg, conseq) {
+			if(effect.duration>1){ // HPTIME
+				if(!effect.stackable){
+					var itemEffect = entityTarget.getCurrentItemEffect(effect.item, conseq)
+					if(itemEffect){
+						var eot = EffectOverTime(effect.item, -itemEffect.value, itemEffect.duration)
+						conseq.add(entityTarget, Stats.HPTIME, eot)
+					}
+				}
+				var value = effect.avg*(1+(entitySource.getCurrentWsd(conseq)/100)) *ratioDmg
+				var eot = EffectOverTime(effect.item, value, effect.duration)
+				conseq.add(entityTarget, Stats.HPTIME, eot)
+			} else { // HP
+				var value = effect.avg*(1+(entitySource.getCurrentWsd(conseq)/100)) *ratioDmg
+				value = min(value, entityTarget.getCurrentHPMissing(conseq))
+				
+				conseq.add(entityTarget, Stats.HP, value)
+			}
+		},
+		EFFECT_BOOST_MAX_LIFE: function(effect, entitySource, entityTarget, ratioDmg, conseq){
+			var value = effect.avg *(1+(entitySource.getCurrentWsd(conseq)/100)) *ratioDmg
+			conseq.add(entityTarget, Stats.HPMAX, value)
+			conseq.add(entityTarget, Stats.HP, value)
+		},
+		EFFECT_NOVA_VITALITY: function(effect, entitySource, entityTarget, ratioDmg, conseq){
+			var value = effect.avg *(1+(entitySource.getCurrentSnc(conseq)/100)) *ratioDmg
+			conseq.add(entityTarget, Stats.HPMAX, value)
+		},
+		EFFECT_ABSOLUTE_SHIELD: function(effect, entitySource, entityTarget, ratioDmg, conseq) {
+			if(!effect.stackable){
+				var itemEffect = entityTarget.getCurrentItemEffect(effect.item, conseq)
+				if(itemEffect){
+					var eot = EffectOverTime(effect.item, -itemEffect.value, itemEffect.duration)
+					conseq.add(entityTarget, Stats.ABSSHIELD, eot)
+				}
+			}
+			var value = effect.avg*(1+(entitySource.getCurrentRst(conseq)/100)) *ratioDmg
+			var eot = EffectOverTime(effect.item, value, effect.duration)
+			conseq.add(entityTarget, Stats.ABSSHIELD, eot)
+		},
+		EFFECT_RELATIVE_SHIELD: function(effect, entitySource, entityTarget, ratioDmg, conseq) {
+			if(!effect.stackable){
+				var itemEffect = entityTarget.getCurrentItemEffect(effect.item, conseq)
+				if(itemEffect){
+					var eot = EffectOverTime(effect.item, -itemEffect.value, itemEffect.duration)
+					conseq.add(entityTarget, Stats.RELSHIELD, eot)
+				}
+			}
+			var value = effect.avg*(1+(entitySource.getCurrentRst(conseq)/100)) *ratioDmg // *effect.duration
+			var eot = EffectOverTime(effect.item, value, effect.duration)
+			conseq.add(entityTarget, Stats.RELSHIELD, value)
+		},
+		EFFECT_ABSOLUTE_VULNERABILITY: function(effect, entitySource, entityTarget, ratioDmg, conseq) {
+			// pas de check stackable car always stackable actuellement
+			var value = effect.avg *ratioDmg
+			var eot = EffectOverTime(effect.item, -value, effect.duration)
+			conseq.add(entityTarget, Stats.ABSSHIELD, eot)
+		},
+		EFFECT_VULNERABILITY: function(effect, entitySource, entityTarget, ratioDmg, conseq) {
+			// pas de check stackable car always stackable actuellement
+			var value = effect.avg *ratioDmg
+			var eot = EffectOverTime(effect.item, -value, effect.duration)
+			conseq.add(entityTarget, Stats.RELSHIELD, eot)
+		},
+		EFFECT_STEAL_ABSOLUTE_SHIELD: function(effect, entitySource, entityTarget, ratioDmg, conseq) {
+			// pas de check stackable car always stackable actuellement
+			var value = effect.avg *ratioDmg // *effect.duration
+			var eot = EffectOverTime(effect.item, value, effect.duration)
+			conseq.add(entityTarget, Stats.ABSSHIELD, eot)
+		},
+		EFFECT_DAMAGE_RETURN: function(effect, entitySource, entityTarget, ratioDmg, conseq) {
+			if(!effect.stackable){
+				var itemEffect = entityTarget.getCurrentItemEffect(effect.item, conseq)
+				if(itemEffect){
+					var eot = EffectOverTime(effect.item, -itemEffect.value, itemEffect.duration)
+					conseq.add(entityTarget, Stats.DMGRETURN, eot)
+				}
+			}
+			var value = effect.avg *(1+(entitySource.getCurrentAgi(conseq)/100)) *ratioDmg
+			var eot = EffectOverTime(effect.item, value, effect.duration)
+			conseq.add(entityTarget, Stats.DMGRETURN, eot)
+		},
+		EFFECT_RAW_BUFF_STRENGTH: function(effect, entitySource, entityTarget, ratioDmg, conseq) {
+			if(!effect.stackable){
+				var itemEffect = entityTarget.getCurrentItemEffect(effect.item, conseq)
+				if(itemEffect){
+					var eot = EffectOverTime(effect.item, -itemEffect.value, itemEffect.duration)
+					conseq.add(entityTarget, Stats.STR, eot)
+				}
+			}
+			var value = effect.avg *ratioDmg
+			var eot = EffectOverTime(effect.item, value, effect.duration)
+			conseq.add(entityTarget, Stats.STR, eot)
+		},
+		EFFECT_RAW_BUFF_MAGIC: function(effect, entitySource, entityTarget, ratioDmg, conseq) {
+			if(!effect.stackable){
+				var itemEffect = entityTarget.getCurrentItemEffect(effect.item, conseq)
+				if(itemEffect){
+					var eot = EffectOverTime(effect.item, -itemEffect.value, itemEffect.duration)
+					conseq.add(entityTarget, Stats.MGC, eot)
+				}
+			}
+			var value = effect.avg *ratioDmg
+			var eot = EffectOverTime(effect.item, value, effect.duration)
+			conseq.add(entityTarget, Stats.MGC, eot)
+		},
+		EFFECT_RAW_BUFF_AGILITY: function(effect, entitySource, entityTarget, ratioDmg, conseq) {
+			if(!effect.stackable){
+				var itemEffect = entityTarget.getCurrentItemEffect(effect.item, conseq)
+				if(itemEffect){
+					var eot = EffectOverTime(effect.item, -itemEffect.value, itemEffect.duration)
+					conseq.add(entityTarget, Stats.AGI, eot)
+				}
+			}
+			var value = effect.avg *ratioDmg
+			var eot = EffectOverTime(effect.item, value, effect.duration)
+			conseq.add(entityTarget, Stats.AGI, eot)
+		},
+		EFFECT_RAW_BUFF_WISDOM: function(effect, entitySource, entityTarget, ratioDmg, conseq) {
+			if(!effect.stackable){
+				var itemEffect = entityTarget.getCurrentItemEffect(effect.item, conseq)
+				if(itemEffect){
+					var eot = EffectOverTime(effect.item, -itemEffect.value, itemEffect.duration)
+					conseq.add(entityTarget, Stats.WSD, eot)
+				}
+			}
+			var value = effect.avg *ratioDmg
+			var eot = EffectOverTime(effect.item, value, effect.duration)
+			conseq.add(entityTarget, Stats.WSD, eot)
+		},
+		EFFECT_RAW_BUFF_RESISTANCE: function(effect, entitySource, entityTarget, ratioDmg, conseq) {
+			if(!effect.stackable){
+				var itemEffect = entityTarget.getCurrentItemEffect(effect.item, conseq)
+				if(itemEffect){
+					var eot = EffectOverTime(effect.item, -itemEffect.value, itemEffect.duration)
+					conseq.add(entityTarget, Stats.RST, eot)
+				}
+			}
+			var value = effect.avg *ratioDmg
+			var eot = EffectOverTime(effect.item, value, effect.duration)
+			conseq.add(entityTarget, Stats.RST, eot)
+		},
+		EFFECT_RAW_BUFF_TP: function(effect, entitySource, entityTarget, ratioDmg, conseq) {
+			if(!effect.stackable){
+				var itemEffect = entityTarget.getCurrentItemEffect(effect.item, conseq)
+				if(itemEffect){
+					var eot = EffectOverTime(effect.item, -itemEffect.value, itemEffect.duration)
+					conseq.add(entityTarget, Stats.TP, eot)
+				}
+			}
+			var value = effect.avg *ratioDmg
+			var eot = EffectOverTime(effect.item, value, effect.duration)
+			conseq.add(entityTarget, Stats.TP, eot)
+		},
+		EFFECT_RAW_BUFF_MP: function(effect, entitySource, entityTarget, ratioDmg, conseq) {
+			if(!effect.stackable){
+				var itemEffect = entityTarget.getCurrentItemEffect(effect.item, conseq)
+				if(itemEffect){
+					// entityEffects[0].value : if not stackable, only 1 effect in array, so [0]
+					var eot = EffectOverTime(effect.item, -itemEffect.value, itemEffect.duration)
+					conseq.add(entityTarget, Stats.MP, eot)
+				}
+			}
+			var value = effect.avg *ratioDmg
+			var eot = EffectOverTime(effect.item, value, effect.duration)
+			conseq.add(entityTarget, Stats.MP, eot)
+		},
+		EFFECT_BUFF_STRENGTH: function(effect, entitySource, entityTarget, ratioDmg, conseq) {
+			if(!effect.stackable){
+				var itemEffect = entityTarget.getCurrentItemEffect(effect.item, conseq)
+				if(itemEffect){
+					var eot = EffectOverTime(effect.item, -itemEffect.value, itemEffect.duration)
+					conseq.add(entityTarget, Stats.STR, eot)
+				}
+			}
+			var value = effect.avg *(1+(entitySource.getCurrentSnc(conseq)/100)) *ratioDmg
+			var eot = EffectOverTime(effect.item, value, effect.duration)
+			conseq.add(entityTarget, Stats.STR, eot)
+		},
+		EFFECT_BUFF_AGILITY: function(effect, entitySource, entityTarget, ratioDmg, conseq) {
+			if(!effect.stackable){
+				var itemEffect = entityTarget.getCurrentItemEffect(effect.item, conseq)
+				if(itemEffect){
+					var eot = EffectOverTime(effect.item, -itemEffect.value, itemEffect.duration)
+					conseq.add(entityTarget, Stats.AGI, eot)
+				}
+			}
+			var value = effect.avg *(1+(entitySource.getCurrentSnc(conseq)/100)) *ratioDmg
+			var eot = EffectOverTime(effect.item, value, effect.duration)
+			conseq.add(entityTarget, Stats.AGI, eot)
+		},
+		EFFECT_BUFF_WISDOM: function(effect, entitySource, entityTarget, ratioDmg, conseq) {
+			if(!effect.stackable){
+				var itemEffect = entityTarget.getCurrentItemEffect(effect.item, conseq)
+				if(itemEffect){
+					var eot = EffectOverTime(effect.item, -itemEffect.value, itemEffect.duration)
+					conseq.add(entityTarget, Stats.WSD, eot)
+				}
+			}
+			var value = effect.avg *(1+(entitySource.getCurrentSnc(conseq)/100)) *ratioDmg
+			var eot = EffectOverTime(effect.item, value, effect.duration)
+			conseq.add(entityTarget, Stats.WSD, eot)
+		},
+		EFFECT_BUFF_RESISTANCE: function(effect, entitySource, entityTarget, ratioDmg, conseq) {
+			if(!effect.stackable){
+				var itemEffect = entityTarget.getCurrentItemEffect(effect.item, conseq)
+				if(itemEffect){
+					var eot = EffectOverTime(effect.item, -itemEffect.value, itemEffect.duration)
+					conseq.add(entityTarget, Stats.RST, eot)
+				}
+			}
+			var value = effect.avg *(1+(entitySource.getCurrentSnc(conseq)/100)) *ratioDmg
+			var eot = EffectOverTime(effect.item, value, effect.duration)
+			conseq.add(entityTarget, Stats.RST, eot)
+		},
+		EFFECT_BUFF_TP: function(effect, entitySource, entityTarget, ratioDmg, conseq) {
+			if(!effect.stackable){
+				var itemEffect = entityTarget.getCurrentItemEffect(effect.item, conseq)
+				if(itemEffect){
+					var eot = EffectOverTime(effect.item, -itemEffect.value, itemEffect.duration)
+					conseq.add(entityTarget, Stats.TP, eot)
+				}
+			}
+			var value = effect.avg *(1+(entitySource.getCurrentSnc(conseq)/100)) *ratioDmg
+			var eot = EffectOverTime(effect.item, value, effect.duration)
+			conseq.add(entityTarget, Stats.TP, eot)
+		},
+		EFFECT_BUFF_MP: function(effect, entitySource, entityTarget, ratioDmg, conseq) {
+			if(!effect.stackable){
+				var itemEffect = entityTarget.getCurrentItemEffect(effect.item, conseq)
+				if(itemEffect){
+					var eot = EffectOverTime(effect.item, -itemEffect.value, itemEffect.duration)
+					conseq.add(entityTarget, Stats.MP, eot)
+				}
+			}
+			var value = effect.avg *(1+(entitySource.getCurrentSnc(conseq)/100)) *ratioDmg
+			var eot = EffectOverTime(effect.item, value, effect.duration)
+			conseq.add(entityTarget, Stats.MP, eot)
+		},
+		EFFECT_SHACKLE_STRENGTH: function(effect, entitySource, entityTarget, ratioDmg, conseq) {
+			// pas de tests sur stackable car toutes les entraves sont stackable actuellement
+			var value = effect.avg *(1+(entitySource.getCurrentMgc(conseq)/100)) *ratioDmg
+			var eot = EffectOverTime(effect.item, -value, effect.duration)
+			conseq.add(entityTarget, Stats.STR, eot)
+		},
+		EFFECT_SHACKLE_MAGIC: function(effect, entitySource, entityTarget, ratioDmg, conseq) {
+			// pas de tests sur stackable car toutes les entraves sont stackable actuellement
+			var value = effect.avg *(1+(entitySource.getCurrentMgc(conseq)/100)) *ratioDmg
+			var eot = EffectOverTime(effect.item, -value, effect.duration)
+			conseq.add(entityTarget, Stats.MGC, eot)
+		},
+		EFFECT_SHACKLE_AGILITY: function(effect, entitySource, entityTarget, ratioDmg, conseq) {
+			// pas de tests sur stackable car toutes les entraves sont stackable actuellement
+			var value = effect.avg *(1+(entitySource.getCurrentMgc(conseq)/100)) *ratioDmg
+			var eot = EffectOverTime(effect.item, -value, effect.duration)
+			conseq.add(entityTarget, Stats.AGI, eot)
+		},
+		EFFECT_SHACKLE_WISDOM: function(effect, entitySource, entityTarget, ratioDmg, conseq) {
+			// pas de tests sur stackable car toutes les entraves sont stackable actuellement
+			var value = effect.avg *(1+(entitySource.getCurrentMgc(conseq)/100)) *ratioDmg
+			var eot = EffectOverTime(effect.item, -value, effect.duration)
+			conseq.add(entityTarget, Stats.WSD, eot)
+		},
+		EFFECT_SHACKLE_TP: function(effect, entitySource, entityTarget, ratioDmg, conseq) {
+			// pas de tests sur stackable car toutes les entraves sont stackable actuellement
+			var value = effect.avg *(1+(entitySource.getCurrentMgc(conseq)/100)) *ratioDmg
+			var eot = EffectOverTime(effect.item, -value, effect.duration)
+			conseq.add(entityTarget, Stats.TP, eot)
+		},
+		EFFECT_SHACKLE_MP: function(effect, entitySource, entityTarget, ratioDmg, conseq) {
+			// pas de tests sur stackable car toutes les entraves sont stackable actuellement
+			var value = effect.avg *(1+(entitySource.getCurrentMgc(conseq)/100)) *ratioDmg
+			var eot = EffectOverTime(effect.item, -value, effect.duration)
+			conseq.add(entityTarget, Stats.MP, eot)
+		},
+		EFFECT_DEBUFF: function(effect, entitySource, entityTarget, ratioDmg, conseq) {
+			for(var entityEffect in entityTarget.effects){
+				// ici le CONVERTER sert à set la value en négatif si c'est un malus, genre un poison fait
+				// des dmg en HPTIME, il en redonne pas.
+				// parce que je boucle sur entityEffect et EffectOverTime
+				// dans EffectOverTime j'ai une valeur +/- en fonction de Stats
+				// dans entityEffect j'ai la valeur de l'effet, tjr positive
+				// maybe mettre en négatif directement dans entityEffect ?
+				// c'est pas terrible de faire la conversion ici je trouve...
+				
+				// FIXME pour tous les effets !stackable je renvoie le dernier effet
+				// cette façon de faire ne marche pas pour récup le dernier effet
+				// je devrais faire -100% puis + le reste après 60% de reduc
+				
+				var value = entityEffect.value * (effect.avg/100) *TargetType.CONVERTER[entityEffect.type]
+				var eot = EffectOverTime(effect.item, -value, entityEffect.turns)
+				var stat = Stats.entityEffectType_to_stats[entityEffect.type]
+				if(stat==null) debugE("LIBERATION effect to stat unhandled :"+entityEffect)
+				conseq.add(entityTarget, stat, eot)
+			}
+			// TODO check if effect is irreductible ?
+		},
+		EFFECT_ANTIDOTE: function(effect, entitySource, entityTarget, ratioDmg, conseq) {
+			for(var entityEffect in entityTarget.effects){
+				if(entityEffect.type == EFFECT_POISON){
+					var eot = EffectOverTime(effect.item, entityEffect.value, entityEffect.turns)
+					conseq.add(entityTarget, Stats.HPTIME, eot)
+				}
+			}
+		},
+		EFFECT_KILL: function(effect, entitySource, entityTarget, ratioDmg, conseq) {
+			// je met un commentaire parce que une seule ligne ça fait vide lol
+			// je pourrais mettre aussi une conseq full life dmg pour scorer les dégats comme pour un dmg normal.
+			// et si un jour on peut kill les leeks/tower faut check les winconditions & kill les bulbs du leek
+			conseq.addKill(entityTarget)
+		},
+		EFFECT_AFTEREFFECT: function(effect, entitySource, entityTarget, ratioDmg, conseq) {
+			var value = effect.avg *(1+(entitySource.getCurrentMgc(conseq)/100)) *ratioDmg
+			var eot = EffectOverTime(effect.item, -value, effect.duration)
+			conseq.add(entityTarget, Stats.HP, -value)
+			conseq.add(entityTarget, Stats.HPTIME, eot)
+		},
+		EFFECT_PROPAGATION: function(effect, entitySource, entityTarget, ratioDmg, conseq) {
+			// TODO ??
+		},
+		EFFECT_REMOVE_SHACKLES: function(effect, entitySource, entityTarget, ratioDmg, conseq){},
+		EFFECT_TELEPORT: function(effect, entitySource, entityTarget, ratioDmg, conseq){},
+		EFFECT_INVERT: function(effect, entitySource, entityTarget, ratioDmg, conseq){},
+		EFFECT_PUSH: function(effect, entitySource, entityTarget, ratioDmg, conseq){},
+		EFFECT_ATTRACT: function(effect, entitySource, entityTarget, ratioDmg, conseq){},
+		EFFECT_SUMMON: function(effect, entitySource, entityTarget, ratioDmg, conseq){},
+		EFFECT_RESURRECT: function(effect, entitySource, entityTarget, ratioDmg, conseq){},
+			EFFECT_RAW_RELATIVE_SHIELD: 	function(effect, entitySource, entityTarget, ratioDmg, conseq){},
+		EFFECT_KILL_TO_TP: function(effect, entitySource, entityTarget, ratioDmg, conseq){},
+		EFFECT_RAW_HEAL:function(effect, entitySource, entityTarget, ratioDmg, conseq){},
+		// unused 
+		
+		EFFECT_RAW_ABSOLUTE_SHIELD: function(effect, entitySource, entityTarget, ratioDmg, conseq){},
+		EFFECT_RAW_RELATIVE_SHIELD: function(effect, entitySource, entityTarget, ratioDmg, conseq){},
+		EFFECT_RAW_BUFF_POWER: function(effect, entitySource, entityTarget, ratioDmg, conseq){},
+		EFFECT_RAW_BUFF_SCIENCE: function(effect, entitySource, entityTarget, ratioDmg, conseq){},
+		
+		// unused and ???
+		EFFECT_REPEL: function(effect, entitySource, entityTarget, ratioDmg, conseq){},
+		
+		// passif
+		EFFECT_POISON_TO_SCIENCE: function(effect, entitySource, entityTarget, ratioDmg, conseq){},
+		EFFECT_MOVED_TO_MP: function(effect, entitySource, entityTarget, ratioDmg, conseq){},
+		EFFECT_NOVA_DAMAGE_TO_MAGIC: function(effect, entitySource, entityTarget, ratioDmg, conseq){},
+		EFFECT_DAMAGE_TO_ABSOLUTE_SHIELD: function(effect, entitySource, entityTarget, ratioDmg, conseq){},
+		EFFECT_DAMAGE_TO_STRENGTH: function(effect, entitySource, entityTarget, ratioDmg, conseq){},
+		EFFECT_ALLY_KILLED_TO_AGILITY: function(effect, entitySource, entityTarget, ratioDmg, conseq){},
+	]
+	
+	computeScore(){
+		var totalScore = 0;
+		for(var entity:var key in this._alterations){
+			var value = this.getAlteration(entity, key)
+			if(key == Stats.HP) 			totalScore+= entity.isFriend ? value : -value
+			if(key == Stats.ABSSHIELD) 	totalScore+= entity.isFriend ? value*3 : -(value*3)
+			if(key == Stats.STR) 		totalScore+= entity.isFriend ? value : -value
+			
+		}
+		for(var entity:var bool in this._killed){
+			var killScore = 10000
+			killScore*= entity.isBulb ? 0.5 : 1
+			totalScore+= entity.isFriend ? -killScore : killScore
+		}
+		return totalScore
+	}
+	
+	string(){
+		var str = "<Consequences"
+		for(var entity:var alteration in this._alterations){
+			str+= "\n" + entity.name + ":"
+			for(var strKey in Stats.getFields()){
+				var key = Stats.getInstance()[strKey]
+				//var key = Stats.getInstance()[strKey]
+				if(alteration[key] != null) str+= "|"+strKey+": "+round(alteration[key])
+			}
+			/*
+			for(var key:var value in alteration){
+				if(key == Stats.HP) 			str+= "|HP: "+round(value)
+				if(key == Stats.ABSSHIELD) 	str+= "|ABSSHIELD: "+round(value)
+				if(key == Stats.STR) 		str+= "|STR: "+round(value)
+			}
+			*/
+		}
+		for(var entity:var isDead in this._killed) str+= "\n|KILL: "+ entity
+		str+="\nhashcode:"+this.hashcode+">"
+		return str
+	}
+}/** Model-Combos-Combo **/
+
+/*
+ * Ensemble d'actions formant un combo 
+ * L'objet combo contient les dommages approximatifs calculé dans MapDanger::getPotentialCombo
+ */
+
+
+
+class Combo {
+	mcco = true
+	actions = []
+	finalDanger = null
+	score = null
+	
+	/*
+	 * Ajout d'action dans l'ensemble d'actions du combo
+	 * @param action Action a ajouter dans le combo
+	 */
+	add(action){
+		if(count(this.actions) == 0) push(this.actions, action)
+		else {
+			var actualized = Action(action, this.getCurrentConsequences())
+
+			if(actualized.score > 0) push(this.actions, actualized)
+			else return false
+		}
+		return true
+	}
+	
+	addFinalDanger(danger){
+		this.finalDanger = danger
+	}
+	
+	/*
+	 * retourne la somme des scores des actions du combo
+	 */
+	getScore(){
+		if(this.score === null){
+			for(var action in this.actions){
+				this.score+= action.score
+			}
+			this.score+= this.finalDanger.score
+		}
+		return this.score
+	}
+	
+	/*
+	 * retourne la cell où on serait si on jouait le combo en l'état
+	 */
+	getCurrentCell(){
+		var currentCell
+		if(this.finalDanger) currentCell = this.finalDanger.cell
+		else if(count(this.actions)>0) currentCell = actions[count(this.actions)-1].from
+		else currentCell = Fight.self.cell
+
+		// TODO avoir la case de l'action d'avant jusqu'à avoir une vrai case ou Fight.self.cell si que getEntity()cast
+		//if(currentCell == Fight.self.cell) currentCell = Fight.self.cell
+		return currentCell
+	}
+	
+	/*
+	 * retourne la cell où on serait si on jouait le combo en l'état
+	 */
+	getCurrentMP(){
+		var currentMP
+		if(this.finalDanger) currentMP = 0 // TODO avoir les mp restant dans un objet conséquences d'un placement!
+		else if(count(this.actions)>0) currentMP = actions[count(this.actions)-1].consequences.currentMP
+		else currentMP = Fight.self.mp
+
+		//if(currentMP == Fight.self.cell) currentMP = Fight.self.cell
+		return currentMP
+	}
+	
+	/*
+	 * retourne la cell où on serait si on jouait le combo en l'état
+	 */
+	getCurrentConsequences(){
+		// TODO une fois qu'on aura des conseq dans le placement final, handle here !
+		if(count(this.actions)>0) return actions[count(this.actions)-1].consequences
+		else return Consequences()
+	}
+	
+	/*
+	 * retourne les reachableCells atteignable depuis l'emplacement actuel du combo
+	 */
+	getCurrentReachableCells(){
+		var currentCell = this.getCurrentCell()
+		var currentMP = this.getCurrentMP()
+		var ignoreCells = Fight.self.cellsToIgnore
+		for(var e in this.getCurrentConsequences()._killed){
+			push(ignoreCells, e.cell)
+		}
+		return MapPath.getCachedReachableCells(currentCell, currentMP, Fight.self.cellsToIgnore)
+	}
+	
+	/*
+	 * pour chaque action dans l'ensemble d'actions
+	 * on se déplace a l'emplacement définis dans la génération de l'action et on éxécute l'Item sur la cible définis.
+	 */
+	play(){
+		// étape 1: je fais mes actions
+		for(var action in this.actions){
+			if(action.from.id != Fight.self.cell.id) moveTowardCell(action.from)
+			if(action.to == Fight.self.cell) action.item.useItemOnCell(Fight.self.cell)
+			else action.item.useItemOnCell(action.to)
+		}
+		// étape 2: je vais me planquer
+		//debugE(this.finalDanger )
+		if(this.finalDanger){
+			MapDanger.showDanger(Cell(getCell()), getMP(), this.getCurrentConsequences())
+			moveTowardCell(this.finalDanger.cell)
+		}
+		// étape 3: si il reste des TP, je prend en main la meilleure arme vis à vis de la situation
+		 /*
+		if(getWeapon(Fight.self)==null) setWeapon(Items.getItem(WEAPON_DESTROYER))*/
+		// étape 4: si il reste des TP, je dis des trucs
+		// todo pipotron
+	}
+	
+	/*
+	 * Format chaîne de caractères utilisée pour des tests / debugs.
+	 */
+	string(){
+		var str= '<Combo: ['
+		for(var action in this.actions){
+			str+= '\n'+action
+		}
+		str+= '\n'+this.finalDanger+']>'
+		return str
+	}
+}/** Model-Combos-EffectOverTime **/
+
+class EffectOverTime{
+	item
+	value
+	//stats
+	duration
+	
+	// TODO add stats
+	constructor(item, value, duration){
+		this.item = item
+		this.value = value
+		this.duration = duration
+	}
+	
+	constructor(effect){
+		this.item = effect.item
+		this.value = effect.value *TargetType.CONVERTER[effect.type] // so malus is negative
+		//this.stats = Stats.entityEffectType_to_stats[effect.type]
+		this.duration = effect.turns
+	}
+	
+	string(){
+		return '<EffectOverTime '+this.item+'\n|value: '+this.value+' |duration: '+this.duration+'>'
+	}
+}/** Services-Damages **/
+
+class Damages{
+	/*
+	 * TODO gestion des consequences
+	 * Pour chaque ennemis vivants somme les dommages de leurs items en fonction des TP et des temps de récupérations
+	 * @param cell Cellule sur laquelle le danger va être calculé
+	 * @param consequences Consequences qui contient les altérations de la série d'action précédente dans le combo
+	 * @return un objet <Danger>
+	 */
+	static computeDanger(cell, consequences){
+		var dmg = 0
+		var str = ""
+		for(var e in Fight.getEnemiesAlive()){ // TODO boucle sur ordered all
+			if(consequences && consequences.isKilled(e)) continue
+			var tpleft = e.getCurrentTP(consequences)
+			var self = Fight.self //Entity._getEntity() // Fight.self
+			//debugE("fe" + e.offensiveItems)
+			for(var item : var dmgPerTp in e.offensiveItems){
+				
+				var ratioDmg = MapDanger._map_entity_item_danger[e][item][cell]
+				var tmpdmg = Damages.getDamage(e, self, item, ratioDmg, consequences)
+				if(tmpdmg>0){
+					//debugE("eefzfezfezfg" + tmpdmg)
+					while(item.cost<=tpleft){
+						str+=" "+item.name
+						dmg+=tmpdmg
+						tpleft-=item.cost
+						if(item.haveCD) break
+					}
+				}
+			}
+		}
+		return Danger(cell, dmg, str, consequences)
+	}
+		
+	/*
+	 * Calcule les dommages que peux faire eSource sur eTarget avec une Item en fonction des effets de celle-ci
+	 * @param eSource attaquant
+	 * @param eTarget receveur
+	 * @param item Item
+	 * @return dmg Dommages calculés
+	 */
+	static getDamage(eSource, eTarget, item, ratioDmg, conseq){
+		var dmg = 0;
+		for(var e in item.effects){
+			if(e.type == EFFECT_DAMAGE){
+				var tmp = e.avgmax *(1+(eSource.getCurrentStr(conseq))/100) *(1+(eSource.pwr/100));
+				tmp = tmp *ratioDmg *(1-(eTarget.getCurrentRel(conseq))/100) - (eTarget.getCurrentAbs(conseq))
+				dmg+= tmp>0?tmp:0
+			}
+			else if(e.type == EFFECT_POISON){
+				var duration = Scoring.defensive_duration_mitigation[e.duration]
+				// TODO if(_CAN_ANTIDOTE) duration = 1;
+				// TODO add consequences for pwr !
+				dmg += e.avgmax *(1+(eSource.getCurrentMgc(conseq))/100) *(1+(eSource.pwr/100)) *ratioDmg*duration
+			}
+		}
+		if(dmg<=0)debugE(dmg)
+		return dmg
+	}
+}/** Services-Targets **/
+
+class Targets{
+	
+	static getTargets(action){
+		var targets
+		var self = Fight.self  // marche pas avec Entity._getEntity() meme si toujours == a Fight.self
+		if(action.to.id ==  self.cell.id) targets = [self]
+		else{
+			if(action.item.area == AREA_LASER_LINE) 
+				targets = Targets.getLazerTargetsFromCell(action.item, action.from, action.to)
+			else 
+				targets = getItemTargets(action.item, action.to)
+		}
+		// ajout de moi même si je suis dans l'aoe
+		if(action.item.isAOE && action.item.onCaster){
+			for(var cell in action.to.getAreaCells(action.item.area)){
+				if(action.from == cell){
+					push(targets, self)
+					break;
+				}
+			}
+		}
+
+		return targets
+	}
+	
+	/*
+	 * pour chaque direction, je parcours les cases et notes les cases depuis je pourrais tirer sur la cible
+	 */
+	static getLazerCellsToUseItemOnCell(item, cell){
+		var self = Fight.self
+		
+		var result = [], c = Map.getCell(getCellFromXY(cell.x+item.minRange, cell.y)), inc = 1
+		if(c!=null && !Map.obstacles[c] && !Map.entityCells[c] && lineOfSight(cell, c, [self.cell.id])){
+			while(c!=null && !Map.obstacles[c] && !Map.entityCells[c] && getCellDistance(cell, c)<=item.maxRange){
+				push(result, c)
+				c = Map.getCell(getCellFromXY(cell.x+item.minRange+inc++, cell.y))
+			}
+		}
+		c = Map.getCell(getCellFromXY(cell.x-item.minRange, cell.y)); inc = 1
+		if(c!=null && !Map.obstacles[c] && !Map.entityCells[c] && lineOfSight(cell, c, [self.cell.id])){
+			while(c!=null && !Map.obstacles[c] && !Map.entityCells[c] && getCellDistance(cell, c)<=item.maxRange){
+				push(result, c)
+				c = Map.getCell(getCellFromXY(cell.x-item.minRange-inc++, cell.y))
+			}
+		}
+		c = Map.getCell(getCellFromXY(cell.x, cell.y+item.minRange)); inc = 1
+		if(c!=null && !Map.obstacles[c] && !Map.entityCells[c] && lineOfSight(cell, c, [self.cell.id])){
+			while(c!=null && !Map.obstacles[c] && !Map.entityCells[c] && getCellDistance(cell, c)<=item.maxRange){
+				push(result, c);
+				c = Map.getCell(getCellFromXY(cell.x, cell.y+item.minRange+inc++))
+			}
+		}
+		c = Map.getCell(getCellFromXY(cell.x, cell.y-item.minRange)); inc = 1
+		if(c!=null && !Map.obstacles[c] && !Map.entityCells[c] && lineOfSight(cell, c, [self.cell.id])){
+			while(c!=null && !Map.obstacles[c] && !Map.entityCells[c] && getCellDistance(cell, c)<=item.maxRange){
+				push(result, c);
+				c = Map.getCell(getCellFromXY(cell.x, cell.y-item.minRange-inc++))
+			}
+		}
+		return result;
+	}
+	
+	/*
+	 * retourne la liste des <Entity> touchées par un tir de lazer avec @item depuis @from vers @to
+	 */
+	static getLazerTargetsFromCell(item, from, to){
+		var result = [], inc = 0, maxInc = item.maxRange-getCellDistance(from, to), tmpCell
+		if(from.x==to.x){
+			if(from.y<to.y){ // y++
+				while(true){
+					tmpCell = Map.getCell(getCellFromXY(to.x, to.y+inc))
+					if(tmpCell == null || Map.obstacles[tmpCell] || inc > maxInc) break;
+					var entityOnCell = Map.entityCells[tmpCell]
+					if(entityOnCell instanceof Entity) push(result, entityOnCell)
+					inc++
+				}
+			}else{ // y--
+				while(true){
+					tmpCell = Map.getCell(getCellFromXY(to.x, to.y-inc))
+					if(tmpCell == null || Map.obstacles[tmpCell] || inc > maxInc) break;
+					var entityOnCell = Map.entityCells[tmpCell]
+					if(entityOnCell instanceof Entity) push(result, entityOnCell)
+					inc++
+				}
+			}
+		}else if(from.y==to.y){
+			if(from.x<to.x){ // x++
+				while(true){
+					tmpCell = Map.getCell(getCellFromXY(to.x+inc, to.y))
+					if(tmpCell == null || Map.obstacles[tmpCell] || inc > maxInc) break;
+					var entityOnCell = Map.entityCells[tmpCell]
+					if(entityOnCell instanceof Entity) push(result, entityOnCell)
+					inc++
+				}
+			}else{ // x--
+				while(true){
+					tmpCell = Map.getCell(getCellFromXY(to.x-inc, to.y))
+					if(tmpCell == null || Map.obstacles[tmpCell] || inc > maxInc) break;
+					var entityOnCell = Map.entityCells[tmpCell]
+					if(entityOnCell instanceof Entity) push(result, entityOnCell)
+					inc++
+				}
+			}
+		}
+		return result
+	}
+	
+	/*
+	 * Renvoie la cellule la plus proche ou l'entité peut tirer sur la cellule ciblée avec l'arme/puce item
+	 * @info utilise les résultats de getCellsToUseItemOnCell puis détecte la cellule la plus proche parmis celles qui sont renvoyées 
+	 * @param entity L'entité
+	 * @param item Arme ou Puce de l'entité
+	 * @param cell cellule ciblé par l'entité
+	 * @param entitiesIdToIgnore array d'id d'entity à ignorer pour lineOfSight()
+	 * @return Cell
+	 */	
+	static getCellToUseItemOnCell(entity, item, cell, entitiesIdToIgnore){
+		var cells = Targets.getCellsToUseItemOnCell(item, cell, entitiesIdToIgnore)
+		var closestCell = null
+		var tmpDist = 99999
+		for(var c in cells){
+			var distance = getCellDistance(entity.cell, c)
+			if(tmpDist > distance){
+				tmpDist = distance
+				closestCell = c
+			}
+		}
+		return closestCell
+	}
+	
+	/* TODO clean this comment
+	 * Renvoie l'ensemble des <Cell> depuis lesquelles on peut tirer sur la @cell avec l'@item 
+	 * j'utilise Map.entityCells pour les cases non accessibles (ou il y a tout le monde sauf self)
+	 * FIXME maybe je devrais filtrer les entitiesIdToIgnore dans les entityCells ? genre si j'ignore qq
+	 * pour la los, je devrais aussi l'ignore dans les cases disponibles depuis lesquelles je devrais tirer,
+	 * puisque si il est pas la pour la los, il est pas là non plus si je veux me mettre à sa place pour tirer.
+	 * à voir selon les usages de cette fonction, actuellement je ne traite pas le tour les bulbes,
+	 * et j'ai pas encore de modèle pour gérer les kills/déplacement d'entity en cours de tour.
+	 * @param item Arme ou Puce de l'entité
+	 * @param cell cellule ciblé par l'entité
+	 * @param entitiesIdToIgnore array of id for lineOfSight()
+	 * @return un tableau de cellules 
+	 */
+	static getCellsToUseItemOnCell(item, cell, entitiesIdToIgnore){
+		return Targets.launchType[item.launchType](item, cell, entitiesIdToIgnore, false)
+		/*
+		var result = []
+		if(item.launchType == LAUNCH_TYPE_LINE){
+			for(var x1 = cell.x-item.maxRange; x1 <= cell.x+item.maxRange; x1++){
+				var dist =cell.x-x1 < 0 ? x1-cell.x : cell.x-x1
+				if(dist < item.minRange) continue
+				var fromCell = Map.getCell(getCellFromXY(x1, cell.y))
+				if(fromCell!=null 
+				&& Map.obstacles[fromCell]==null 
+				&& Map.entityCells[fromCell]==null
+				&& (!item.needLOS || lineOfSight(fromCell, cell, entitiesIdToIgnore))){
+					push(result, fromCell)
+				}
+			}
+			for(var y1 = cell.y-item.maxRange; y1 <= cell.y+item.maxRange; y1++){
+				var dist = cell.y-y1 < 0 ? y1-cell.y : cell.y-y1
+				if(dist < item.minRange) continue
+				var fromCell = Map.getCell(getCellFromXY(cell.x, y1))
+				if(fromCell!=null
+				&& Map.obstacles[fromCell]==null 
+				&& Map.entityCells[fromCell]==null
+				&& (!item.needLOS || lineOfSight(fromCell, cell, entitiesIdToIgnore))){
+					push(result, fromCell)
+				}
+			}
+		}else{
+			for(var x1 = cell.x-item.maxRange; x1 <= cell.x+item.maxRange; x1++){
+				for(var y1 = cell.y-item.maxRange; y1 <= cell.y+item.maxRange; y1++){
+					var dist = (cell.x-x1 < 0 ? x1-cell.x : cell.x-x1) + (cell.y-y1 < 0 ? y1-cell.y : cell.y-y1)
+					if(dist > item.maxRange || dist < item.minRange) continue;
+					var fromCell = Map.getCell(getCellFromXY(x1, y1))
+					if(fromCell!=null 
+					&& Map.obstacles[fromCell]==null 
+					&& Map.entityCells[fromCell]==null
+					&& (!item.needLOS || lineOfSight(fromCell, cell, entitiesIdToIgnore))){
+						push(result, fromCell)
+					}
+				}
+			}
+		}
+		return result;
+		*/
+	}
+	
+	static launchType = [
+		LAUNCH_TYPE_LINE: function(item, cell, entitiesIdToIgnore, shouldReturnOccupiedCells){
+			var result = []
+			for(var x = cell.x-item.maxRange; x <= cell.x+item.maxRange; x++){
+				var dist =cell.x-x < 0 ? x-cell.x : cell.x-x
+				if(dist < item.minRange) continue
+				var fromCell = Map.getCell(getCellFromXY(x, cell.y))
+				if(fromCell!=null 
+				&& Map.obstacles[fromCell]==null 
+				&& (shouldReturnOccupiedCells || Map.entityCells[fromCell]==null)
+				&& (!item.needLOS || lineOfSight(fromCell, cell, entitiesIdToIgnore))){
+					push(result, fromCell)
+				}
+			}
+			for(var y = cell.y-item.maxRange; y <= cell.y+item.maxRange; y++){
+				var dist = cell.y-y < 0 ? y-cell.y : cell.y-y
+				if(dist < item.minRange) continue
+				var fromCell = Map.getCell(getCellFromXY(cell.x, y))
+				if(fromCell!=null
+				&& Map.obstacles[fromCell]==null 
+				&& (shouldReturnOccupiedCells || Map.entityCells[fromCell]==null)
+				&& (!item.needLOS || lineOfSight(fromCell, cell, entitiesIdToIgnore))){
+					push(result, fromCell)
+				}
+			}
+			return result
+		},
+		LAUNCH_TYPE_DIAGONAL: function(item, cell, entitiesIdToIgnore, shouldReturnOccupiedCells){
+			var result = []
+			for(var x = cell.x-item.maxRange; x <= cell.x+item.maxRange; x++){
+				for(var y = cell.y-item.maxRange; y <= cell.y+item.maxRange; y++){
+					if( abs(cell.x-x) != abs(cell.y-y) ) continue // si je suis pas sur une diagonale, skip
+					var dist = (cell.x-x < 0 ? x-cell.x : cell.x-x) + (cell.y-y < 0 ? y-cell.y : cell.y-y)
+					if(dist > item.maxRange || dist < item.minRange) continue;
+					var fromCell = Map.getCell(getCellFromXY(x, y))
+					if(fromCell!=null 
+					&& Map.obstacles[fromCell]==null 
+					&& (shouldReturnOccupiedCells || Map.entityCells[fromCell]==null)
+					&& (!item.needLOS || lineOfSight(fromCell, cell, entitiesIdToIgnore))){
+						push(result, fromCell)
+					}
+				}
+			}
+			return result
+		},
+		LAUNCH_TYPE_STAR: function(item, cell, entitiesIdToIgnore, shouldReturnOccupiedCells){
+			var result = []
+			for(var x = cell.x-item.maxRange; x <= cell.x+item.maxRange; x++){
+				for(var y = cell.y-item.maxRange; y <= cell.y+item.maxRange; y++){
+					if( abs(cell.x-x) != abs(cell.y-y) // si je suis pas sur une diagonale
+					   && (x != cell.x) // et pas en ligne avec x
+					   && (y != cell.y) // et pas en ligne avec y
+					   ) continue // skip
+					var dist = (cell.x-x < 0 ? x-cell.x : cell.x-x) + (cell.y-y < 0 ? y-cell.y : cell.y-y)
+					if(dist > item.maxRange || dist < item.minRange) continue;
+					var fromCell = Map.getCell(getCellFromXY(x, y))
+					if(fromCell!=null 
+					&& Map.obstacles[fromCell]==null 
+					&& (shouldReturnOccupiedCells || Map.entityCells[fromCell]==null)
+					&& (!item.needLOS || lineOfSight(fromCell, cell, entitiesIdToIgnore))){
+						push(result, fromCell)
+					}
+				}
+			}
+			return result
+		},
+		LAUNCH_TYPE_STAR_INVERTED: function(item, cell, entitiesIdToIgnore, shouldReturnOccupiedCells){
+			var result = []
+			for(var x = cell.x-item.maxRange; x <= cell.x+item.maxRange; x++){
+				for(var y = cell.y-item.maxRange; y <= cell.y+item.maxRange; y++){
+					if( abs(cell.x-x) == abs(cell.y-y) // si je suis sur une diagonale
+					   || (x == cell.x) // ou en ligne avec x
+					   || (y == cell.y) // ou en ligne avec y
+					   ) continue // skip
+					var dist = (cell.x-x < 0 ? x-cell.x : cell.x-x) + (cell.y-y < 0 ? y-cell.y : cell.y-y)
+					if(dist > item.maxRange || dist < item.minRange) continue;
+					var fromCell = Map.getCell(getCellFromXY(x, y))
+					if(fromCell!=null 
+					&& Map.obstacles[fromCell]==null 
+					&& (shouldReturnOccupiedCells || Map.entityCells[fromCell]==null)
+					&& (!item.needLOS || lineOfSight(fromCell, cell, entitiesIdToIgnore))){
+						push(result, fromCell)
+					}
+				}
+			}
+			return result
+		},
+		LAUNCH_TYPE_DIAGONAL_INVERTED: function(item, cell, entitiesIdToIgnore, shouldReturnOccupiedCells){
+			var result = []
+			for(var x = cell.x-item.maxRange; x <= cell.x+item.maxRange; x++){
+				for(var y = cell.y-item.maxRange; y <= cell.y+item.maxRange; y++){
+					if( abs(cell.x-x) == abs(cell.y-y) ) continue // si je suis sur une diagonale, skip
+					var dist = (cell.x-x < 0 ? x-cell.x : cell.x-x) + (cell.y-y < 0 ? y-cell.y : cell.y-y)
+					if(dist > item.maxRange || dist < item.minRange) continue;
+					var fromCell = Map.getCell(getCellFromXY(x, y))
+					if(fromCell!=null 
+					&& Map.obstacles[fromCell]==null 
+					&& (shouldReturnOccupiedCells || Map.entityCells[fromCell]==null)
+					&& (!item.needLOS || lineOfSight(fromCell, cell, entitiesIdToIgnore))){
+						push(result, fromCell)
+					}
+				}
+			}
+			return result
+		},
+		LAUNCH_TYPE_LINE_INVERTED: function(item, cell, entitiesIdToIgnore, shouldReturnOccupiedCells){
+			var result = []
+			for(var x = cell.x-item.maxRange; x <= cell.x+item.maxRange; x++){
+				for(var y = cell.y-item.maxRange; y <= cell.y+item.maxRange; y++){
+					if( (x == cell.x) // si je suis en ligne avec x
+					   || (y == cell.y) // ou en ligne avec y
+					   ) continue // skip
+					var dist = (cell.x-x < 0 ? x-cell.x : cell.x-x) + (cell.y-y < 0 ? y-cell.y : cell.y-y)
+					if(dist > item.maxRange || dist < item.minRange) continue;
+					var fromCell = Map.getCell(getCellFromXY(x, y))
+					if(fromCell!=null 
+					&& Map.obstacles[fromCell]==null 
+					&& (shouldReturnOccupiedCells || Map.entityCells[fromCell]==null)
+					&& (!item.needLOS || lineOfSight(fromCell, cell, entitiesIdToIgnore))){
+						push(result, fromCell)
+					}
+				}
+			}
+			return result
+		},
+		LAUNCH_TYPE_CIRCLE: function(item, cell, entitiesIdToIgnore, shouldReturnOccupiedCells){
+			var result = []
+			for(var x1 = cell.x-item.maxRange; x1 <= cell.x+item.maxRange; x1++){
+				for(var y1 = cell.y-item.maxRange; y1 <= cell.y+item.maxRange; y1++){
+					var dist = (cell.x-x1 < 0 ? x1-cell.x : cell.x-x1) + (cell.y-y1 < 0 ? y1-cell.y : cell.y-y1)
+					if(dist > item.maxRange || dist < item.minRange) continue;
+					var fromCell = Map.getCell(getCellFromXY(x1, y1))
+					if(fromCell!=null 
+					&& Map.obstacles[fromCell]==null 
+					&& (shouldReturnOccupiedCells || Map.entityCells[fromCell]==null)
+					&& (!item.needLOS || lineOfSight(fromCell, cell, entitiesIdToIgnore))){
+						push(result, fromCell)
+					}
+				}
+			}
+			return result
+		},
+	]
+
+	// la fonction getTargetableCells est quasi identique à getCellsToUse, à la différence qu'elle considère une case occupé comme ciblable (puisque je veux savoir si on peut tirer dessus), alors que getCellsToUse considère une case occupé comme non disponible (puisqu'on est censé y aller pour tirer sur la cible)
+	// je pourrais ptete fusionner les deux fonctions pour limiter la duplication du code
+	// mais en même temps, c'est une distinction qui me semble pas anodine... je laisse les deux pour le moment
+	// on verra plus tard si je prend une décision
+	static getTargetableCells(item, cell, entitiesIdToIgnore){
+		return Targets.launchType[item.launchType](item, cell, entitiesIdToIgnore, true)
+		/*
+		var result = [], x = cell.x, y = cell.y
+		if(item.launchType == LAUNCH_TYPE_LINE){
+			for(var x1 = x-item.maxRange; x1 <= x+item.maxRange; x1++){
+				var dist = x-x1<0?x1-x:x-x1
+				if(dist < item.minRange) continue;
+				var targetCell = Map.getCell(getCellFromXY(x1, y))
+				if(targetCell!=null 
+				&& Map.obstacles[targetCell]==null 
+				&& (!item.needLOS || lineOfSight(cell, targetCell, entitiesIdToIgnore))){
+					push(result, targetCell)
+				}
+			}
+			for(var y1 = y-item.maxRange; y1 <= y+item.maxRange; y1++){
+				var dist = y-y1<0?y1-y:y-y1
+				if(dist < item.minRange) continue;
+				var targetCell = Map.getCell(getCellFromXY(x, y1))
+				if(targetCell!=null 
+				&& Map.obstacles[targetCell]==null 
+				&& (!item.needLOS || lineOfSight(cell, targetCell, entitiesIdToIgnore))){
+					push(result, targetCell)
+				}
+			}
+		}else{
+			for(var x1 = x-item.maxRange; x1 <= x+item.maxRange; x1++){
+				for(var y1 = y-item.maxRange; y1 <= y+item.maxRange; y1++){
+					var dist =(x-x1<0?x1-x:x-x1)+(y-y1<0?y1-y:y-y1) // abs(x-x1)+abs(y-y1)..
+					if(dist > item.maxRange || dist < item.minRange) continue;
+					var targetCell = Map.getCell(getCellFromXY(x1, y1))
+					if(targetCell!=null 
+					&& Map.obstacles[targetCell]==null 
+					&& (!item.needLOS || lineOfSight(cell, targetCell, entitiesIdToIgnore))){
+						push(result, targetCell);
+					}
+				}
+			}
+		}
+		return result
+		*/
+	}
+
+}/** Services-Sort **/
+
+class Sort {
+	static desc(a, b){
+		return b-a
+	}
+	
+	static asc(a, b){
+		return a-b
+	}
+}/** Services-Benchmark **/
+
+class Benchmark{
+	static _DEBUG = true
+	
+	static _debug_operation
+	static _count_func = [];
+	static _cumul_func = [];
+	static _laststart_func = [];
+	
+	// mesure d'opération simple
+	static startOp(){
+		_debug_operation = getOperations();
+	}
+	static stopOp(title){
+		if(_DEBUG) debug(title + ": " + (getOperations()-_debug_operation-5-length(title)));	
+	}
+	static stopOpk(title){
+		if(_DEBUG) debug(title + ": " + round((getOperations()-_debug_operation)/1000) + "k");
+	}
+	
+	// mesure de consommation d'opération moyenne d'une fonction
+	static reset(){
+		_count_func = [];
+		_cumul_func = [];
+		_laststart_func = [];
+	}
+	static start(name){
+		//Crée l'entrée pour ne pas avoir de surcout pour la création de la clé à la fin
+		_laststart_func[name] = 0;
+		if(_count_func[name]==null) _count_func[name]=0;
+		if(_cumul_func[name]==null) _cumul_func[name]=0;
+		_laststart_func[name] = getOperations();
+	}
+	static stop(name){
+		_cumul_func[name] += getOperations() - _laststart_func[name] - 5;
+		_count_func[name]++;
+	}
+	static display(){
+		var str = "BENCHMARK Turn " + getTurn()
+		for(var name:var nbCall in _count_func){
+			str+= "\n" + name + ": " + nbCall + " call. Moy= " + Benchmark.format(_cumul_func[name]/nbCall) + " Total= " + Benchmark.format(_cumul_func[name])
+		}
+		debug(str)
+	}
+	
+	static format(num){
+		num = num | 0
+		if(num >= 1000){
+			var mega = floor(num/1000000)
+			var kilo = round((num-(mega*1000000))/1000)
+			var formated = (mega>0?mega+" ":"") + kilo + "k"
+			return formated
+		}else return num
+	}
+}
+/** AI-Scoring **/
+
+class Scoring {
+	static _cache_coef = [] // [entity:[key:value]]
+	
+	static KILL_VALUE = 1000
+	static DEATH_VALUE = -1000
+	
+	static defensive_duration_mitigation = [
+		0 : 1,
+		1 : 1,
+		2 : 1.8,
+		3 : 2.4,
+		4 : 2.8,
+		5 : 3.2,
+		6 : 3.6,
+		7 : 4,
+		8 : 4.4,
+	]
+	
+	static offensive_duration_mitigation = [
+		0 : 1,
+		1 : 1,
+		2 : 1.8,
+		3 : 2.4,
+		4 : 2.8,
+		5 : 3.2,
+		6 : 3.6,
+		7 : 4,
+		8 : 4.4,
+	]
+	
+	static computeCoef = [
+		Stats.HP: function(entity) {
+			if(Scoring._cache_coef[entity][Stats.HP] == null) {
+				var coef
+				if(entity.isFriend){
+					if(entity.isBulb) coef = 0.5
+					else coef = 1
+				} else {
+					if(entity.isBulb) coef = -0.5
+					else coef = -1
+				}
+				Scoring._cache_coef[entity][Stats.HP] = coef
+			}
+			return Scoring._cache_coef[entity][Stats.HP]
+		}
+	]
+	
+	/*
+	 * initialise les coefs de tout le monde, dummy values pour le moment, TODO function in array?
+	 */
+	static refresh(){
+		_cache_coef = []
+		for(var entity in Fight.getAllAlive()){
+			_cache_coef[entity] = []
+			_cache_coef[entity][Stats.HP] = Scoring.computeCoef[Stats.HP](entity)
+			_cache_coef[entity][Stats.HPTIME] = entity.isFriend ? (entity.isBulb ? 0.2 : 1)
+																	: (entity.isBulb ? -0.2 : -1)
+			_cache_coef[entity][Stats.HPMAX] = entity.isFriend ? (entity.isBulb ? 0.2 : 1.8)
+																	: (entity.isBulb ? -0.2 : -1)
+			_cache_coef[entity][Stats.DEBUFF] = entity.isFriend ? (entity.isBulb ? 0.2 : 1)
+																	: (entity.isBulb ? -0.2 : -1)
+			_cache_coef[entity][Stats.ANTIDOTE] = entity.isFriend ? (entity.isBulb ? 0.2 : 1)
+																	: (entity.isBulb ? -0.2 : -1)
+			_cache_coef[entity][Stats.ABSSHIELD] = entity.isFriend ? (entity.isBulb ? 0.6 : 3)
+																	: (entity.isBulb ? -0.6 : -3)
+			_cache_coef[entity][Stats.RELSHIELD] = entity.isFriend ? (entity.isBulb ? 1.2 : 6)
+																	: (entity.isBulb ? -1.2 : -6)
+			_cache_coef[entity][Stats.DMGRETURN] = entity.isFriend ? (entity.isBulb ? 0.6 : 3)
+																	: (entity.isBulb ? -0.6 : -3)
+			_cache_coef[entity][Stats.STR] = entity.isFriend ? (entity.isBulb ? 0.2 : 1)
+																	: (entity.isBulb ? -0.2 : -1)
+			_cache_coef[entity][Stats.MGC] = entity.isFriend ? (entity.isBulb ? 0.2 : 1)
+																	: (entity.isBulb ? -0.2 : -1)
+			_cache_coef[entity][Stats.RST] = entity.isFriend ? (entity.isBulb ? 0.2 : 1)
+																	: (entity.isBulb ? -0.2 : -1)
+			_cache_coef[entity][Stats.WSD] = entity.isFriend ? (entity.isBulb ? 0.2 : 1.2)
+																	: (entity.isBulb ? -0.2 : -1)
+			_cache_coef[entity][Stats.AGI] = entity.isFriend ? (entity.isBulb ? 0.2 : 1)
+																	: (entity.isBulb ? -0.2 : -1)
+			_cache_coef[entity][Stats.TP] = entity.isFriend ? (entity.isBulb ? 2 : 10)
+																	: (entity.isBulb ? -2 : -10)
+			_cache_coef[entity][Stats.MP] = entity.isFriend ? (entity.isBulb ? 2 : 10)
+																	: (entity.isBulb ? -2 : -10)
+			_cache_coef[entity][Stats.PWR] = entity.isFriend ? (entity.isBulb ? 0.2 : 1)
+																	: (entity.isBulb ? -0.2 : -1)
+			_cache_coef[entity][Stats.RRS] = entity.isFriend ? (entity.isBulb ? 0.2 : 1)
+																	: (entity.isBulb ? -0.2 : -1)
+			_cache_coef[entity][Stats.KTP] = entity.isFriend ? (entity.isBulb ? 0.2 : 1)
+																	: (entity.isBulb ? -0.2 : -1)
+			_cache_coef[entity][Stats.RH] = entity.isFriend ? (entity.isBulb ? 0.2 : 1)
+																	: (entity.isBulb ? -0.2 : -1)														
+			// fonctionnement à part, peut être que ça restera pas ça...
+			_cache_coef[entity][Stats.KILL] = entity.isFriend ? (entity.isBulb ? -0.2 : -1)
+																	: (entity.isBulb ? 0.2 : 1)
+		}
+	}
+	
+	/*
+	 * retourne le coef d'une entity pour la key donnée
+	 */
+	static getCoef(entity, key){
+		return _cache_coef[entity][key]
+	}
+}/** AI-AI **/
+
+class AI {
+	
+	/*
+	 * Premier exemple d'algo naif où je cherche uniquement à maximiser les dégats sur nearest enemy
+	 * en exploitant uniquement les données de la MapDanger
+	 * TODO n'ajoute pas de déplacement de repli à la fin de la combo !
+	 * ne check pas le nombre de MP nécessaire entre les actions, qui peuvent être depuis plusieurs cases !
+	 * @return combo contenant le tableau d'actions et les dommages estimés
+	 */
+	static getSimpleOffensiveCombo(){
+		var combo = Combo()
+		var tpleft = Fight.self.tp
+		var inHand = Fight.self.getWeaponInHand()
+		var enemy = Fight.getEntity(getNearestEnemy())
+		for(var item : var dmgPerTp in Fight.self.offensiveItemsByTargets[enemy]){
+			var ratioDmg = MapDanger._map_entity_item_danger[Fight.self][item][enemy.cell]
+			var tmpdmg = Damages.getDamage(Fight.self, Fight.getEntity(getEntityOnCell(enemy.cell)), item, ratioDmg, null)
+			var switchCost = item.isWeap && item != inHand ? 1 : 0
+			if(tmpdmg > 0){
+				while(item.cost+switchCost<=tpleft){
+					tpleft-=item.cost+switchCost
+					if(switchCost==1){ inHand = item; switchCost = 0 }
+					combo.add(Action(item, Targets.getCellToUseItemOnCell(Fight.self, item, enemy.cell, [Fight.self]), enemy.cell))
+					if(item.haveCD) break
+				}
+			}
+		}
+		return combo
+	}
+	
+	/* 
+	 * Exploration des actions simple, recherche de move en 2 déplacements :
+	 * - pour chaque cell accessible:
+		* 	dans un combo j'ajoute la meilleure action par score jusqu'à épuisement
+	 	*	puis je trouve une case de repli.
+		*	je recommence un combo en ajoutant les actions que je peux me lancer sur moi mm
+	 * je retourne le meilleure combo trouvé
+	 */
+	static getPotentialCombo(){
+		var mapBestAction = MapAction.getMapBestAction()
+		var bestCombo = null
+		// all reachableCells
+		//var arrayCombo = []
+		debugE(Fight.self.cell)
+		for(var cell:var mp in Fight.self.reachableCells){
+			if(mp>Fight.self.mp) break
+			if(!mapBestAction[cell]) mapBestAction[cell] = [];
+			// cas 1 : uniquement les items sur d'autres leeks:
+						
+			//when i handle move after combo
+			var combo = Combo()
+			var tpleft = Fight.self.tp
+			var inHand = Fight.self.getWeaponInHand()
+			
+			// tri par score des actions
+			mapBestAction[cell] = arraySort(mapBestAction[cell], function(a,b){	
+				return Sort.desc(a.score, b.score)
+			});
+
+		
+			// ajout du meilleur score sur la case jusqu'à épuisement des TP/CD
+			for(var item:var action in mapBestAction[cell]){
+				var switchCost = item.isWeap && item != inHand ? 1 : 0
+				while(item.cost+switchCost<=tpleft){
+					if(combo.add(action)){
+						tpleft-=item.cost+switchCost
+						if(switchCost==1){ inHand = item; switchCost = 0 }
+					} else break
+					if(item.haveCD) break
+				}
+			}
+			// recherche d'une case de fin de tour
+			combo.addFinalDanger(AI.findBestDanger(combo))
+
+			if(!bestCombo || bestCombo.getScore() < combo.getScore()){
+				bestCombo = combo
+			}
+				
+			// cas 2: en ajoutant les items que je peux Fight.selfcast
+			
+			//when i handle move after combo
+			var combo2 = Combo()
+			var tpleft2 = Fight.self.tp
+			var inHand2 = Fight.self.getWeaponInHand()
+			
+			// ajout des actions sur moi mm dans les meilleurs moves sur cette case
+			if(mapBestAction[Fight.self.cell]){
+				for(var item: var action in mapBestAction[Fight.self.cell]){
+					if(mapBestAction[cell][item]){
+						if(action.score > mapBestAction[cell][item].score) mapBestAction[cell][item] = action
+					}else{
+						mapBestAction[cell][item] = action
+					}
+				}
+			}
+			// note : cette façon de faire en dessous "casse" les clés, le string() renvoie tjr le bon item, mais les champs sont null
+			//mapBestAction[cell] += mapBestAction[Fight.self.cell]()]
+			
+			// tri par score des actions
+			mapBestAction[cell] = arraySort(mapBestAction[cell], function(a,b){	
+				return Sort.desc(a.score, b.score)
+			});
+			
+			// ajout du meilleur score sur la case jusqu'à épuisement des TP/CD
+			for(var item:var action in mapBestAction[cell]){
+				var switchCost = item.isWeap && item != inHand2 ? 1 : 0
+				while(item.cost+switchCost<=tpleft2){
+					if(combo2.add(action)){
+						tpleft2-=item.cost+switchCost
+						if(switchCost==1){ inHand2 = item; switchCost = 0 }
+					} else break
+					if(item.haveCD) break
+				}
+			}
+			// recherche d'une case de fin de tour
+			combo2.addFinalDanger(AI.findBestDanger(combo2))
+
+			if(!bestCombo || bestCombo.getScore() < combo2.getScore()){
+				bestCombo = combo2
+			}	
+				
+		}
+
+		return bestCombo
+	}
+	
+	/*
+	 * Premier exemple d'algo naif de recherche de case de fin de tour
+	 * je minimise les dégats, puis à danger équivalent je choisi la case la plus proche de l'adversaire
+	 */
+	static findBestDanger(combo){
+		var consequences = combo.getCurrentConsequences()		
+		var shouldGetCloseTo = Fight.getEntity(getNearestEnemy()).cell
+		var bestDanger = null
+		// depuis la case @from, avec les mp restant
+		var currentMP = combo.getCurrentMP()
+		var reachableCells = combo.getCurrentReachableCells()
+		for(var cell:var mp in reachableCells){
+			if(mp > currentMP) break
+			var danger = MapDanger.getCellDanger(cell, consequences)
+			if(!bestDanger || bestDanger.dmg > danger.dmg) {
+				bestDanger = danger
+			} else if(bestDanger.dmg == danger.dmg){
+				// en cas de danger équivalent, je m'approche le plus possible de l'adv
+				if(getCellDistance(bestDanger.cell, shouldGetCloseTo) > getCellDistance(danger.cell, shouldGetCloseTo)){
+					bestDanger = danger
+				}
+			}
+		}
+		return bestDanger
+	}
+
+	/*
+	 * Recherche de case de fin de tour avancé, prenant en compte de multiples problématiques
+	 */
+	static findBestPosition(combo){
+		var reachableCells = combo.getCurrentReachableCells()
+		
+		// TODO
+	}
+}function init() {
+	
+	
+	Benchmark.start('init')
+	if(getTurn()==1) {
+			
+		Benchmark.start('Map.init')
+		Map.init()
+		Benchmark.stop('Map.init')
+		debug("AUTO ")
+			
+		Benchmark.start('Items.init')
+		Items.init()
+		Benchmark.stop('Items.init')
+		debug("AUTO 2 ")
+	}
+
+	
+	debug("AUTO 3")
+	Benchmark.start('MapPath.refresh')
+	MapPath.refresh()
+	Benchmark.stop('MapPath.refresh')
+	
+	debug("AUTO MAP "+Map.entityCells)
+	
+	Benchmark.start('Fight.refresh')
+	Fight.refresh()
+	Benchmark.stop('Fight.refresh')
+
+
+	Benchmark.start('Map.refresh')
+	Map.refresh()
+	Benchmark.stop('Map.refresh')
+	
+	Benchmark.start('Scoring.refresh')
+	Scoring.refresh()
+	Benchmark.stop('Scoring.refresh')
+	
+	Benchmark.start('MapDanger.refresh')
+	MapDanger.refresh()
+	Benchmark.stop('MapDanger.refresh')
+
+	Benchmark.start('MapPosition.refresh')
+	MapPosition.refresh()
+	Benchmark.stop('MapPosition.refresh')
+
+	Benchmark.start('MapAction.refresh')
+	MapAction.refresh()
+	Benchmark.stop('MapAction.refresh')
+
+	Benchmark.stop('init')
+}
+init()
+
+
+
+Benchmark.start('COMBO SEARCH')
+var combo = AI.getPotentialCombo()
+Benchmark.stop('COMBO SEARCH')
+
+if(combo) combo.play()
+else {
+	debugE('/!\ turn '+getTurn()+' Combo null !')
+}
+
+
+
+//debug("combo"+combo)
+
+// cast avec le reste des TP
+/*function failSafe(){
+	var tpleft = getTP()
+	if(getAbsoluteShield(Fight.self)<=0) Items.getItem(CHIP_ARMOR).useItem(Fight.self)
+	if(getAbsoluteShield(Fight.self)<=0) Items.getItem(CHIP_SHIELD).useItem(Fight.self)
+	if(getAbsoluteShield(Fight.self)<=0) Items.getItem(CHIP_HELMET).useItem(Fight.self)
+	if(getRelativeShield(Fight.self)<=0) Items.getItem(CHIP_WALL).useItem(Fight.self)
+	if(Fight.self.life<Fight.self.totalLife){
+		Items.getItem(CHIP_CURE).useItem(Fight.self)
+	}
+	Items.getItem(CHIP_ARMORING).useItem(Fight.self)
+	Items.getItem(CHIP_VACCINE).useItem(Fight.self)
+	Items.getItem(CHIP_PROTEIN).useItem(Fight.self)
+	var tpused = tpleft-getTP()
+	if(tpused>0) debugE('/!\ turn '+getTurn()+" failSafe TP used: "+tpused)
+}
+failSafe()*/
+
+//Benchmark.display()
+//debug('UTILISATION TOTALE DU TOUR: ' + Benchmark.format(getOperations()) )
+
+
+
+/*
+debug("khikhji");
+
+
+// useChip(CHIP_FORTRESS, getLeek());
+
+var enemy = getNearestEnemy();
+
+if (count(getWeapons())) {
+	setWeapon(getWeapons()[0]);
+}
+
+moveToward(enemy);
+
+useWeapon(enemy);*/
