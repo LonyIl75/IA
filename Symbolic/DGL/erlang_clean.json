@@ -1,0 +1,1246 @@
+[
+    {
+        "id": "http://erlangen-crm.org/current/E10_Transfer_of_Custody",
+        "description": "This class comprises transfers of physical custody of objects between instances of E39 Actor"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E11_Modification",
+        "description": "This class comprises all instances of E7 Activity that create, alter or change E24 Physical Man-Made Thing"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E12_Production",
+        "description": "This class comprises activities that are designed to, and succeed in, creating one or more new items"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E13_Attribute_Assignment",
+        "description": "This class comprises the actions of making assertions about properties of an object or any relation between two items or concepts"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E14_Condition_Assessment",
+        "description": "This class describes the act of assessing the state of preservation of an object during a particular period"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E15_Identifier_Assignment",
+        "description": "This class comprises activities that result in the allocation of an identifier to an instance of E1 CRM Entity"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E16_Measurement",
+        "description": "This class comprises actions measuring physical properties and other values that can be determined by a systematic procedure"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E17_Type_Assignment",
+        "description": "This class comprises the actions of classifying items of whatever kind"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E18_Physical_Thing",
+        "description": "This class comprises all persistent physical items with a relatively stable form, man-made or natural"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E19_Physical_Object",
+        "description": "This class comprises items of a material nature that are units for documentation and have physical boundaries that separate them completely in an objective way from other objects"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E1_CRM_Entity",
+        "description": "This class comprises all things in the universe of discourse of the CIDOC Conceptual Reference Model"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E20_Biological_Object",
+        "description": "This class comprises individual items of a material nature, which live, have lived or are natural products of or from living organisms"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E21_Person",
+        "description": "This class comprises real persons who live or are assumed to have lived"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E22_Man-Made_Object",
+        "description": "This class comprises physical objects purposely created by human activity"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E24_Physical_Man-Made_Thing",
+        "description": "This class comprises all persistent physical items that are purposely created by human activity"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E25_Man-Made_Feature",
+        "description": "This class comprises physical features that are purposely created by human activity, such as scratches, artificial caves, artificial water channels, etc"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E26_Physical_Feature",
+        "description": "This class comprises identifiable features that are physically attached in an integral way to particular physical objects"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E27_Site",
+        "description": "This class comprises pieces of land or sea floor"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E28_Conceptual_Object",
+        "description": "This class comprises non-material products of our minds and other human produced data that have become objects of a discourse about their identity, circumstances of creation or historical implication"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E29_Design_or_Procedure",
+        "description": "This class comprises documented plans for the execution of actions in order to achieve a result of a specific quality, form or contents"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E2_Temporal_Entity",
+        "description": "This class comprises all phenomena, such as the instances of E4 Periods, E5 Events and states, which happen over a limited extent in time"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E30_Right",
+        "description": "This class comprises legal privileges concerning material and immaterial things or their derivatives"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E31_Document",
+        "description": "This class comprises identifiable immaterial items that make propositions about reality"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E32_Authority_Document",
+        "description": "This class comprises encyclopaedia, thesauri, authority lists and other documents that define terminology or conceptual systems for consistent use"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E33_Linguistic_Object",
+        "description": "This class comprises identifiable expressions in natural language or languages"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E34_Inscription",
+        "description": "This class comprises recognisable, short texts attached to instances of E24 Physical Man-Made Thing"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E35_Title",
+        "description": "This class comprises the names assigned to works, such as texts, artworks or pieces of music"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E36_Visual_Item",
+        "description": "This class comprises the intellectual or conceptual aspects of recognisable marks and images"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E37_Mark",
+        "description": "This class comprises symbols, signs, signatures or short texts applied to instances of E24 Physical Man-Made Thing by arbitrary techniques in order to indicate the creator, owner, dedications, purpose, etc"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E38_Image",
+        "description": "This class comprises distributions of form, tone and colour that may be found on surfaces such as photos, paintings, prints and sculptures or directly on electronic media"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E39_Actor",
+        "description": "This class comprises people, either individually or in groups, who have the potential to perform intentional actions for which they can be held responsible"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E3_Condition_State",
+        "description": "This class comprises the states of objects characterised by a certain condition over a time-span"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E40_Legal_Body",
+        "description": "This class comprises institutions or groups of people that have obtained a legal recognition as a group and can act collectively as agents"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E41_Appellation",
+        "description": "This class comprises all sequences of signs of any nature, either meaningful or not, that are used or can be used to refer to and identify a specific instance of some class within a certain context"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E42_Identifier",
+        "description": "This class comprises strings or codes assigned to instances of E1 CRM Entity in order to identify them uniquely and permanently within the context of one or more organisations"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E44_Place_Appellation",
+        "description": "This class comprises any sort of identifier characteristically used to refer to an E53 Place"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E45_Address",
+        "description": "This class comprises identifiers expressed in coding systems for places, such as postal addresses used for mailing"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E46_Section_Definition",
+        "description": "This class comprises areas of objects referred to in terms specific to the general geometry or structure of its kind"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E47_Spatial_Coordinates",
+        "description": "This class comprises the textual or numeric information required to locate specific instances of E53 Place within schemes of spatial identification"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E48_Place_Name",
+        "description": "This class comprises particular and common forms of E44 Place Appellation"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E49_Time_Appellation",
+        "description": "This class comprises all forms of names or codes, such as historical periods, and dates, which are characteristically used to refer to a specific E52 Time-Span"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E4_Period",
+        "description": "This class comprises sets of coherent phenomena or cultural manifestations bounded in time and space"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E50_Date",
+        "description": "This class comprises specific forms of E49 Time Appellation"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E51_Contact_Point",
+        "description": "This class comprises identifiers employed, or understood, by communication services to direct communications to an instance of E39 Actor"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E52_Time-Span",
+        "description": "This class comprises abstract temporal extents, in the sense of Galilean physics, having a beginning, an end and a duration"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E53_Place",
+        "description": "This class comprises extents in space, in particular on the surface of the earth, in the pure sense of physics: independent from temporal phenomena and matter"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E54_Dimension",
+        "description": "This class comprises quantifiable properties that can be measured by some calibrated means and can be approximated by values, i"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E55_Type",
+        "description": "This class comprises concepts denoted by terms from thesauri and controlled vocabularies used to characterize and classify instances of CRM classes"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E56_Language",
+        "description": "This class is a specialization of E55 Type and comprises the natural languages in the sense of concepts"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E57_Material",
+        "description": "This class is a specialization of E55 Type and comprises the concepts of materials"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E58_Measurement_Unit",
+        "description": "This class is a specialization of E55 Type and comprises the types of measurement units: feet, inches, centimetres, litres, lumens, etc"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E5_Event",
+        "description": "This class comprises changes of states in cultural, social or physical systems, regardless of scale, brought about by a series or group of coherent physical, cultural, technological or legal phenomena"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E63_Beginning_of_Existence",
+        "description": "This class comprises events that bring into existence any E77 Persistent Item"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E64_End_of_Existence",
+        "description": "This class comprises events that end the existence of any E77 Persistent Item"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E65_Creation",
+        "description": "This class comprises events that result in the creation of conceptual items or immaterial products, such as legends, poems, texts, music, images, movies, laws, types etc"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E66_Formation",
+        "description": "This class comprises events that result in the formation of a formal or informal E74 Group of people, such as a club, society, association, corporation or nation"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E67_Birth",
+        "description": "This class comprises the births of human beings"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E68_Dissolution",
+        "description": "This class comprises the events that result in the formal or informal termination of an E74 Group of people"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E69_Death",
+        "description": "This class comprises the deaths of human beings"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E6_Destruction",
+        "description": "This class comprises events that destroy one or more instances of E18 Physical Thing such that they lose their identity as the subjects of documentation"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E70_Thing",
+        "description": "This general class comprises usable discrete, identifiable, instances of E77 Persistent Item that are documented as single units"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E71_Man-Made_Thing",
+        "description": "This class comprises discrete, identifiable man-made items that are documented as single units"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E72_Legal_Object",
+        "description": "This class comprises those material or immaterial items to which instances of E30 Right, such as the right of ownership or use, can be applied"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E73_Information_Object",
+        "description": "This class comprises identifiable immaterial items, such as a poems, jokes, data sets, images, texts, multimedia objects, procedural prescriptions, computer program code, algorithm or mathematical formulae, that have an objectively recognizable structure and are documented as single units"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E74_Group",
+        "description": "This class comprises any gatherings or organizations of two or more people that act collectively or in a similar way due to any form of unifying relationship"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E75_Conceptual_Object_Appellation",
+        "description": "This class comprises all appellations specific to intellectual products or standardized patterns"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E77_Persistent_Item",
+        "description": "This class comprises items that have a persistent identity, sometimes known as 'endurants' in philosophy"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E78_Collection",
+        "description": "This class comprises aggregations of instances of E18 Physical Thing that are assembled and maintained ('curated' and 'preserved,' in museological terminology) by one or more instances of E39 Actor over time for a specific purpose and audience, and according to a particular collection development plan"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E79_Part_Addition",
+        "description": "This class comprises activities that result in an instance of E24 Physical Man-Made Thing being increased, enlarged or augmented by the addition of a part"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E7_Activity",
+        "description": "This class comprises actions intentionally carried out by instances of E39 Actor that result in changes of state in the cultural, social, or physical systems documented"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E80_Part_Removal",
+        "description": "This class comprises the activities that result in an instance of E18 Physical Thing being decreased by the removal of a part"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E81_Transformation",
+        "description": "This class comprises the events that result in the simultaneous destruction of one or more than one E77 Persistent Item and the creation of one or more than one E77 Persistent Item that preserves recognizable substance from the first one(s) but has fundamentally different nature and identity"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E82_Actor_Appellation",
+        "description": "This class comprises any sort of name, number, code or symbol characteristically used to identify an E39 Actor"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E83_Type_Creation",
+        "description": "This class comprises activities formally defining new types of items"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E84_Information_Carrier",
+        "description": "This class comprises all instances of E22 Man-Made Object that are explicitly designed to act as persistent physical carriers for instances of E73 Information Object"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E85_Joining",
+        "description": "This class comprises the activities that result in an instance of E39 Actor becoming a member of an instance of E74 Group"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E86_Leaving",
+        "description": "This class comprises the activities that result in an instance of E39 Actor to be disassociated from an instance of E74 Group"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E87_Curation_Activity",
+        "description": "This class comprises the activities that result in the continuity of management and the preservation and evolution of instances of E78 Collection, following an implicit or explicit curation plan"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E89_Propositional_Object",
+        "description": "This class comprises immaterial items, including but not limited to stories, plots, procedural prescriptions, algorithms, laws of physics or images that are, or represent in some sense, sets of propositions about real or imaginary things and that are documented as single units or serve as topic of discourse"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E8_Acquisition",
+        "description": "This class comprises transfers of legal ownership from one or more instances of E39 Actor to one or more other instances of E39 Actor"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E90_Symbolic_Object",
+        "description": "This class comprises identifiable symbols and any aggregation of symbols, such as characters, identifiers, traffic signs, emblems, texts, data sets, images, musical scores, multimedia objects, computer program code or mathematical formulae that have an objectively recognizable structure and that are documented as single units"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/E9_Move",
+        "description": "This class comprises changes of the physical location of the instances of E19 Physical Object"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P100_was_death_of",
+        "description": "This property links an E69 Death event to the E21 Person that died"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P101_had_as_general_use",
+        "description": "This property links an instance of E70 Thing to an E55 Type of usage"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P102_has_title",
+        "description": "This property describes the E35 Title applied to an instance of E71 Man-Made Thing"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P103_was_intended_for",
+        "description": "This property links an instance of E71 Man-Made Thing to an E55 Type of usage"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P104_is_subject_to",
+        "description": "This property links a particular E72 Legal Object to the instances of E30 Right to which it is subject"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P105_right_held_by",
+        "description": "This property identifies the E39 Actor who holds the instances of E30 Right to an E72 Legal Object"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P106_is_composed_of",
+        "description": "This property associates an instance of E90 Symbolic Object with a part of it that is by itself an instance of E90 Symbolic Object, such as fragments of texts or clippings from an image"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P107_has_current_or_former_member",
+        "description": "This property relates an E39 Actor to the E74 Group of which that E39 Actor is a member"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P108_has_produced",
+        "description": "This property identifies the E24 Physical Man-Made Thing that came into existence as a result of an E12 Production"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P109_has_current_or_former_curator",
+        "description": "This property identifies the E39 Actor or Actors who assume or have assumed overall curatorial responsibility for an E78 Collection"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P10_falls_within",
+        "description": "This property describes an instance of E4 Period, which falls within the E53 Place and E52 Time-Span of another"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P110_augmented",
+        "description": "This property identifies the E24 Physical Man-Made Thing that is added to (augmented) in an E79 Part Addition"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P111_added",
+        "description": "This property identifies the E18 Physical Thing that is added during an E79 Part Addition activity Examples: - the insertion of the final nail (E79) added the last nail in George VI's coffin (E18)' (en)"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P112_diminished",
+        "description": "This property identifies the E24 Physical Man-Made Thing that was diminished by E80 Part Removal"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P113_removed",
+        "description": "This property identifies the E18 Physical Thing that is removed during an E80 Part Removal activity"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P114_is_equal_in_time_to",
+        "description": "This symmetric property allows the instances of E2 Temporal Entity with the same E52 Time-Span to be equated"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P115_finishes",
+        "description": "This property allows the ending point for a E2 Temporal Entity to be situated by reference to the ending point of another temporal entity of longer duration"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P116_starts",
+        "description": "This property allows the starting point for a E2 Temporal Entity to be situated by reference to the starting point of another temporal entity of longer duration"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P117_occurs_during",
+        "description": "This property allows the entire E52 Time-Span of an E2 Temporal Entity to be situated within the Time-Span of another temporal entity that starts before and ends after the included temporal entity"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P118_overlaps_in_time_with",
+        "description": "This property identifies an overlap between the instances of E52 Time-Span of two instances of E2 Temporal Entity"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P119_meets_in_time_with",
+        "description": "This property indicates that one E2 Temporal Entity immediately follows another"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P11_had_participant",
+        "description": "This property describes the active or passive participation of instances of E39 Actors in an E5 Event"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P120_occurs_before",
+        "description": "This property identifies the relative chronological sequence of two temporal entities"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P121_overlaps_with",
+        "description": "This symmetric property allows the instances of E53 Place with overlapping geometric extents to be associated with each other"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P122_borders_with",
+        "description": "This symmetric property allows the instances of E53 Place which share common borders to be related as such"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P123_resulted_in",
+        "description": "This property identifies the E77 Persistent Item or items that are the result of an E81 Transformation"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P124_transformed",
+        "description": "This property identifies the E77 Persistent Item or items that cease to exist due to a E81 Transformation"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P125_used_object_of_type",
+        "description": "This property defines the kind of objects used in an E7 Activity, when the specific instance is either unknown or not of interest, such as use of 'a hammer'"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P126_employed",
+        "description": "This property identifies E57 Material employed in an E11 Modification"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P127_has_broader_term",
+        "description": "This property identifies a super-Type to which an E55 Type is related"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P128_carries",
+        "description": "This property identifies an E73 Information Object carried by an instance of E24 Physical Man-Made Thing"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P129_is_about",
+        "description": "This property documents that an E89 Propositional Object has as subject an instance of E1 CRM Entity"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P12_occurred_in_the_presence_of",
+        "description": "This property describes the active or passive presence of an E77 Persistent Item in an E5 Event without implying any specific role"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P130_shows_features_of",
+        "description": "This property generalises the notions of 'copy of' and 'similar to' into a dynamic, asymmetric relationship, where the domain expresses the derivative, if such a direction can be established"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P131_is_identified_by",
+        "description": "This property identifies a name used specifically to identify an E39 Actor"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P132_overlaps_with",
+        "description": "This symmetric property allows instances of E4 Period that overlap both temporally and spatially to be related, i,e"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P133_is_separated_from",
+        "description": "This symmetric property allows instances of E4 Period that do not overlap both temporally and spatially, to be related i,e"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P134_continued",
+        "description": "This property allows two activities to be related where the domain is considered as an intentional continuation of the range"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P135_created_type",
+        "description": "This property identifies the E55 Type, which is created in an E83Type Creation activity"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P136_was_based_on",
+        "description": "This property identifies one or more items that were used as evidence to declare a new E55 Type"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P137_exemplifies",
+        "description": "This property allows an item to be declared as a particular example of an E55 Type or taxon"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P138_represents",
+        "description": "This property establishes the relationship between an E36 Visual Item and the entity that it visually represents"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P139_has_alternative_form",
+        "description": "This property establishes a relationship of equivalence between two instances of E41 Appellation independent from any item identified by them"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P13_destroyed",
+        "description": "This property allows specific instances of E18 Physical Thing that have been destroyed to be related to a destruction event"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P140_assigned_attribute_to",
+        "description": "This property indicates the item to which an attribute or relation is assigned"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P141_assigned",
+        "description": "This property indicates the attribute that was assigned or the item that was related to the item denoted by a property P140 assigned attribute to in an Attribute assignment action"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P142_used_constituent",
+        "description": "This property associates the event of assigning an instance of E42 Identifier to an entity, with the instances of E41 Appellation that were used as elements of the identifier"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P143_joined",
+        "description": "This property identifies the instance of E39 Actor that becomes member of a E74 Group in an E85 Joining"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P144_joined_with",
+        "description": "This property identifies the instance of E74 Group of which an instance of E39 Actor becomes a member through an instance of E85 Joining"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P145_separated",
+        "description": "This property identifies the instance of E39 Actor that leaves an instance of E74 Group through an instance of E86 Leaving"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P146_separated_from",
+        "description": "This property identifies the instance of E74 Group an instance of E39 Actor leaves through an instance of E86 Leaving"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P147_curated",
+        "description": "This property associates an instance of E78 Collection or collections with subject of a curation activity following some implicit or explicit curation plan"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P148_has_component",
+        "description": "This property associates an instance of E89 Propositional Object with a structural part of it that is by itself an instance of E89 Propositional Object"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P149_is_identified_by",
+        "description": "This property identifies an instance of E28 Conceptual Object using an instance of E75 Conceptual Object Appellation"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P14_carried_out_by",
+        "description": "This property describes the active participation of an E39 Actor in an E7 Activity"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P15_was_influenced_by",
+        "description": "This is a high level property, which captures the relationship between an E7 Activity and anything that may have had some bearing upon it"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P16_used_specific_object",
+        "description": "This property describes the use of material or immaterial things in a way essential to the performance or the outcome of an E7 Activity"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P17_was_motivated_by",
+        "description": "This property describes an item or items that are regarded as a reason for carrying out the E7 Activity"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P19_was_intended_use_of",
+        "description": "This property relates an E7 Activity with objects created specifically for use in the activity"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P1_is_identified_by",
+        "description": "This property describes the naming or identification of any real world item by a name or any other identifier"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P20_had_specific_purpose",
+        "description": "This property identifies the relationship between a preparatory activity and the event it is intended to be preparation for"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P21_had_general_purpose",
+        "description": "This property describes an intentional relationship between an E7 Activity and some general goal or purpose"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P22_transferred_title_to",
+        "description": "This property identifies the E39 Actor that acquires the legal ownership of an object as a result of an E8 Acquisition"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P23_transferred_title_from",
+        "description": "This property identifies the E39 Actor or Actors who relinquish legal ownership as the result of an E8 Acquisition"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P24_transferred_title_of",
+        "description": "This property identifies the E18 Physical Thing or things involved in an E8 Acquisition"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P25_moved",
+        "description": "This property identifies the E19 Physical Object that is moved during a move event"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P26_moved_to",
+        "description": "This property identifies the destination of a E9 Move"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P27_moved_from",
+        "description": "This property identifies the starting E53 Place of an E9 Move"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P28_custody_surrendered_by",
+        "description": "This property identifies the E39 Actor or Actors who surrender custody of an instance of E18 Physical Thing in an E10 Transfer of Custody activity"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P29_custody_received_by",
+        "description": "This property identifies the E39 Actor or Actors who receive custody of an instance of E18 Physical Thing in an E10 Transfer of Custody activity"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P2_has_type",
+        "description": "This property allows sub typing of CRM entities - a form of specialisation \u2013 through the use of a terminological hierarchy, or thesaurus"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P30_transferred_custody_of",
+        "description": "This property identifies an item or items of E18 Physical Thing concerned in an E10 Transfer of Custody activity"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P31_has_modified",
+        "description": "This property identifies the E24 Physical Man-Made Thing modified in an E11 Modification"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P32_used_general_technique",
+        "description": "This property identifies the technique that was employed in an act of modification"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P33_used_specific_technique",
+        "description": "This property identifies a specific instance of E29 Design or Procedure in order to carry out an instance of E7 Activity or parts of it"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P34_concerned",
+        "description": "This property identifies the E18 Physical Thing that was assessed during an E14 Condition Assessment activity"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P35_has_identified",
+        "description": "This property identifies the E3 Condition State that was observed in an E14 Condition Assessment activity"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P37_assigned",
+        "description": "This property records the identifier that was assigned to an item in an Identifier Assignment activity"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P38_deassigned",
+        "description": "This property records the identifier that was deassigned from an instance of E1 CRM Entity"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P39_measured",
+        "description": "This property associates an instance of E16 Measurement with the instance of E1 CRM Entity to which it applied"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P3_has_note",
+        "description": "This property is a container for all informal descriptions about an object that have not been expressed in terms of CRM constructs"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P40_observed_dimension",
+        "description": "This property records the dimension that was observed in an E16 Measurement Event"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P41_classified",
+        "description": "This property records the item to which a type was assigned in an E17 Type Assignment activity"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P42_assigned",
+        "description": "This property records the type that was assigned to an entity by an E17 Type Assignment activity"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P43_has_dimension",
+        "description": "This property records a E54 Dimension of some E70 Thing"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P44_has_condition",
+        "description": "This property identifies the instances of E57 Materials of which an instance of E18 Physical Thing is composed"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P45_consists_of",
+        "description": "This property identifies the instances of E57 Materials of which an instance of E18 Physical Thing is composed"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P46_is_composed_of",
+        "description": "This property allows instances of E18 Physical Thing to be analysed into component elements"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P48_has_preferred_identifier",
+        "description": "This property records the preferred E42 Identifier that was used to identify an instance of E1 CRM Entity at the time this property was recorded"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P49_has_former_or_current_keeper",
+        "description": "This property identifies the E39 Actor or Actors who have or have had custody of an instance of E18 Physical Thing at some time"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P4_has_time-span",
+        "description": "This property describes the temporal confinement of an instance of an E2 Temporal Entity"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P50_has_current_keeper",
+        "description": "This property identifies the E39 Actor or Actors who had custody of an instance of E18 Physical Thing at the time this property was recorded"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P51_has_former_or_current_owner",
+        "description": "This property identifies the E39 Actor that is or has been the legal owner (i"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P52_has_current_owner",
+        "description": "This property identifies the E21 Person, E74 Group or E40 Legal Body that was the owner of an instance of E18 Physical Thing at the time this property was recorded"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P53_has_former_or_current_location",
+        "description": "This property allows an instance of E53 Place to be associated as the former or current location of an instance of E18 Physical Thing"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P54_has_current_permanent_location",
+        "description": "This property records the foreseen permanent location of an instance of E19 Physical Object at the time this property was recorded"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P55_has_current_location",
+        "description": "This property records the location of an E19 Physical Object at the time the property was recorded"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P56_bears_feature",
+        "description": "This property describes a E26 Physical Feature found on a E19 Physical Object It does not specify the location of the feature on the object"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P57_has_number_of_parts",
+        "description": "This property documents the number of parts of which an instance of E19 Physical Object is composed"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P58_has_section_definition",
+        "description": "This property links an area (section) named by a E46 Section Definition to the instance of E18 Physical Thing upon which it is found"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P59_has_section",
+        "description": "This property links an area to the instance of E18 Physical Thing upon which it is found"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P5_consists_of",
+        "description": "This property describes the decomposition of an E3 Condition State into discrete, subsidiary states"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P62_depicts",
+        "description": "This property identifies something that is depicted by an instance of E24 Physical Man-Made Thing"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P65_shows_visual_item",
+        "description": "This property documents an E36 Visual Item shown by an instance of E24 Physical Man-Made Thing"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P67_refers_to",
+        "description": "An E73 Information Object may refer to any other E1 CRM Entity"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P68_foresees_use_of",
+        "description": "This property identifies an E57 Material foreseeen to be used by an E29 Design or Procedure"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P69_is_associated_with",
+        "description": "This symmetric property describes the association of an E29 Design or Procedure with other Designs or Procedures"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P70_documents",
+        "description": "This property describes the CRM Entities documented by instances of E31 Document"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P71_lists",
+        "description": "This property documents a source E32 Authority Document for an instance of an E1 CRM Entity"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P72_has_language",
+        "description": "This property describes the E56 Language of an E33 Linguistic Object"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P73_has_translation",
+        "description": "This property describes the source and target of instances of E33 Linguistic Object involved in a translation"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P74_has_current_or_former_residence",
+        "description": "This property describes the current or former E53 Place of residence of an E39 Actor"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P75_possesses",
+        "description": "This property identifies former or current instances of E30 Rights held by an E39 Actor"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P76_has_contact_point",
+        "description": "This property identifies an E51 Contact Point of any type that provides access to an E39 Actor by any communication method, such as e-mail or fax"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P78_is_identified_by",
+        "description": "This property identifies an E52 Time-Span using an E49 Time Appellation"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P79_beginning_is_qualified_by",
+        "description": "This property qualifies the beginning of an E52 Time-Span in some way"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P7_took_place_at",
+        "description": "his property describes the spatial location of an instance of E4 Period"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P80_end_is_qualified_by",
+        "description": "This property qualifies the end of an E52 Time-Span in some way"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P81_ongoing_throughout",
+        "description": "This property describes the minimum period of time covered by an E52 Time-Span"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P82_at_some_time_within",
+        "description": "This property describes the maximum period of time within which an E52 Time-Span falls"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P83_had_at_least_duration",
+        "description": "This property describes the minimum length of time covered by an E52 Time-Span"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P84_had_at_most_duration",
+        "description": "This property describes the maximum length of time covered by an E52 Time-Span"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P86_falls_within",
+        "description": "This property describes the inclusion relationship between two instances of E52 Time-Span"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P87_is_identified_by",
+        "description": "This property identifies an E53 Place using an E44 Place Appellation"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P88_consists_of",
+        "description": "This property identifies an E53 Place that forms part of another Place"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P89_falls_within",
+        "description": "This property identifies the instances of E53 Places that fall within the area covered by another Place"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P8_took_place_on_or_within",
+        "description": "This property describes the location of an instance of E4 Period with respect to an E19 Physical Object"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P90_has_value",
+        "description": "This property allows an E54 Dimension to be approximated by a value"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P91_has_unit",
+        "description": "This property shows the type of unit an E54 Dimension was expressed in"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P92_brought_into_existence",
+        "description": "This property allows an E63 Beginning of Existence event to be linked to the E77 Persistent Item brought into existence by it"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P93_took_out_of_existence",
+        "description": "This property allows an E64 End of Existence event to be linked to the E77 Persistent Item taken out of existence by it"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P94_has_created",
+        "description": "This property allows a conceptual E65 Creation to be linked to the E28 Conceptual Object created by it"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P95_has_formed",
+        "description": "This property links the founding or E66 Formation for an E74 Group with the Group itself"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P96_by_mother",
+        "description": "This property links an E67 Birth event to an E21 Person as a participant in the role of birth-giving mother"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P97_from_father",
+        "description": "This property links an E67 Birth event to an E21 Person in the role of biological father"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P98_brought_into_life",
+        "description": "This property links an E67 Birth event to an E21 Person in the role of offspring"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P99_dissolved",
+        "description": "This property links the disbanding or E68 Dissolution of an E74 Group to the Group itself"
+    },
+    {
+        "id": "http://erlangen-crm.org/current/P9_consists_of",
+        "description": "This property describes the decomposition of an instance of E4 Period into discrete, subsidiary periods"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/CLP104_subject_to",
+        "description": "This property associates a publication, i"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/CLP105_right_held_by",
+        "description": "This property associates a publication, i"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/CLP2_should_have_type",
+        "description": "This property associates a publication, i"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/CLP43_should_have_dimension",
+        "description": "This property associates a publication, i"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/CLP45_should_consist_of",
+        "description": "This property associates a publication, i"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/CLP46_should_be_composed_of",
+        "description": "This property associates an instance of F3 Manifestation Product Type which prescribes that all its Items will contain as parts an Item of another instance of F3 Manifestation Product Type with that instance of F3 Manifestation Product Type"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/CLP57_should_have_number_of_parts",
+        "description": "This property associates a publication, i"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/CLR6_should_carry",
+        "description": "This property associates a publication, i"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/F10_Person",
+        "description": "This class comprises real persons who live or are assumed to have lived"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/F11_Corporate_Body",
+        "description": "This class comprises organisations and groups of two or more people and/or organisations acting as a unit"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/F12_Name",
+        "description": "This class comprises all sequences of signs of any nature, either meaningful or not, that are used or can be used to refer to and identify a specific instance of some class within a certain context"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/F13_Identifier",
+        "description": "This class comprises strings or codes assigned to instances of E1 CRM Entity in order to identify them uniquely and permanently within the context of one or more organisations"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/F14_Individual_Work",
+        "description": "This class comprises works that are realised by one and only one self-contained expression, i"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/F15_Complex_Work",
+        "description": "This class comprises works that have more than one work as members"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/F16_Container_Work",
+        "description": "This class comprises works whose essence is to enhance or add value to expressions from one or more other works without altering them, by the selection, arrangement and/or addition of features of different form, such as layout to words, recitation and movement to texts, instrumentation to musical scores etc"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/F17_Aggregation_Work",
+        "description": "This class comprises works whose essence is the selection and/or arrangement of expressions of one or more other works"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/F18_Serial_Work",
+        "description": "This class comprises works that are, or have been, planned to result in sequences of manifestations with common features"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/F19_Publication_Work",
+        "description": "This class comprises works that have been planned to result in a manifestation product type and that pertain to the rendering of expressions from other works"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/F1_Work",
+        "description": "This class comprises the sums of concepts which appear in the course of the coherent evolution of an original idea into one or more expressions that are dominated by the original idea"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/F20_Performance_Work",
+        "description": "This class comprises the sets of concepts for rendering a particular or a series of like performances"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/F21_Recording_Work",
+        "description": "This class comprises works that conceptualise the capturing of features of perdurants"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/F22_Self-Contained_Expression",
+        "description": "This class comprises the immaterial realisations of individual works at a particular time that are regarded as a complete whole"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/F23_Expression_Fragment",
+        "description": "This class comprises parts of Expressions and these parts are not Self-contained Expressions themselves"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/F24_Publication_Expression",
+        "description": "This class comprises complete sets of signs present in publications, reflecting publishers\u2019 final decisions as to both content and layout of the publications"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/F25_Performance_Plan",
+        "description": "This class comprises sets of directions to which individual performances of theatrical, choreographic, or musical works and their combinations should conform"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/F26_Recording",
+        "description": "This class comprises expressions which are created in instances of F29 Recording Event"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/F27_Work_Conception",
+        "description": "This class comprises the births of original ideas"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/F28_Expression_Creation",
+        "description": "This class comprises activities that result in instances of F2 Expression coming into existence"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/F29_Recording_Event",
+        "description": "This class comprises activities that intend to convey (and preserve) the content of events in a recording, such as a live recording of a performance, a documentary, or other capture of a perdurant"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/F2_Expression",
+        "description": "This class comprises the intellectual or artistic realisations of works in the form of identifiable immaterial objects, such as texts, poems, jokes, musical or choreographic notations, movement pattern, sound pattern, images, multimedia objects, or any combination of such forms that have objectively recognisable structures"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/F30_Publication_Event",
+        "description": "This class comprises the activities of publishing"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/F31_Performance",
+        "description": "This class comprises activities that follow the directions of a performance plan, such as a theatrical play, an expression of a choreographic work or a musical work; i"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/F32_Carrier_Production_Event",
+        "description": "This class comprises activities that result in instances of F5 Item coming into existence"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/F33_Reproduction_Event",
+        "description": "This class comprises activities that consist in making copies, more or less mechanically, of an instance of E84 Information Carrier (such as an F5 Item or an F4 Manifestation Singleton which is also instance of E84 Information Carrier), preserving the expression carried by it"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/F3_Manifestation_Product_Type",
+        "description": "This class comprises the definitions of publication products"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/F40_Identifier_Assignment",
+        "description": "This class comprises activities that result in the allocation of an identifier to any E1 CRM Entity"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/F41_Representative_Manifestation_Assignment",
+        "description": "This class comprises activities through which an Agency declares (implicitly or explicitly) that a given instance of F3 Manifestation Product Type or F4 Manifestation Singleton is representative for a given F2 Expression, i"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/F42_Representative_Expression_Assignment",
+        "description": "This class comprises activities through which an Agency declares (implicitly or explicitly) that a given instance of F2 Expression is representative for a given F15 Complex Work, i"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/F43_Identifier_Rule",
+        "description": "This class comprises sets of instructions relating to the formulation of a unique identifier Examples: AACR2R 25"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/F44_Bibliographic_Agency",
+        "description": "This class comprises agents who create the bibliographic description of publications and perform the authority control associated with such descriptions, for the description of copies of such publications actually held by libraries, and for the description of unique documents (manuscripts, objects\u2026) held by libraries"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/F4_Manifestation_Singleton",
+        "description": "This class comprises physical objects that each carry an instance of F2 Expression, and that were produced as unique objects, with no siblings intended in the course of their production"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/F5_Item",
+        "description": "This class comprises physical objects (printed books, scores, CDs, DVDs, CD-ROMS, etc"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/F6_Concept",
+        "description": "An abstract notion or idea"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/F7_Object",
+        "description": "This class comprises all persistent physical items with a relatively stable form, man-made or natural"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/F8_Event",
+        "description": "This class comprises sets of coherent phenomena or cultural manifestations bounded in time and space"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/F9_Place",
+        "description": "This class comprises extents in space, in particular on the surface of the earth, in the pure sense of physics: independent from temporal phenomena and matter"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R10_has_member",
+        "description": "This property associates an instance of F15 Complex Work with an instance of F1 Work that forms part of it"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R11_has_issuing_rule",
+        "description": "This property associates an instance of F18 Serial Work with the instance of E29 Design or Procedure that specifies the issuing policy planned by this Work, such as sequencing pattern, expected frequency and expected regularity"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R12_is_realised_in",
+        "description": "This property associates an instance of F20 Performance Work with an instance of F25 Performance Plan that consists of signs (words, figures, etc"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R13_is_realised_in",
+        "description": "This property associates an instance of F21 Recording Work with an instance of F26 Recording realising the instance of F21 Recording work"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R14_incorporates",
+        "description": "This property associates an instance of F22 Self-Contained Expression with an instance of F2 Expression that was included in it and that is a realisation of an independent work"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R15_has_fragment",
+        "description": "This property associates the fragment of an expression and the expression of which it is a fragment"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R16_initiated",
+        "description": "This property associates the first conception of a work and the work itself that ensued from a given initial idea"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R17_created",
+        "description": "This property associates the expression that was first externalised during a particular creation event with that particular creation event"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R18_created",
+        "description": "This property associates an instance of F28 Expression Creation with the first physical objects in which the resulting instance of F2 Expression was embodied"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R19_created_a_realisation_of",
+        "description": "This property associates an instance of F28 Expression Creation with the corresponding instance of F14 Individual Work or an instance of F15 Complex Work of which the corresponding instance of F14 Individual Work is a member"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R1_is_logical_successor_of",
+        "description": "This property associates an instance of F1 Work which logically continues the content of another instance of F1 Work with the latter"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R20_recorded",
+        "description": "This property associates an instance of F29 Recording Event with the instance of E5 Event which was captured"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R21_created",
+        "description": "This property associates an instance of F29 Recording Event with the instance of F26 Recording that was created"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R22_created_a_realisation_of",
+        "description": "This property associates an instance of F29 Recording Event with the instance of F21 Recording Work it realised"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R23_created_a_realisation_of",
+        "description": "This property associates an instance of F30 Publication Event with the instance of F19 Publication Work it realised"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R24_created",
+        "description": "This property associates the instance of F24 Publication Expression that was created during a particular F30 Publication Event"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R25_performed",
+        "description": "This property associates an instance of F31 Performance with the instance of F25 Performance Plan to which all those participating in the performance were supposed to conform"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R26_produced_things_of_type",
+        "description": "This property associates an instance of F32 Carrier Production Event with the instance of F3 Manifestation Product Type it produced items of"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R27_used_as_source_material",
+        "description": "This property associates an instance of F32 Carrier Production Event with the set of signs provided by the publisher to be carried by all of the produced items"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R28_produced",
+        "description": "This property associates an instance of F32 Carrier Production Event with any one of the produced items (i"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R29_reproduced",
+        "description": "This property associates an instance of F33 Reproduction Event with an instance of E84 Information Carrier it reproduces"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R2_is_derivative_of",
+        "description": "This property associates an instance of F1 Work which modifies the content of another instance of F1 Work with the latter"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R30_produced",
+        "description": "This property associates an instance of F33 Reproduction Event with an instance of E84 Information Carrier it produces"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R31_is_reproduction_of",
+        "description": "This property associates an instance of E84 Information Carrier which is a reproduction of another instance of E84 Information Carrier with the latter"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R3_is_realised_in",
+        "description": "This property associates an instance of F22 Self-Contained Expression with an instance of F1 Work"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R40_has_representative_expression",
+        "description": "This property identifies an instance of F2 Expression that has been chosen as the most characteristic expression of the instance of F1 Work of which it is an expression"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R41_has_representative_manifestation_product_type",
+        "description": "This property identifies an instance of F3 Manifestation Product Type that has been chosen as the most characteristic Manifestation Product Type of the instance of F2 Expression of which it is a manifestation"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R42_is_representative_manifestation_singleton_for",
+        "description": "This property identifies an instance of Manifestation Singleton that has been declared as the unique representative for an instance of F2 Expression by some bibliographic agency"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R43_carried_out_by",
+        "description": "This property associates a bibliographic agency (represented by one or more of its cataloguers) and the assigning of which Manifestation (i"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R44_carried_out_by",
+        "description": "This property associates a bibliographic agency (represented by one or more of its cataloguers) and the assigning of which expression is representative for a given Work"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R45_assigned_to",
+        "description": "This property identifies the entity to which an actor, such as a bibliographic agency, assigned an instance of F13 Identifier"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R46_assigned",
+        "description": "This property associates the instance of F13 Identifier assigned to an instance of E1 CRM Entity and the event of assigning it"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R47_used_constituent",
+        "description": "This property associates the event of assigning an instance of F13 Identifier to an entity with the elements that an actor used to compose that identifier"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R48_assigned_to",
+        "description": "This property associates the event of assigning a representative instance of F3 Manifestation Product Type or F4 Manifestation Singleton with the expression to which it was assigned"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R49_assigned",
+        "description": "This property associates the event of assigning a representative instance of F3 Manifestation Product Type with the F3 Manifestation Product Type which has been assigned"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R4_carriers_provided_by",
+        "description": "This property associates a publication, i"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R50_assigned_to",
+        "description": "This property associates the event of assigning a representative instance of F2 Expression with the instance of F15 Complex Work to which it was assigned"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R51_assigned",
+        "description": "This property associates the event of assigning a representative instance of F2 Expression with the F2 Expression which has been assigned"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R52_used_rule",
+        "description": "This property associates the event of assigning an instance of F13 Identifier with the instructions followed by an actor, such as a Bibliographic Agency, in creating that identifier"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R53_assigned",
+        "description": "This property associates the event of assigning a representative instance of F4 Manifestation Singleton with the F4 Manifestation Singleton which has been assigned"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R5_has_component",
+        "description": "This property associates an F2 Expression X with a structural component Y that conveys in itself the complete concept of a work that is member of (R10) the overall work realized by X"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R6_carries",
+        "description": "This property associates an instance of F5 Item with the unique instance of F24 Publication Expression it carries"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R7_is_example_of",
+        "description": "This property associates a publication with one of its exemplars"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R8_consists_of",
+        "description": "This property associates an instance of F13 Identifier with any one of the meaningful parts it is composed of, which are themselves instances of F12 Name"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/R9_is_realised_in",
+        "description": "This property associates an F14 Individual Work with the unique F22 Self-Contained Expression that completely conveys it"
+    }
+]

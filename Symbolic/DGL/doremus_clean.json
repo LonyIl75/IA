@@ -1,0 +1,1494 @@
+[
+    {
+        "id": "http://data.doremus.org/ontology#U180_has_additional_edition_statement",
+        "description": "has additional edition statement Edition Statement This property associates instance E89 Propositional Object structural part instance E89 Propositional Object"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M16_Maintenance",
+        "description": "Maintenance This class comprises instances E7 Activity create  alter change E24 Physical ManMade Thing"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U75i_is_harmonic_structure_of",
+        "description": "is harmonic structure of  is type of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U20i_is_music_group_formation_of",
+        "description": "is music group formation of  is type of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U89i_were_performance_conditions_of",
+        "description": "were performance conditions of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U72_has_title_note",
+        "description": "has title note This property container informal descriptions object expressed terms CRM constructs"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U57_occurred_in_religious_context",
+        "description": "occurred in religious context Context occurred in context"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U179i_is_parallel_statement_of_responsibility_relating_to_edition_of",
+        "description": "is parallel statement of responsibility relating to edition of  is component of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U24i_is_award_of",
+        "description": "is award of  is type of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U39_has_tuned",
+        "description": "has tuned This class comprises physical objects purposely created human activity has maintained"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U94i_is_work_type_of",
+        "description": "is work type of  is type of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U1_used_medium_of_performance",
+        "description": "used medium of performance U1 instrument ou voix utilise pour la performance Medium Of Performance This property defines kind objects used E7 Activity  specific instance either unknown interest  use  hammer "
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M34_Award_Assignment",
+        "description": "Award Assignment This class comprises actions making assertions properties object relation two items concepts"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U192i_was_technique_of_noise_reduction",
+        "description": "was technique of noise reduction  was technique of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U6i_is_foreseen_actor_of",
+        "description": "is foreseen actor of  is referred to by"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U52i_is_context_of",
+        "description": "is context of  is type of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M169_Carrier_Type",
+        "description": "Carrier type This class comprises concepts denoted terms thesauri controlled vocabularies used characterize classify instances CRM classes"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U27i_character_was_performed_by",
+        "description": "character was performed by  was used for"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U78_estimated_duration",
+        "description": "estimated duration La duree editeur nest pas mesuree mais estimee"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U223i_is_number_of_tape_tracks_of",
+        "description": "is number of tape tracks of  is dimension of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U69_has_WoO_number",
+        "description": "has WoO number  string"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U23_has_casting_detail",
+        "description": "has casting detail Casting Detail  has association with"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M38_Rhythmic_Pattern",
+        "description": "Rhythmic Pattern This class comprises concepts denoted terms thesauri controlled vocabularies used characterize classify instances CRM classes"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U91i_was_put_into_effect_through",
+        "description": "was put into effect through  was used by"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M49_Performer_Status",
+        "description": "Performer status This class comprises concepts denoted terms thesauri controlled vocabularies used characterize classify instances CRM classes"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M40_Context",
+        "description": "Context This class comprises concepts denoted terms thesauri controlled vocabularies used characterize classify instances CRM classes"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M37_Music_Scale",
+        "description": "Music Scale This class comprises concepts denoted terms thesauri controlled vocabularies used characterize classify instances CRM classes"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U48_foresees_quantity_of_actors",
+        "description": "foresees quantity of actors  integer"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M44_Performed_Work",
+        "description": "Performed Work This class comprises works realised one one selfcontained expression "
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U95i_is_hierarchical_level_of",
+        "description": "is hierarchical leval of  is type of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U177_has_parallel_edition_statement",
+        "description": "has parallel edition statement Edition Statement This property associates instance E89 Propositional Object structural part instance E89 Propositional Object"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M41_Metronome_Indication",
+        "description": "Metronome Indication This class comprises documented plans execution actions order achieve result specific quality  form contents"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M157_Statement_of_Responsibility",
+        "description": "Statement of responsibility This class comprises identifiable expressions natural language languages"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U43_has_opus_subnumber",
+        "description": "has opus subnumber  string"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U200_has_supplementary_content",
+        "description": "has supplementary content  string This property container informal descriptions object expressed terms CRM constructs"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U87_has_member_casting_detail",
+        "description": "has member casting detail Casting Detail  has association with"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U223_has_number_of_tape_tracks",
+        "description": "has number of tape tracks This class comprises quantifiable properties measured calibrated means approximated values  This property records E54 Dimension E70 Thing"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U64i_is_cultural_context_of",
+        "description": "is cultural context of is context of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U64_has_cultural_context",
+        "description": "has cultural context Context has context"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U222_has_title_proper_of_sub-series",
+        "description": "has title proper of subseries Title Proper of Series This property associates instance E89 Propositional Object structural part instance E89 Propositional Object"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U76_has_WoO_subnumber",
+        "description": "has WoO subnumber  string"
+    },
+    {
+        "id": "http://purl.org/dc/elements/1.1/title",
+        "description": "title"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U13i_is_casting_of",
+        "description": "is casting of  is referred to by"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U50_has_annotation",
+        "description": "Has annotation  string This property container informal descriptions object expressed terms CRM constructs"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U87i_is_member_casting_detail_of",
+        "description": "is member casting detail of  is associated with"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U174_has_cast_statement",
+        "description": "has cast statement Cast Statement This property associates instance E89 Propositional Object structural part instance E89 Propositional Object"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U224_has_title_proper_of_multipart_monograph",
+        "description": "has title proper of multipart monograph Title Proper of Multipart Monograph This property associates instance E89 Propositional Object structural part instance E89 Propositional Object"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U167i_is_title_proper_of",
+        "description": "is title proper of  is title of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U225i_was_sound_spatialization_technique_of",
+        "description": "was sound spatialization technique of  was technique of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U173_has_parallel_statement_of_responsibility_relating_to_title",
+        "description": "has parallel statement of responsibility relating to title Statement of Responsibility This property associates instance E89 Propositional Object structural part instance E89 Propositional Object"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U22_is_about_place",
+        "description": "is about place This class comprises extents space  particular surface earth  pure sense physics  independent temporal phenomena matter This property documents E89 Propositional Object subject instance E1 CRM Entity"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U77i_is_foreseen_plan_in",
+        "description": "is foreseen plan in  is referred to by"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U70_has_original_title",
+        "description": "has original title  string  title"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U52_has_context",
+        "description": "has context Context This property allows sub typing CRM entities  form specialisation - use terminological hierarchy  thesaurus"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M50_Creation_or_Performance_Mode",
+        "description": "Performance mode This class comprises concepts denoted terms thesauri controlled vocabularies used characterize classify instances CRM classes"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U228_has_other_distinguishing_characteristic_of_expression",
+        "description": "has other distinguishing characteristic of expression  string This property container informal descriptions object expressed terms CRM constructs"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U201_has_illustrative_content",
+        "description": "has illustrative content  string This property container informal descriptions object expressed terms CRM constructs"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U68_has_variant_title",
+        "description": "has variant title  string  title"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U2_foresees_use_of_medium_of_performance",
+        "description": "foresees use of medium of performance Medium Of Performance An E73 Information Object may refer E1 CRM Entity"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U82i_is_foreseen_performer_status_of",
+        "description": "is foreseen performer status of  is type of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U220i_is_title_and_statement_of_responsibility_of",
+        "description": "is title and statement of responsibility of  is component of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#CLU198_should_have_container",
+        "description": "should have container Container This property associates publication "
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U5_had_premiere",
+        "description": "had premiere This class comprises activities follow directions performance plan  theatrical play  expression choreographic work musical work  An E73 Information Object may refer E1 CRM Entity"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U188i_is_series_statement_of",
+        "description": "is series statement of  is component of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M11_Catalogue_Number",
+        "description": "Catalogue Number This class comprises identifiable symbols aggregation symbols  characters  identifiers  traffic signs  emblems  texts  data sets  images  musical scores  multimedia objects  computer program code mathematical formulae objectively recognizable structure documented single units"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U73i_has_derivative",
+        "description": "has derivative  features are also found on"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U3i_is_foreseen_specific_object_in",
+        "description": "is foreseen specific medium of performance in  is referred to by"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U82_has_foreseen_performer_status",
+        "description": "has foreseen performer status Performer Status This property allows sub typing CRM entities  form specialisation - use terminological hierarchy  thesaurus"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U210_has_pagination",
+        "description": "has pagination This class comprises quantifiable properties measured calibrated means approximated values  This property records E54 Dimension E70 Thing"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M19_Categorization",
+        "description": "Style This class comprises concepts denoted terms thesauri controlled vocabularies used characterize classify instances CRM classes"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M8_Tempo",
+        "description": "Tempo This class comprises documented plans execution actions order achieve result specific quality  form contents"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U88_has_medium_of_performance_section",
+        "description": "has medium of performance section U88 has medium of performance section Casting Detail has member casting detail"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M166_Title_Proper_of_Multipart_Monograph",
+        "description": "Title proper of multipart monograph This class comprises identifiable expressions natural language languages"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M9_Derivation_Type",
+        "description": "Derivation Type This class comprises concepts denoted terms thesauri controlled vocabularies used characterize classify instances CRM classes"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U60_occurred_in_cultural_context",
+        "description": "occurred in cultural context Context occurred in context"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M54_Sound_Spatialization_Technique",
+        "description": "Sound spatialization technique This class comprises concepts denoted terms thesauri controlled vocabularies used characterize classify instances CRM classes"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U222i_is_title_proper_of_sub-series_of",
+        "description": "is title proper of subseries of  is component of"
+    },
+    {
+        "id": "http://www.w3.org/2002/07/owl#SymmetricObjectProperty",
+        "description": "symmetric object property"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U171i_is_parallel_title_statement_of",
+        "description": "is parallel title statement of  is component of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U40i_is_catalogue_name_of",
+        "description": "is catalogue name of  forms part of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U184_has_publication_statement",
+        "description": "has publication statement Publication Statement This property associates instance E89 Propositional Object structural part instance E89 Propositional Object"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U25i_is_scale_of",
+        "description": "is scale of  is type of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U169_was_issued_under_label_name",
+        "description": "was issued under label name Label Name"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M15_Dedication_Statement",
+        "description": "Dedication Statement This class comprises identifiable expressions natural language languages"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U171_has_parallel_title_statement",
+        "description": "has parallel title statement Title Statement This property associates instance E89 Propositional Object structural part instance E89 Propositional Object"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U63_has_religious_context",
+        "description": "has religious context Context has context"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U174i_is_cast_statement_of",
+        "description": "is cast statement of  is component of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M158_Title_and_Statement_of_Responsibility",
+        "description": "Title and statement of responsability This class comprises identifiable expressions natural language languages"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U93i_realises",
+        "description": "realises  realises"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M161_Distribution_Statement",
+        "description": "Distribution statement This class comprises identifiable expressions natural language languages"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U215_has_groove_caracteristics",
+        "description": " has groove caracteristics  string This property container informal descriptions object expressed terms CRM constructs"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U33i_is_set_of_characters_of",
+        "description": "is set of characters of  is referred to by"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U170_has_title_statement",
+        "description": "has title statement Title Statement This property associates instance E89 Propositional Object structural part instance E89 Propositional Object"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M60_Intended_Audience",
+        "description": "Intended audience This class comprises concepts denoted terms thesauri controlled vocabularies used characterize classify instances CRM classes"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U181_has_parallel_additional_edition_statement",
+        "description": "has parallel additional edition statement Edition Statement This property associates instance E89 Propositional Object structural part instance E89 Propositional Object"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U177i_is_parallel_edition_statement_of",
+        "description": "is parallel edition statement of  is component of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U57i_was_religious_context_of",
+        "description": "was religious context of was context of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U30_foresees_quantity_of_mop",
+        "description": "foresees quantity of medium of performance  integer"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U47_has_derivation_type",
+        "description": "has derivation type Derivation Type This property allows sub typing CRM entities  form specialisation - use terminological hierarchy  thesaurus"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M189i_is_main_series_statement_of",
+        "description": "is main series statement of  is component of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U8_foresees_time_span",
+        "description": "foresees timespan This class comprises abstract temporal extents  sense Galilean physics  beginning  end duration An E73 Information Object may refer E1 CRM Entity"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U58i_is_full_published_recording_of",
+        "description": "is full published recording of This property generalises notions copy  similar  dynamic  asymmetric relationship  domain expresses derivative  direction established"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M33_Set_of_Characters",
+        "description": "Set of Characters This class comprises documented plans execution actions order achieve result specific quality  form contents"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U17_has_opus_statement",
+        "description": "has opus statement Opus Statement This property describes naming identification real world item name identifier"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M174_Content_Type",
+        "description": "Content type This class comprises concepts denoted terms thesauri controlled vocabularies used characterize classify instances CRM classes"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U49_created_for_actor",
+        "description": "created for actor personne ou groupe pour lequel lExpression a ete creee This class comprises people  either individually groups  potential perform intentional actions held responsible This high level property  captures relationship E7 Activity anything may bearing upon"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M156_Title_Statement",
+        "description": "Title statement This class comprises identifiable expressions natural language languages"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M5_Genre",
+        "description": "Genre This class comprises concepts denoted terms thesauri controlled vocabularies used characterize classify instances CRM classes"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U191i_was_technique_of_equalization",
+        "description": "was technique of equalization  was technique of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U178i_is_statement_of_responsibility_relating_to_edition_of",
+        "description": "is statement of responsibility relating to edition of  is component of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U92_is_foreseen_to_be_put_into_effect_through",
+        "description": "is foreseen to be put into effect  through  was used by"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M27_Foreseen_Individual_Performance",
+        "description": "Foreseen Individual Performance Foreseen Performance"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U214_has_colour_content",
+        "description": "has colour content Colour Content This property allows sub typing CRM entities  form specialisation - use terminological hierarchy  thesaurus"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U65_has_geographical_context",
+        "description": "has geographical context Context has context"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U15_has_history",
+        "description": "has history This property container informal descriptions object expressed terms CRM constructs"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M155_Cast_Statement",
+        "description": "Cast statement This class comprises identifiable expressions natural language languages"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U179_has_parallel_statement_of_responsibility_relating_to_edition",
+        "description": "has parallel statement of responsibility relating to edition Statement of Responsibility This property associates instance E89 Propositional Object structural part instance E89 Propositional Object"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M55_Condition_of_Performance",
+        "description": "Condition of performance This class comprises concepts denoted terms thesauri controlled vocabularies used characterize classify instances CRM classes"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U67_has_subtitle",
+        "description": "has subtitle  string  title"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M165_Title_Proper_of_Series",
+        "description": "Title proper of series This class comprises identifiable expressions natural language languages"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U227_has_content_type",
+        "description": "has content type This property allows sub typing CRM entities  form specialisation - use terminological hierarchy  thesaurus"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M21_Harmonic_Structure",
+        "description": "Harmonic Structure This class comprises concepts denoted terms thesauri controlled vocabularies used characterize classify instances CRM classes"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U172i_is_statement_of_responsibility_relating_to_title_of",
+        "description": "is statement of responsibility relating to title of  is component of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U191_used_equalization_technique",
+        "description": "used equalization technique Equalization Technique This property identifies technique employed act modification"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M6_Casting",
+        "description": "Casting Cette classe permet de decrire les << medium of performance >> d'une oeuvre c'estadire les instruments machines executants autres que musiciens danseurs acteurs recitants... pour lesquels l'oeuvre a ete composee Elle decrit donc l'intention du compositeur M6 Casting est une << classe chapeau >> qui represente la globalite de la distribution instrumentale etou vocale Le detail de cette distribution est decrit via la classe M23 Casting DetailDans le cas de versions alternatives on donnera deux M6 Casting differents pour la meme expression This class comprises documented plans execution actions order achieve result specific quality  form contents"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M12_Opus_Number",
+        "description": "Opus Number This class comprises identifiable symbols aggregation symbols  characters  identifiers  traffic signs  emblems  texts  data sets  images  musical scores  multimedia objects  computer program code mathematical formulae objectively recognizable structure documented single units"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U210i_is_pagination_of",
+        "description": "is pagination of  is dimension of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U182i_is_music_format_statement_of",
+        "description": "is music format statement of  is component of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M3_Order_Number",
+        "description": "Order Number This class comprises sequences signs nature  either meaningful  used used refer identify specific instance class within certain context"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U80_has_highest_pitch",
+        "description": "has highest pitch  string This property container informal descriptions object expressed terms CRM constructs"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M14_Medium_Of_Performance",
+        "description": "Medium of performance This class comprises concepts denoted terms thesauri controlled vocabularies used characterize classify instances CRM classes"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U180i_is_additional_edition_statement_of",
+        "description": "is additional edition statement of  is component of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M32_Actor_Responsibility",
+        "description": "Actors Responsibility This class comprises concepts denoted terms thesauri controlled vocabularies used characterize classify instances CRM classes"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M162_Series_Statement",
+        "description": "Series statement This class comprises identifiable expressions natural language languages"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U41_has_catalogue_number",
+        "description": "has catalogue number  string"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U18_has_rhythmic_pattern",
+        "description": "has rhythmic pattern Rhythmic Pattern This property allows sub typing CRM entities  form specialisation - use terminological hierarchy  thesaurus"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U185i_is_distribution_statement_of",
+        "description": "is distribution statement of  is component of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U197_has_binding",
+        "description": "has binding Binding This property allows sub typing CRM entities  form specialisation - use terminological hierarchy  thesaurus"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U6_foresees_actor",
+        "description": "foresees actor This class comprises people  either individually groups  potential perform intentional actions held responsible An E73 Information Object may refer E1 CRM Entity"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M20_Music_Group_Formation",
+        "description": "Music Group Formation This class comprises concepts denoted terms thesauri controlled vocabularies used characterize classify instances CRM classes"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U88i_is_member_of_performance_section_of",
+        "description": "is member of performance section of is member casting detail of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U19_is_categorized_as",
+        "description": "is categorized as Categorization This property allows sub typing CRM entities  form specialisation - use terminological hierarchy  thesaurus"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U91_put_into_effect",
+        "description": "put into effect Program This property identifies specific instance E29 Design Procedure order carry instance E7 Activity parts"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U176_has_edition_statement",
+        "description": "has edition statement Edition Statement This property associates instance E89 Propositional Object structural part instance E89 Propositional Object"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U77_foresees_performing_plan",
+        "description": "foresees performing plan This class comprises sets directions individual performances theatrical  choreographic  musical works combinations conform An E73 Information Object may refer E1 CRM Entity"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M62_Hierarchical_Level",
+        "description": "Hierarchical level This class comprises concepts denoted terms thesauri controlled vocabularies used characterize classify instances CRM classes"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#CLU223_should_have_number_of_tape_tracks",
+        "description": "should have number of tape tracks This class comprises quantifiable properties measured calibrated means approximated values  This property associates publication "
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M10_Catalogue_Name",
+        "description": "Catalogue Name This class comprises identifiable symbols aggregation symbols  characters  identifiers  traffic signs  emblems  texts  data sets  images  musical scores  multimedia objects  computer program code mathematical formulae objectively recognizable structure documented single units"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U186_has_printing_or_manufacture_statement",
+        "description": "has printing or manufacture statement This class comprises identifiable expressions natural language languages This property associates instance E89 Propositional Object structural part instance E89 Propositional Object"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M168_Media_Type",
+        "description": "Media type This class comprises concepts denoted terms thesauri controlled vocabularies used characterize classify instances CRM classes"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M17_Controlled_Access_Point_Creator",
+        "description": "Controlled Access Point Creator Sousclasse de F50 Controlled Access Point cette classe en reprend les caracteristiques limitees au << createur >> de l'oeuvre  Controlled Access Point"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U84_has_parallel_key",
+        "description": "has parallel key  Cette classe permet de connecter deux M4 Tonalite qui sont en une relation parallele cestadire lune est la parallele majeur ou mineur de lautre Key"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U212_has_technical_features",
+        "description": "has technical features  string This property container informal descriptions object expressed terms CRM constructs"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#CLU217i_should_be_playing_speed_of",
+        "description": "should be playing speed of  should be type of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U94_has_work_type",
+        "description": "has work type Work Type This property allows sub typing CRM entities  form specialisation - use terminological hierarchy  thesaurus"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U202_has_colour_details",
+        "description": "has colour details  string This property container informal descriptions object expressed terms CRM constructs"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U16i_is_catalogue_statement_of",
+        "description": "is catalogue statement of  identifies"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U53i_is_duration_of",
+        "description": "is duration of  is dimension of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#CLU53i_should_be_duration_of",
+        "description": "should be duration of  should be dimension of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M163_Music_Format_Statement",
+        "description": "Music format statement This class comprises identifiable expressions natural language languages"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U167_has_title_proper",
+        "description": "has title proper This class comprises names assigned works  texts  artworks pieces music This property describes E35 Title applied instance E71 ManMade Thing"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M42_Performed_Expression_Creation",
+        "description": "Performed Expression Creation This class comprises activities result instances F2 Expression coming existence This class comprises activities follow directions performance plan  theatrical play  expression choreographic work musical work "
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U74_cited",
+        "description": "cited This class comprises immaterial realisations individual works particular time regarded complete whole This property describes use material immaterial things way essential performance outcome E7 Activity"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U42_has_opus_number",
+        "description": "has opus number  string"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U24_has_award",
+        "description": "has award Award This property allows sub typing CRM entities  form specialisation - use terminological hierarchy  thesaurus"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U33_has_set_of_characters",
+        "description": "has set of characters Set of Characters An E73 Information Object may refer E1 CRM Entity"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U96i_is_foreseen_vocal_or_instrumental_technique_of",
+        "description": "is foreseen vocal or instrumental technique of  is referred to by"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M36_Award",
+        "description": "Award This class comprises concepts denoted terms thesauri controlled vocabularies used characterize classify instances CRM classes"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U187_has_multipart_monographs_statement",
+        "description": "has multipart monograph statement Multipart Monograph Statement This property associates instance E89 Propositional Object structural part instance E89 Propositional Object"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M167_Publication_Expression_Fragment",
+        "description": "Publication expression fragment This class comprises parts Expressions parts Selfcontained Expressions"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U61_occurred_in_geographical_context",
+        "description": "occurred in geographical context Context occurred in context"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M57_Vocal_or_Instrumental_Technique",
+        "description": "Vocal or instrumental technique This class comprises concepts denoted terms thesauri controlled vocabularies used characterize classify instances CRM classes"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U29i_was_edited_by",
+        "description": "was edited by  was used for"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U189_has_main_series_statement",
+        "description": "has main series statement Series Statement This property associates instance E89 Propositional Object structural part instance E89 Propositional Object"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U175i_is_parallel_cast_statement_of",
+        "description": "is parallel cast statement of  is component of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U9_has_quantity",
+        "description": "has quantity  integer"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M46_Set_of_Tracks",
+        "description": "Set of Tracks   ensemble des pistes constituant un enregistrement publie This class comprises immaterial realisations individual works particular time regarded complete whole"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U198_has_container",
+        "description": "has container Container This property allows sub typing CRM entities  form specialisation - use terminological hierarchy  thesaurus"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U32_had_responsibility",
+        "description": "had responsibility Actor Responsibility This property allows sub typing CRM entities  form specialisation - use terminological hierarchy  thesaurus"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U229i_is_music_format_of",
+        "description": "is music format of  is type of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U81i_is_performer_status_of",
+        "description": "is performer status of  is type of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U39i_was_tuned_by",
+        "description": "was tuned by was maintained by"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U5i_was_premiere_of",
+        "description": "was premiere of  is referred to by"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U11_has_key",
+        "description": "has key Key This property allows sub typing CRM entities  form specialisation - use terminological hierarchy  thesaurus"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U29_edited",
+        "description": "edited This class comprises immaterial realisations individual works particular time regarded complete whole This property describes use material immaterial things way essential performance outcome E7 Activity"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M52_Equalization_Technique",
+        "description": "Equalization technique This class comprises concepts denoted terms thesauri controlled vocabularies used characterize classify instances CRM classes"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U203_has_summary_or_abstract",
+        "description": "has summary or abstract  string This property container informal descriptions object expressed terms CRM constructs"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U20_has_music_group_formation",
+        "description": "has music group formation Music Group Formation This property allows sub typing CRM entities  form specialisation - use terminological hierarchy  thesaurus"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U194_has_system_requirements",
+        "description": "has system requirements  string This property container informal descriptions object expressed terms CRM constructs"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U65i_is_geographical_context_of",
+        "description": "is geographical context of is context of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M4_Key",
+        "description": "Key Cette classe decrit la tonalite de l'oeuvreLes tonalites sont souvent listees sous forme de referentiels multilingues c'est pourquoi la classe M4 Key est liee a la classe M7 Linguistic Appellation This class comprises concepts denoted terms thesauri controlled vocabularies used characterize classify instances CRM classes"
+    },
+    {
+        "id": "_:nd42c60315fba4b70ba407519ea8f5811b7",
+        "description": "Key Cette classe decrit la tonalite de l'oeuvreLes tonalites sont souvent listees sous forme de referentiels multilingues c'est pourquoi la classe M4 Key est liee a la classe M7 Linguistic Appellation This class comprises concepts denoted terms thesauri controlled vocabularies used characterize classify instances CRM classes"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U36_foresees_responsibility",
+        "description": "foresees responsibility Actor Responsibility An E73 Information Object may refer E1 CRM Entity"
+    },
+    {
+        "id": "http://data.doremus.org/vocabulary/key/",
+        "description": "foresees responsibility Actor Responsibility An E73 Information Object may refer E1 CRM Entity"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U22i_place_is_subject_of",
+        "description": "place is subject of  is subject of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U168_has_parallel_title",
+        "description": "has parallel title This class comprises names assigned works  texts  artworks pieces music This property describes E35 Title applied instance E71 ManMade Thing"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M159_Edition_Statement",
+        "description": "Edition statement This class comprises identifiable expressions natural language languages"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U95_has_hierarchical_level",
+        "description": "has hierarchical level Hierarchical Level This property allows sub typing CRM entities  form specialisation - use terminological hierarchy  thesaurus"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M25_Foreseen_Activity",
+        "description": "Foreseen Activity This class comprises documented plans execution actions order achieve result specific quality  form contents"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U92_foresees_to_put_into_effect",
+        "description": "foresees to put into effect Program This property identifies specific instance E29 Design Procedure order carry instance E7 Activity parts"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M24_Track",
+        "description": "Track Set of Tracks"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U59i_is_partial_published_recording_of",
+        "description": "is partial published recording of This property generalises notions copy  similar  dynamic  asymmetric relationship  domain expresses derivative  direction established"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M172_Colour_Content",
+        "description": "Colour content This class comprises concepts denoted terms thesauri controlled vocabularies used characterize classify instances CRM classes"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U96_foresees_vocal_or_instrumental_technique",
+        "description": "foresees vocal or instrumental technique This class comprises things universe discourse CIDOC Conceptual Reference Model An E73 Information Object may refer E1 CRM Entity"
+    },
+    {
+        "id": "_:nd42c60315fba4b70ba407519ea8f5811b4",
+        "description": "foresees vocal or instrumental technique This class comprises things universe discourse CIDOC Conceptual Reference Model An E73 Information Object may refer E1 CRM Entity"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M53_Noise_Reduction_Technique",
+        "description": "Noise reduction  technique This class comprises concepts denoted terms thesauri controlled vocabularies used characterize classify instances CRM classes"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U220_has_title_and_statement_of_responsibility",
+        "description": "has title and statement of responsibility Title and Statement of Responsibility This property associates instance E89 Propositional Object structural part instance E89 Propositional Object"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U206i_is_media_type_of",
+        "description": "is media type of  is type of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U54i_has_performed_expression",
+        "description": "has performed expression  features are also found on"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M160_Publication_Statement",
+        "description": "Publication statement This class comprises identifiable expressions natural language languages"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U173i_is_parallel_statement_of_responsibility_relating_to_title_of",
+        "description": "is parallel statement of responsibility relating to title of  is component of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U206_has_media_type",
+        "description": "has media type Media Type This property allows sub typing CRM entities  form specialisation - use terminological hierarchy  thesaurus"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U83_has_relative_key",
+        "description": "has relative key  Cette classe permet de connecter deux M4 Tonalite qui sont en relation par rapport a larmure cestadire lune est la relatif majeur ou mineur de lautre Key"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U38i_is_descriptive_expression_of",
+        "description": "is descriptive expression of  realises"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M187i_is_multipart_monograph_statement_of",
+        "description": "is multipart monograph statement of  is component of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U216_has_tape_configuration",
+        "description": "has tape configuration  string This property container informal descriptions object expressed terms CRM constructs"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M18_Controlled_Access_Point_Denomination",
+        "description": "Controlled Access Point Denomination Sousclasse de F50 Controlled Access Point cette classe en reprend les caracteristiques limitees a la << denomination >> de l'oeuvre La denomination peut etre un titre significatif << Le Sacre du Printemps >> ou un titre compose << Sonates Piano Opus 27 no 2 Do diese mineur\"  Controlled Access Point"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U183_has_parallel_music_format_statement",
+        "description": "has parallel music format statement Music Format Statement This property associates instance E89 Propositional Object structural part instance E89 Propositional Object"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U26i_was_maintained_by",
+        "description": "was maintained by  was modified by"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U62i_is_form_of",
+        "description": "is form of  is type of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M175_Music_Format",
+        "description": "Music format This class comprises concepts denoted terms thesauri controlled vocabularies used characterize classify instances CRM classes"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#CLU210_should_have_pagination",
+        "description": "should have pagination This class comprises quantifiable properties measured calibrated means approximated values  This property associates publication "
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U51i_has_partial_or_full_recording",
+        "description": "has partial or full recording  features are also found on"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U49i_actor_motivated",
+        "description": "actor motivated  influenced"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U90_foresees_creation_or_performance_mode",
+        "description": "foresees creation or performance mode Creation or Performance Mode An E73 Information Object may refer E1 CRM Entity"
+    },
+    {
+        "id": "_:nd42c60315fba4b70ba407519ea8f5811b1",
+        "description": "foresees creation or performance mode Creation or Performance Mode An E73 Information Object may refer E1 CRM Entity"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#CLU223i_should_be_number_of_tape_tracks_of",
+        "description": "should be number of tape tracks of  should be type of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U59_has_partial_published_recording",
+        "description": "has partial published recording This class comprises complete sets signs present publications  reflecting publishers ' final decisions content layout publications  features are also found on"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U175_has_parallel_cast_statement",
+        "description": "has parallel cast statement Cast Statement This property associates instance E89 Propositional Object structural part instance E89 Propositional Object"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U197i_is_binding_of",
+        "description": "is binding of  is type of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U226_has_responsibility_detail",
+        "description": "has responsibility detail  string This property container informal descriptions object expressed terms CRM constructs"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U8i_is_foreseen_time_span_of",
+        "description": "is foreseen timespan of  is referred to by"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U208_has_extent_of_carrier",
+        "description": "has extent of carrier  string This property container informal descriptions object expressed terms CRM constructs"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U85_has_closely_related_key",
+        "description": "has closely related key  Cette classe permet de connecter deux M4 Tonalite qui sont etroitement liees dun point de vue harmonique par ex ceux sont des destinations ou des transpositions frequemment utilisees dans une modulation Key"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U53_has_duration",
+        "description": "has duration This class comprises quantifiable properties measured calibrated means approximated values  This property records E54 Dimension E70 Thing"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U61i_was_geographical_context_of",
+        "description": "was geographical context of was context of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U178_has_statement_of_responsibility_relating_to_edition",
+        "description": "has statement of responsibility relating to edition Statement of Responsibility This property associates instance E89 Propositional Object structural part instance E89 Propositional Object"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U79_has_lowest_pitch",
+        "description": "has lowest pitch  string This property container informal descriptions object expressed terms CRM constructs"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M30_Ambitus",
+        "description": "Ambitus This class comprises concepts denoted terms thesauri controlled vocabularies used characterize classify instances CRM classes"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U221_has_title_proper_of_series",
+        "description": "has title proper of series Title Proper of Series This property associates instance E89 Propositional Object structural part instance E89 Propositional Object"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#CLU53_should_have_duration",
+        "description": "should have duration This class comprises quantifiable properties measured calibrated means approximated values  This property associates publication "
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U66i_is_historical_context_of",
+        "description": "is historical context of is context of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U54_is_performed_expression_of",
+        "description": "is performed expression of This class comprises immaterial realisations individual works particular time regarded complete whole This property generalises notions copy  similar  dynamic  asymmetric relationship  domain expresses derivative  direction established"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U47i_is_derivation_type_of",
+        "description": "is derivation type of  is type of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U211_has_composition_of_material",
+        "description": "has composition of material  string This property container informal descriptions object expressed terms CRM constructs"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M164_Multipart_Monograph_Statement",
+        "description": "Multipart monograph statement This class comprises identifiable expressions natural language languages"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U63i_is_religious_context_of",
+        "description": "is religious context of is context of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U66_has_historical_context",
+        "description": "has historical context Context has context"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U37_foresees_performing_character",
+        "description": "foresees performing character  Character An E73 Information Object may refer E1 CRM Entity"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#CLU197i_should_be_binding_of",
+        "description": "should be binding of  should be type of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U35i_is_foreseen_function_of",
+        "description": "is foreseen function of  is referred to by"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U21i_actor_is_subject_of",
+        "description": "actor is subject of  is subject of"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/F50_Controlled_Access_Point",
+        "description": "Controlled Access Point"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U60i_was_cultural_context_of",
+        "description": "was cultural context of was context of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U44_has_dedication_statement",
+        "description": "has dedication statement Dedication Statement An E73 Information Object may refer E1 CRM Entity"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U3_foresees_use_of_specific_object",
+        "description": "forees use of specific object This class comprises physical objects purposely created human activity This class comprises discrete  identifiable manmade items documented single units An E73 Information Object may refer E1 CRM Entity"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M7_Linguistic_Appellation",
+        "description": "Linguistic Appellation Cette classe permet de decrire une appellation et ses composantes linguistiques Elle comprend donc les appellations originales et les traductions de ces appellations This class comprises identifiable expressions natural language languages This class comprises sequences signs nature  either meaningful  used used refer identify specific instance class within certain context"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U19i_categorizes",
+        "description": "categorizes  is type of"
+    },
+    {
+        "id": "http://erlangen-crm.org/efrbroo/F38_Character",
+        "description": "Character"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U16_has_catalogue_statement",
+        "description": "has catalogue statement Catalogue Statement This property describes naming identification real world item name identifier"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M48_WoO_Subnumber",
+        "description": "WoO Subnumber This class comprises identifiable symbols aggregation symbols  characters  identifiers  traffic signs  emblems  texts  data sets  images  musical scores  multimedia objects  computer program code mathematical formulae objectively recognizable structure documented single units"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#",
+        "description": "WoO Subnumber This class comprises identifiable symbols aggregation symbols  characters  identifiers  traffic signs  emblems  texts  data sets  images  musical scores  multimedia objects  computer program code mathematical formulae objectively recognizable structure documented single units"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U56_occurred_in_historical_context",
+        "description": "occurred in historical context Context occurred in context"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U183i_is_parallel_music_format_statement_of",
+        "description": "is parallel music format statement of  is component of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U224i_is_title_proper_of_multipart_monograph_of",
+        "description": "is title proper of multipart monograph of  is component of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M23_Casting_Detail",
+        "description": "Casting Detail Cette classe decrit un detail de la distribution prevue par le compositeur par exemple une sonate pour violon et piano est decrite par deux << composantes >> M23 qui sont le violon et le piano Elle est donc obligatoirement associee a la classe M6 Intended Casting dont elle detaille les composantes Ces composantes comprennent notamment le ou les medium of performance prevus par le compositeur l'eventuel role soliste du medium of performance le personnage interprete par exemple dans un opera la tessiture precise This class comprises documented plans execution actions order achieve result specific quality  form contents"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U31i_was_function_of",
+        "description": "was function of  is type of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U7_foresees_place_at",
+        "description": "foresees place at This class comprises extents space  particular surface earth  pure sense physics  independent temporal phenomena matter An E73 Information Object may refer E1 CRM Entity"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U35_foresees_function",
+        "description": "foresees function Actor Function An E73 Information Object may refer E1 CRM Entity"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U10_has_order_number",
+        "description": "has order number  integer"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U75_has_harmonic_structure",
+        "description": "has harmonic structure Harmonic Structure This property allows sub typing CRM entities  form specialisation - use terminological hierarchy  thesaurus"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U225_used_sound_spatialization_technique",
+        "description": "used number of sound channels Sound Spatialization Technique This property identifies technique employed act modification"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U12i_is_genre_of",
+        "description": "is genre of  is type of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U44i_is_dedication_statement_of",
+        "description": "is dedication statement of  is referred to by"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U185_has_distribution_statement",
+        "description": "has distribution statement Distribution Statement This property associates instance E89 Propositional Object structural part instance E89 Propositional Object"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U21_is_about_actor",
+        "description": "is about actor This class comprises people  either individually groups  potential perform intentional actions held responsible This property documents E89 Propositional Object subject instance E1 CRM Entity"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U28i_is_ambitus_of",
+        "description": "is ambitus of  is type of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M28_Individual_Performance",
+        "description": "Individual Performance This class comprises activities follow directions performance plan  theatrical play  expression choreographic work musical work "
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U37i_is_foreseen_character_in",
+        "description": "is foreseen character in  is referred to by"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U182_has_music_format_statement",
+        "description": "has music format statement Music Format Statement This property associates instance E89 Propositional Object structural part instance E89 Propositional Object"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M61_Work_Type",
+        "description": "Work type This class comprises concepts denoted terms thesauri controlled vocabularies used characterize classify instances CRM classes"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U186i_is_printing_or_manufacture_statement_of",
+        "description": "is printing or manufacture statement of  is component of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M29_Editing",
+        "description": "Editing This class comprises activities result instances F2 Expression coming existence"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U45_has_metronome_indication",
+        "description": "has metronome indication Metronome Indication An E73 Information Object may refer E1 CRM Entity"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M58_Programming_Work",
+        "description": "Programming Work This class comprises works realised one one selfcontained expression "
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U204_has_reproduction_note",
+        "description": "has reproduction note  string This property container informal descriptions object expressed terms CRM constructs"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U17i_is_opus_statement_of",
+        "description": "is opus statement of  identifies"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U55_incorporates_performed_expression",
+        "description": "incorporates performed expression Performed Expression  incorporates"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U192_used_noise_reduction_technique",
+        "description": "used noise reduction technique Noise Reduction Technique This property identifies technique employed act modification"
+    },
+    {
+        "id": "http://www.w3.org/2004/02/skos/core#scopeNote",
+        "description": "note"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U45i_is_metronome_indication_of",
+        "description": "is metronome indication of  is referred to by"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U7i_is_foreseen_place_of",
+        "description": "is foreseen place of  is referred to by"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U40_has_catalogue_name",
+        "description": "has catalogue name Catalogue Name This property associates instance E90 Symbolic Object part instance E90 Symbolic Object  fragments texts clippings image"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U32i_was_responsibility_of",
+        "description": "was responsibility of  is type of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M173_Playing_Speed",
+        "description": "Playing speed This class comprises concepts denoted terms thesauri controlled vocabularies used characterize classify instances CRM classes"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#CLU206_should_have_media_type",
+        "description": "should have media type Media Type This property associates publication "
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U34_foresees_character",
+        "description": "foresees character  Character An E73 Information Object may refer E1 CRM Entity"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U11i_is_key_of",
+        "description": "is key of  is type of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U4_had_princeps_publication",
+        "description": "had princeps publication This class comprises activities publishing An E73 Information Object may refer E1 CRM Entity"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U193_used_historical_instruments",
+        "description": "used historical instruments  string This property container informal descriptions object expressed terms CRM constructs"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M47_WoO_Number",
+        "description": "WoO Number This class comprises identifiable symbols aggregation symbols  characters  identifiers  traffic signs  emblems  texts  data sets  images  musical scores  multimedia objects  computer program code mathematical formulae objectively recognizable structure documented single units"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U13_has_casting",
+        "description": "has casting Casting An E73 Information Object may refer E1 CRM Entity"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U188_has_series_statement",
+        "description": "has series statement Series Statement This property associates instance E89 Propositional Object structural part instance E89 Propositional Object"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U1i_medium_of_performance_was_used_in",
+        "description": "medium of performance was used in  was type of object used in"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U219_used_object_of_type_for_mixing",
+        "description": "used object of type for mixing Type Of Recording Equipment This property defines kind objects used E7 Activity  specific instance either unknown interest  use  hammer "
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M13_Opus_Subnumber",
+        "description": "Opus Subnumber This class comprises identifiable symbols aggregation symbols  characters  identifiers  traffic signs  emblems  texts  data sets  images  musical scores  multimedia objects  computer program code mathematical formulae objectively recognizable structure documented single units"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U23i_is_casting_detail_of",
+        "description": "is casting detail of  is associated with"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U51_is_partial_or_full_recording_of",
+        "description": "is partial or full recording of Performed Expression This property generalises notions copy  similar  dynamic  asymmetric relationship  domain expresses derivative  direction established"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#CLU206i_should_be_media_type_of",
+        "description": "should be media type of  should be type of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#CLU217_should_have_playing_speed",
+        "description": "should have playing speed Playing Speed This property associates publication "
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M171_Container",
+        "description": "Container This class comprises concepts denoted terms thesauri controlled vocabularies used characterize classify instances CRM classes"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U184i_is_publication_statement_of",
+        "description": "is publication statement of  is component of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U4i_was_princeps_publication_of",
+        "description": "was princeps publication of  is referred to by"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U55i_performed_expression_is_incorporated_in",
+        "description": "performed expression is incorporated in  is incorporated in"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M31_Actor_Function",
+        "description": "Actors Function This class comprises concepts denoted terms thesauri controlled vocabularies used characterize classify instances CRM classes"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U213_has_recording_method",
+        "description": "has recording method  string This property container informal descriptions object expressed terms CRM constructs"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M59_Program",
+        "description": "Program This class comprises documented plans execution actions order achieve result specific quality  form contents"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U12_has_genre",
+        "description": "has genre Genre This property allows sub typing CRM entities  form specialisation - use terminological hierarchy  thesaurus"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M45_Descriptive_Expression_Assignment",
+        "description": "Descriptive Expression Assignment This class comprises actions making assertions properties object relation two items concepts"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M43_Performed_Expression",
+        "description": "Performed Expression This class comprises immaterial realisations individual works particular time regarded complete whole"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U170i_is_title_statement_of",
+        "description": "is title statement of  is component of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U18i_is_rhythmic_pattern_of",
+        "description": "is rhythmic pattern of  is type of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U31_had_function",
+        "description": "had function Actor Function This property allows sub typing CRM entities  form specialisation - use terminological hierarchy  thesaurus"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M51_Type_Of_Recording_Equipment",
+        "description": "Type of recording equipment This class comprises concepts denoted terms thesauri controlled vocabularies used characterize classify instances CRM classes"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U181i_is_parallel_additional_edition_statement_of",
+        "description": "is parallel additional edition statement of  is component of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U199_has_sponsor",
+        "description": "has sponsor  string This property container informal descriptions object expressed terms CRM constructs"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#CLI198i_should_be_container_of",
+        "description": "should be container of  should be type of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M154_Label_Name",
+        "description": "Label name This class comprises sequences signs nature  either meaningful  used used refer identify specific instance class within certain context"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U217_has_playing_speed",
+        "description": "has playing speed Playing Speed This property allows sub typing CRM entities  form specialisation - use terminological hierarchy  thesaurus"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U205_has_cast_detail",
+        "description": "has cast detail  string This property container informal descriptions object expressed terms CRM constructs"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U73_is_derivative_of",
+        "description": "is derivative of This class comprises intellectual artistic realisations works form identifiable immaterial objects  texts  poems  jokes  musical choreographic notations  movement pattern  sound pattern  images  multimedia objects  combination forms objectively recognisable structures This property generalises notions copy  similar  dynamic  asymmetric relationship  domain expresses derivative  direction established"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U229_has_music_format",
+        "description": "has music format Music Format This property allows sub typing CRM entities  form specialisation - use terminological hierarchy  thesaurus"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U58_has_full_published_recording",
+        "description": "has full published recording This class comprises complete sets signs present publications  reflecting publishers ' final decisions content layout publications  features are also found on"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M170_Binding",
+        "description": "Binding This class comprises concepts denoted terms thesauri controlled vocabularies used characterize classify instances CRM classes"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U81_had_performer_status",
+        "description": "had performer status Performer Status This property allows sub typing CRM entities  form specialisation - use terminological hierarchy  thesaurus"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U2i_is_foreseen_type_of_medium_of_performance_in",
+        "description": "is foreseen type of medium of performance in  is referred to by"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U71_has_uniform_title",
+        "description": "has uniform title  string  title"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U62_has_form",
+        "description": "has form Form This property allows sub typing CRM entities  form specialisation - use terminological hierarchy  thesaurus"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U56i_was_historical_context_of",
+        "description": "was historical context of was context of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U46_occurred_in_context",
+        "description": "occurred in context Context This property allows sub typing CRM entities  form specialisation - use terminological hierarchy  thesaurus"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U90i_were_performance_conditions_of",
+        "description": "were performance conditions of  is referred to by"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U89_occured_in_performance_conditions",
+        "description": "occured in performance conditions Condition of Performance This property allows sub typing CRM entities  form specialisation - use terminological hierarchy  thesaurus"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U207_has_carrier_type",
+        "description": "has  carrier type Carrier Type This property allows sub typing CRM entities  form specialisation - use terminological hierarchy  thesaurus"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U176i_is_edition_statement_of",
+        "description": "is edition statement of  is component of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U34i_is_foreseen_character_of",
+        "description": "is foreseen character of  is referred to by"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U227i_is_content_type_of",
+        "description": "is content type of  is type of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U38_has_descriptive_expression",
+        "description": "has descriptive expression This class comprises immaterial realisations individual works particular time regarded complete whole This property associates instance F22 SelfContained Expression instance F1 Work"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U46i_was_context_of",
+        "description": "was context of  is type of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U36i_is_foreseen_responsibility_of",
+        "description": "is foreseen responsibility of  is referred to by"
+    },
+    {
+        "id": "http://www.w3.org/2004/02/skos/core#inScheme",
+        "description": "scheme"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U74i_was_cited_by",
+        "description": "was cited by  was used for"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M26_Foreseen_Performance",
+        "description": "Foreseen Performance Foreseen Activity"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#CLU197_should_have_binding",
+        "description": "shouldhavebinding Binding This property associates publication "
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U195_has_order_or_location_indication",
+        "description": "has order or location indication This class comprises identifiable immaterial items  poems  jokes  data sets  images  texts  multimedia objects  procedural prescriptions  computer program code  algorithm mathematical formulae  objectively recognizable structure documented single units This property associates instance E89 Propositional Object structural part instance E89 Propositional Object"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U218_used_object_of_type_for_mastering",
+        "description": "used object of type for mastering Type Of Recording Equipment This property defines kind objects used E7 Activity  specific instance either unknown interest  use  hammer "
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U25_has_scale",
+        "description": "has scale Music Scale This property allows sub typing CRM entities  form specialisation - use terminological hierarchy  thesaurus"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U27_performed_character",
+        "description": "performed character  Character This property describes use material immaterial things way essential performance outcome E7 Activity"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U168i_is_parallel_title_of",
+        "description": "is parallel title of  is title of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M1_Catalogue_Statement",
+        "description": "Catalogue Statement Cette classe permet de decrire lorsqu'elles existent les references de catalogue de l'oeuvre musicale Par catalogue on comprend tous les catalogues thematiques a proprement parler donc a l'exclusion des numeros d'opus ainsi que les classifications specifiques telles que WoO ou AnhSelon le niveau de granularite initial elle est decrite par une simple chaine de caracteres ou par les objets symboliques M10 Catalogue Name et M11 Catalogue Number qui la composent La classe M10 Catalogue Name peutetre documentee via la propriete p70i is documented in This class comprises sequences signs nature  either meaningful  used used refer identify specific instance class within certain context"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M2_Opus_Statement",
+        "description": "Opus Statement This class comprises sequences signs nature  either meaningful  used used refer identify specific instance class within certain context"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#CLU207_should_have_carrier_type",
+        "description": "should have carrier type Carrier Type This property associates publication "
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U221i_is_title_proper_of_series_of",
+        "description": "is  title proper of series of  is component of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U14i_is_tempo_of",
+        "description": "is tempo of  is referred to by"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#CLU207i_should_be_carrier_type_of",
+        "description": "should be carrier type of  should be type of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M22_Form",
+        "description": "Form This class comprises concepts denoted terms thesauri controlled vocabularies used characterize classify instances CRM classes"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U28_has_ambitus",
+        "description": "has ambitus  this property allows for describing the tessitura of a character as can be drawn from the score Ambitus This property allows sub typing CRM entities  form specialisation - use terminological hierarchy  thesaurus"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U172_has_statement_of_responsibility_relating_to_title",
+        "description": "has statement of responsibility relating to title Statement of Responsibility This property associates instance E89 Propositional Object structural part instance E89 Propositional Object"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M35_Representative_Publication_Assignment",
+        "description": "Representative Publication Assignment This class comprises actions making assertions properties object relation two items concepts"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#CLU210i_should_be_pagination_of",
+        "description": "should be pagination of  should be dimension of"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U14_has_tempo",
+        "description": "has tempo Tempo An E73 Information Object may refer E1 CRM Entity"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U26_has_maintained",
+        "description": "has maintained This class comprises persistent physical items purposely created human activity This property identifies E24 Physical ManMade Thing modified E11 Modification"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#M39_Derivation_Type_Assignment",
+        "description": "Derivation Type Assignment This class comprises actions classifying items whatever kind"
+    },
+    {
+        "id": "http://data.doremus.org/ontology#U93_is_realised_in",
+        "description": "is realised in Program This property associates instance F22 SelfContained Expression instance F1 Work"
+    }
+]
