@@ -1,0 +1,113 @@
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:dbc="http://dbpedia.org/resource/Category:"
+    xmlns:wikidata="http://www.wikidata.org/entity/"
+    xmlns:dbo="http://dbpedia.org/ontology/"
+    xmlns:yago-res="http://yago-knowledge.org/resource/"
+    xmlns:yago="http://dbpedia.org/class/yago/"
+    xmlns:dbt="http://dbpedia.org/resource/Template:"
+    xmlns:j.0="https://data.doremus.org/ontology/#"
+    xmlns:dbr="http://dbpedia.org/resource/"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:dbp="http://dbpedia.org/property/"
+    xmlns:dc="http://purl.org/dc/terms/"
+    xmlns:j.1="https://data.doremus.org/ontology/:#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:prov="http://www.w3.org/ns/prov#"
+    xmlns:j.2="https://data.doremus.org/ontology/:"
+    xmlns:freebase="http://rdf.freebase.com/ns/"
+    xmlns:mus="https://data.doremus.org/ontology/"
+    xmlns:foaf="http://xmlns.com/foaf/0.1/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#" > 
+  <rdf:Description rdf:about="http://dbpedia.org/resource/Allegro_Vivace">
+    <j.0:U10_has_order_number>1</j.0:U10_has_order_number>
+    <dbo:isPartOf rdf:resource="http://dbpedia.org/resource/Jupiter"/>
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/ClassicalMusicComposition"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://dbpedia.org/resource/Leopold_Mozart">
+    <rdf:type rdf:resource="http://dbpedia.org/resource/Person"/>
+    <dbp:firstName>Leopold</dbp:firstName>
+    <dbp:lastName>Mozart</dbp:lastName>
+    <dbo:peopleName>Leopold Mozart</dbo:peopleName>
+    <dbo:parent rdf:resource="http://dbpedia.org/resource/Wolfgang_Amadeus_Mozart"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://dbpedia.org/resource/Wolfgang_Amadeus_Mozart">
+    <dbo:country rdf:resource="http://dbpedia.org/resource/Austria"/>
+    <dbo:nationality rdf:resource="http://dbpedia.org/resource/Austria"/>
+    <dbo:spouse rdf:resource="http://dbpedia.org/resource/Constance_Weber"/>
+    <dbo:peopleName>Wolfgang Amadeus Mozart</dbo:peopleName>
+    <dbo:notableWork rdf:resource="http://dbpedia.org/resource/The_Magic_Flute"/>
+    <dbo:birthPlace rdf:resource="http://dbpedia.org/resource/Salzbourg"/>
+    <rdf:type rdf:resource="http://dbpedia.org/resource/Person"/>
+    <dbo:deathPlace rdf:resource="http://dbpedia.org/resource/Vienna"/>
+    <dbp:lastName>Mozart</dbp:lastName>
+    <dbp:firstName>Wolfgang Amadeus</dbp:firstName>
+    <dbo:deathDate>5 decembre 1791</dbo:deathDate>
+    <dbo:notableWork rdf:resource="http://dbpedia.org/resource/Jupiter"/>
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/MusicComposer"/>
+    <dbo:birthDate>27 janvier 1756</dbo:birthDate>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://dbpedia.org/resource/Claudio_Abbado">
+    <rdf:type rdf:resource="http://dbpedia.org/resource/Person"/>
+    <dbp:firstName>Claudio</dbp:firstName>
+    <dbp:lastName>Abbado</dbp:lastName>
+    <dbo:peopleName>Claudio Abbado</dbo:peopleName>
+    <dbo:leader rdf:resource="http://dbpedia.org/resource/London_Philharmonic_Orchestra"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://dbpedia.org/resource/The_Magic_Flute">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/ClassicalMusicComposition"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://dbpedia.org/resource/Menuetto">
+    <j.0:U10_has_order_number>3</j.0:U10_has_order_number>
+    <dbo:isPartOf rdf:resource="http://dbpedia.org/resource/Jupiter"/>
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/ClassicalMusicComposition"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://dbpedia.org/resource/Andante_Cantabile">
+    <j.0:U10_has_order_number>2</j.0:U10_has_order_number>
+    <dbo:isPartOf rdf:resource="http://dbpedia.org/resource/Jupiter"/>
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/ClassicalMusicComposition"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://dbpedia.org/resource/London_Philharmonic_Orchestra">
+    <j.0:M20_Music_Group_Formation rdf:resource="http://dbpedia.org/ontology/soundRecording"/>
+    <j.2:U20i_is_music_group_formation_of rdf:resource="http://dbpedia.org/resource/London"/>
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/musicBand"/>
+    <dbo:city rdf:resource="http://dbpedia.org/resource/London"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://dbpedia.org/resource/London">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/Place"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://dbpedia.org/resource/Constance_Weber">
+    <rdf:type rdf:resource="http://dbpedia.org/resource/Person"/>
+    <dbp:firstName>Constance</dbp:firstName>
+    <dbp:lastName>Weber</dbp:lastName>
+    <dbo:peopleName>Constance Weber</dbo:peopleName>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://dbpedia.org/resource/Molto_Allegro">
+    <j.0:U10_has_order_number>4</j.0:U10_has_order_number>
+    <dbo:isPartOf rdf:resource="http://dbpedia.org/resource/Jupiter"/>
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/ClassicalMusicComposition"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://dbpedia.org/resource/Jupiter">
+    <dbo:title>Jupiter</dbo:title>
+    <j.0:U14_has_tempo rdf:resource="http://dbpedia.org/resource/Allegro_Vivace"/>
+    <j.1:U14_has_tempo rdf:resource="http://dbpedia.org/resource/Menuetto"/>
+    <rdf:type rdf:resource="http://dbpedia.org/resource/Symphony"/>
+    <j.0:U42_has_opus_number>41</j.0:U42_has_opus_number>
+    <dbo:musicalKey>C major</dbo:musicalKey>
+    <owl:sameAs rdf:resource="http://dbpedia.org/resource/Symphony_No._41_(Mozart)"/>
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/ClassicalMusicComposition"/>
+    <j.0:U14_has_tempo rdf:resource="http://dbpedia.org/resource/Andante_Cantabile"/>
+    <j.0:U14_has_tempo rdf:resource="http://dbpedia.org/resource/Molto_Allegro"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://dbpedia.org/resource/Vienna">
+    <dbo:capital rdf:resource="http://dbpedia.org/resource/Austria"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://dbpedia.org/resource/Records/0001">
+    <rdf:type rdf:resource="http://dbpedia.org/ontology/soundRecording"/>
+    <dbo:recordDate>1980</dbo:recordDate>
+    <dbo:recordedIn rdf:resource="http://dbpedia.org/resource/London"/>
+    <j.1:U54_performed_by rdf:resource="http://dbpedia.org/resource/London_Philharmonic_Orchestra"/>
+    <dbo:Producer rdf:resource="http://dbpedia.org/resource/Claudio_Abbado"/>
+    <j.0:U51_is_partial_or_full_recording_of rdf:resource="http://dbpedia.org/resource/Jupiter"/>
+  </rdf:Description>
+</rdf:RDF>

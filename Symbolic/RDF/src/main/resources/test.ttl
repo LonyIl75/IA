@@ -1,0 +1,115 @@
+@prefix yago-res:  <http://yago-knowledge.org/resource/> .
+@prefix dbc:     <http://dbpedia.org/resource/Category:> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix freebase:  <http://rdf.freebase.com/ns/> .
+@prefix yago:    <http://dbpedia.org/class/yago/> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix mus:     <https://data.doremus.org/ontology/> .
+@prefix dbo:     <http://dbpedia.org/ontology/> .
+@prefix dbp:     <http://dbpedia.org/property/> .
+@prefix dct:     <http://purl.org/dc/terms/> .
+@prefix dbr:     <http://dbpedia.org/resource/> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix dbt:     <http://dbpedia.org/resource/Template:> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix wikidata:  <http://www.wikidata.org/entity/> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix dc:      <http://purl.org/dc/terms/> .
+
+dbr:Allegro_Vivace
+      a       dbo:ClassicalMusicComposition ;
+      dbo:isPartOf dbr:Jupiter ;
+      <https://data.doremus.org/ontology/#U10_has_order_number>
+              "1" .
+
+dbr:Leopold_Mozart
+      a       dbr:Person ;
+      dbo:parent dbr:Wolfgang_Amadeus_Mozart ;
+      dbo:peopleName "Leopold Mozart" ;
+      dbp:firstName "Leopold" ;
+      dbp:lastName "Mozart" .
+
+dbr:Wolfgang_Amadeus_Mozart
+      a       dbo:MusicComposer , dbr:Person ;
+      dbo:birthDate "27 janvier 1756" ;
+      dbo:birthPlace dbr:Salzbourg ;
+      dbo:country dbr:Austria ;
+      dbo:deathDate "5 decembre 1791" ;
+      dbo:deathPlace dbr:Vienna ;
+      dbo:nationality dbr:Austria ;
+      dbo:notableWork dbr:The_Magic_Flute , dbr:Jupiter ;
+      dbo:peopleName "Wolfgang Amadeus Mozart" ;
+      dbo:spouse dbr:Constance_Weber ;
+      dbp:firstName "Wolfgang Amadeus" ;
+      dbp:lastName "Mozart" .
+
+dbr:Claudio_Abbado
+      a       dbr:Person ;
+      dbo:leader dbr:London_Philharmonic_Orchestra ;
+      dbo:peopleName "Claudio Abbado" ;
+      dbp:firstName "Claudio" ;
+      dbp:lastName "Abbado" .
+
+dbr:The_Magic_Flute
+      a       dbo:ClassicalMusicComposition .
+
+dbr:Menuetto
+      a       dbo:ClassicalMusicComposition ;
+      dbo:isPartOf dbr:Jupiter ;
+      <https://data.doremus.org/ontology/#U10_has_order_number>
+              "3" .
+
+dbr:Andante_Cantabile
+      a       dbo:ClassicalMusicComposition ;
+      dbo:isPartOf dbr:Jupiter ;
+      <https://data.doremus.org/ontology/#U10_has_order_number>
+              "2" .
+
+dbr:London_Philharmonic_Orchestra
+      a       dbo:musicBand ;
+      dbo:city dbr:London ;
+      <https://data.doremus.org/ontology/#M20_Music_Group_Formation>
+              dbo:soundRecording ;
+      <https://data.doremus.org/ontology/:U20i_is_music_group_formation_of>
+              dbr:London .
+
+dbr:London
+      a       dbo:Place .
+
+dbr:Constance_Weber
+      a       dbr:Person ;
+      dbo:peopleName "Constance Weber" ;
+      dbp:firstName "Constance" ;
+      dbp:lastName "Weber" .
+
+dbr:Molto_Allegro
+      a       dbo:ClassicalMusicComposition ;
+      dbo:isPartOf dbr:Jupiter ;
+      <https://data.doremus.org/ontology/#U10_has_order_number>
+              "4" .
+
+dbr:Jupiter
+      a       dbo:ClassicalMusicComposition , dbr:Symphony ;
+      dbo:musicalKey "C major" ;
+      dbo:title "Jupiter" ;
+      owl:sameAs <http://dbpedia.org/resource/Symphony_No._41_(Mozart)> ;
+      <https://data.doremus.org/ontology/#U14_has_tempo>
+              dbr:Allegro_Vivace , dbr:Molto_Allegro , dbr:Andante_Cantabile ;
+      <https://data.doremus.org/ontology/#U42_has_opus_number>
+              "41" ;
+      <https://data.doremus.org/ontology/:#U14_has_tempo>
+              dbr:Menuetto .
+
+dbr:Vienna
+      dbo:capital dbr:Austria .
+
+<http://dbpedia.org/resource/Records/0001>
+      a       dbo:soundRecording ;
+      dbo:Producer dbr:Claudio_Abbado ;
+      dbo:recordDate "1980" ;
+      dbo:recordedIn dbr:London ;
+      <https://data.doremus.org/ontology/#U51_is_partial_or_full_recording_of>
+              dbr:Jupiter ;
+      <https://data.doremus.org/ontology/:#U54_performed_by>
+              dbr:London_Philharmonic_Orchestra .

@@ -1,0 +1,63 @@
+<http://dbpedia.org/resource/Jupiter> <http://dbpedia.org/ontology/title> "Jupiter" .
+<http://dbpedia.org/resource/Jupiter> <https://data.doremus.org/ontology/#U14_has_tempo> <http://dbpedia.org/resource/Allegro_Vivace> .
+<http://dbpedia.org/resource/Jupiter> <https://data.doremus.org/ontology/:#U14_has_tempo> <http://dbpedia.org/resource/Menuetto> .
+<http://dbpedia.org/resource/Jupiter> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/resource/Symphony> .
+<http://dbpedia.org/resource/Jupiter> <https://data.doremus.org/ontology/#U42_has_opus_number> "41" .
+<http://dbpedia.org/resource/Jupiter> <http://dbpedia.org/ontology/musicalKey> "C major" .
+<http://dbpedia.org/resource/Jupiter> <http://www.w3.org/2002/07/owl#sameAs> <http://dbpedia.org/resource/Symphony_No._41_(Mozart)> .
+<http://dbpedia.org/resource/Jupiter> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/ontology/ClassicalMusicComposition> .
+<http://dbpedia.org/resource/Jupiter> <https://data.doremus.org/ontology/#U14_has_tempo> <http://dbpedia.org/resource/Andante_Cantabile> .
+<http://dbpedia.org/resource/Jupiter> <https://data.doremus.org/ontology/#U14_has_tempo> <http://dbpedia.org/resource/Molto_Allegro> .
+<http://dbpedia.org/resource/Records/0001> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/ontology/soundRecording> .
+<http://dbpedia.org/resource/Records/0001> <http://dbpedia.org/ontology/recordDate> "1980" .
+<http://dbpedia.org/resource/Records/0001> <http://dbpedia.org/ontology/recordedIn> <http://dbpedia.org/resource/London> .
+<http://dbpedia.org/resource/Records/0001> <https://data.doremus.org/ontology/:#U54_performed_by> <http://dbpedia.org/resource/London_Philharmonic_Orchestra> .
+<http://dbpedia.org/resource/Records/0001> <http://dbpedia.org/ontology/Producer> <http://dbpedia.org/resource/Claudio_Abbado> .
+<http://dbpedia.org/resource/Records/0001> <https://data.doremus.org/ontology/#U51_is_partial_or_full_recording_of> <http://dbpedia.org/resource/Jupiter> .
+<http://dbpedia.org/resource/Constance_Weber> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/resource/Person> .
+<http://dbpedia.org/resource/Constance_Weber> <http://dbpedia.org/property/firstName> "Constance" .
+<http://dbpedia.org/resource/Constance_Weber> <http://dbpedia.org/property/lastName> "Weber" .
+<http://dbpedia.org/resource/Constance_Weber> <http://dbpedia.org/ontology/peopleName> "Constance Weber" .
+<http://dbpedia.org/resource/Allegro_Vivace> <https://data.doremus.org/ontology/#U10_has_order_number> "1" .
+<http://dbpedia.org/resource/Allegro_Vivace> <http://dbpedia.org/ontology/isPartOf> <http://dbpedia.org/resource/Jupiter> .
+<http://dbpedia.org/resource/Allegro_Vivace> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/ontology/ClassicalMusicComposition> .
+<http://dbpedia.org/resource/Wolfgang_Amadeus_Mozart> <http://dbpedia.org/ontology/country> <http://dbpedia.org/resource/Austria> .
+<http://dbpedia.org/resource/Wolfgang_Amadeus_Mozart> <http://dbpedia.org/ontology/nationality> <http://dbpedia.org/resource/Austria> .
+<http://dbpedia.org/resource/Wolfgang_Amadeus_Mozart> <http://dbpedia.org/ontology/spouse> <http://dbpedia.org/resource/Constance_Weber> .
+<http://dbpedia.org/resource/Wolfgang_Amadeus_Mozart> <http://dbpedia.org/ontology/peopleName> "Wolfgang Amadeus Mozart" .
+<http://dbpedia.org/resource/Wolfgang_Amadeus_Mozart> <http://dbpedia.org/ontology/notableWork> <http://dbpedia.org/resource/The_Magic_Flute> .
+<http://dbpedia.org/resource/Wolfgang_Amadeus_Mozart> <http://dbpedia.org/ontology/birthPlace> <http://dbpedia.org/resource/Salzbourg> .
+<http://dbpedia.org/resource/Wolfgang_Amadeus_Mozart> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/resource/Person> .
+<http://dbpedia.org/resource/Wolfgang_Amadeus_Mozart> <http://dbpedia.org/ontology/deathPlace> <http://dbpedia.org/resource/Vienna> .
+<http://dbpedia.org/resource/Wolfgang_Amadeus_Mozart> <http://dbpedia.org/property/lastName> "Mozart" .
+<http://dbpedia.org/resource/Wolfgang_Amadeus_Mozart> <http://dbpedia.org/property/firstName> "Wolfgang Amadeus" .
+<http://dbpedia.org/resource/Wolfgang_Amadeus_Mozart> <http://dbpedia.org/ontology/deathDate> "5 decembre 1791" .
+<http://dbpedia.org/resource/Wolfgang_Amadeus_Mozart> <http://dbpedia.org/ontology/notableWork> <http://dbpedia.org/resource/Jupiter> .
+<http://dbpedia.org/resource/Wolfgang_Amadeus_Mozart> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/ontology/MusicComposer> .
+<http://dbpedia.org/resource/Wolfgang_Amadeus_Mozart> <http://dbpedia.org/ontology/birthDate> "27 janvier 1756" .
+<http://dbpedia.org/resource/Claudio_Abbado> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/resource/Person> .
+<http://dbpedia.org/resource/Claudio_Abbado> <http://dbpedia.org/property/firstName> "Claudio" .
+<http://dbpedia.org/resource/Claudio_Abbado> <http://dbpedia.org/property/lastName> "Abbado" .
+<http://dbpedia.org/resource/Claudio_Abbado> <http://dbpedia.org/ontology/peopleName> "Claudio Abbado" .
+<http://dbpedia.org/resource/Claudio_Abbado> <http://dbpedia.org/ontology/leader> <http://dbpedia.org/resource/London_Philharmonic_Orchestra> .
+<http://dbpedia.org/resource/Leopold_Mozart> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/resource/Person> .
+<http://dbpedia.org/resource/Leopold_Mozart> <http://dbpedia.org/property/firstName> "Leopold" .
+<http://dbpedia.org/resource/Leopold_Mozart> <http://dbpedia.org/property/lastName> "Mozart" .
+<http://dbpedia.org/resource/Leopold_Mozart> <http://dbpedia.org/ontology/peopleName> "Leopold Mozart" .
+<http://dbpedia.org/resource/Leopold_Mozart> <http://dbpedia.org/ontology/parent> <http://dbpedia.org/resource/Wolfgang_Amadeus_Mozart> .
+<http://dbpedia.org/resource/Vienna> <http://dbpedia.org/ontology/capital> <http://dbpedia.org/resource/Austria> .
+<http://dbpedia.org/resource/Andante_Cantabile> <https://data.doremus.org/ontology/#U10_has_order_number> "2" .
+<http://dbpedia.org/resource/Andante_Cantabile> <http://dbpedia.org/ontology/isPartOf> <http://dbpedia.org/resource/Jupiter> .
+<http://dbpedia.org/resource/Andante_Cantabile> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/ontology/ClassicalMusicComposition> .
+<http://dbpedia.org/resource/The_Magic_Flute> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/ontology/ClassicalMusicComposition> .
+<http://dbpedia.org/resource/Menuetto> <https://data.doremus.org/ontology/#U10_has_order_number> "3" .
+<http://dbpedia.org/resource/Menuetto> <http://dbpedia.org/ontology/isPartOf> <http://dbpedia.org/resource/Jupiter> .
+<http://dbpedia.org/resource/Menuetto> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/ontology/ClassicalMusicComposition> .
+<http://dbpedia.org/resource/London> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/ontology/Place> .
+<http://dbpedia.org/resource/London_Philharmonic_Orchestra> <https://data.doremus.org/ontology/#M20_Music_Group_Formation> <http://dbpedia.org/ontology/soundRecording> .
+<http://dbpedia.org/resource/London_Philharmonic_Orchestra> <https://data.doremus.org/ontology/:U20i_is_music_group_formation_of> <http://dbpedia.org/resource/London> .
+<http://dbpedia.org/resource/London_Philharmonic_Orchestra> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/ontology/musicBand> .
+<http://dbpedia.org/resource/London_Philharmonic_Orchestra> <http://dbpedia.org/ontology/city> <http://dbpedia.org/resource/London> .
+<http://dbpedia.org/resource/Molto_Allegro> <https://data.doremus.org/ontology/#U10_has_order_number> "4" .
+<http://dbpedia.org/resource/Molto_Allegro> <http://dbpedia.org/ontology/isPartOf> <http://dbpedia.org/resource/Jupiter> .
+<http://dbpedia.org/resource/Molto_Allegro> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://dbpedia.org/ontology/ClassicalMusicComposition> .
