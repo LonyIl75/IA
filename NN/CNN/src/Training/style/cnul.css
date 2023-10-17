@@ -1,0 +1,58 @@
+/*form {
+  max-width: 500px;
+  margin: 0 auto;
+}*/
+
+h1 {
+  font-weight: 100;
+  color: white;
+  text-align: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgb(79, 98, 148);
+}
+
+/*.form {
+  background: #0e101c;
+  max-width: 400px;
+  margin: 0 auto;
+}*/
+
+.visu {
+  display: inline-block;
+}
+
+p {
+  color: #bf1650;
+}
+
+p::before {
+  content: "⚠ ";
+}
+
+input {
+  display: block;
+  box-sizing: border-box;
+
+  border-radius: 4px;
+
+  padding: 5px 5px 5px;
+  font-size: 14px;
+}
+select {
+  box-sizing: border-box;
+
+  border-radius: 4px;
+
+  padding: 5px 5px 5px;
+  font-size: 14px;
+}
+
+label {
+  line-height: 2;
+
+  margin-bottom: 13px;
+  margin-top: 20px;
+
+  font-size: 14px;
+  font-weight: 200;
+}

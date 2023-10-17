@@ -1,0 +1,2 @@
+Remplacer le modèle en extension( code disjoint ) des layers en un code plus maintenable grace a material UI + Controller 
+Rendre coherent ShapeInput 
