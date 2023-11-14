@@ -1,18 +1,7 @@
 # Reinforcement Learning Robot Tondeuse :
 
-
 ## Presentation :
 Re-implementation python du robot tondeuse conçu par @thibaultodor , Montpellier .
-
-
-## Applications Utilisées :
-	-	Discord
-	-	Trello
-
-## Technologie Utilisées:
-	-	Github Copilot
-	-	Stable-baseline3 (proposé par @araffin , Munich )
-	-	MiniConda
 
 ## Setup:
 		conda env create --name testEnvName --RL_baseline_configConda.yml
