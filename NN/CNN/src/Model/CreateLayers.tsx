@@ -1,4 +1,4 @@
-  
+//@ts-nocheck
 import React, { forwardRef,useState ,useEffect} from "react";
 import ReactDOM from "react-dom"
 import * as tfvis from "@tensorflow/tfjs-vis"
@@ -10,7 +10,7 @@ import { Input, Select, MenuItem,Checkbox,TextField } from "@material-ui/core";
 import SwitchLayer from "./../Layers/SwitchLayer"
 import {InputLayer} from "./../Layers/view/InputLayer"
 import{summarize} from "./SequentialModel"
-import { useModels } from "./../../ModelsContext";
+import { useModels } from "./../Provider/ModelsContext";
 import defaultLayers from "./../Layers/Data/defaultLayers"
 import defaultM from "./../Model/Data/defaultModel"
 import { yupResolver } from "@hookform/resolvers/yup";

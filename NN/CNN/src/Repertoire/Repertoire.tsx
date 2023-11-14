@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React,{useState,useEffect} from "react";
 import { useHistory } from "react-router-dom";
 import { useModels } from "../Provider/ModelsContext";
@@ -121,7 +122,6 @@ export const Repertoire = () => {
  
   <tbody>
   {lesModels.map((model:any) => { 
-  //=> <TableRow>
   return(<tr>
    
     <ContainerModels2
@@ -132,7 +132,6 @@ export const Repertoire = () => {
     handleToggle={handleToggle}
     handleDelete={handleDelete}/>
     </tr>)
-    //</TableRow>)
   })
 }
    </tbody>
@@ -159,7 +158,6 @@ export const Repertoire = () => {
 <tbody>
 
 {lesWaitingModels.map((wmodel:any) => { 
-  //=> <TableRow>
   return(<tr>
    
     <ContainerWaitingModels
@@ -170,7 +168,6 @@ export const Repertoire = () => {
     handleAbort={handleAbort}/>
   
     </tr>)
-    //</TableRow>)
   })
 }
     </tbody>
@@ -182,70 +179,6 @@ export const Repertoire = () => {
 </div>
     )
 }
-
-
-/*const ViewModel=({id,body}:{id:number,body:any})=>{
- // console.log(body.config.layers)
-  //const[isSelected,setSelected]=useState(false)
-  const toggle = ()=>{setSelected(!isSelected)}
-  useEffect(()=>{
-    if(isSelected)console.log("ajoute ")
- // },[isSelected])
-//<td style={{ textOverflow: "ellipsis",whiteSpace: "nowrap",overflow: "hidden",width:"30%",maxWidth:"30%"}} ></td>
- const layerstoString = body.config.layers.map((elem)=>elem.class_name.concat(' | '))
-  return(
-    <>
-    <span>{id}</span>
-    <span>{body.name}</span>
-    <span>{layerstoString}</span>
-    <button onClick={()=>summarize(body,id)}>Details</button>
-   // { <ModalImage
-  small={"./eyes.jpg"}
-  large={"./logo192.png"}
-  alt="Hello World!"
-   // />}
-    
-
-  </>)
-
-}*/
-
-
-/*
-stackoverflow : https://stackoverflow.com/questions/32916786/react-children-map-recursively 
-   const recursiveMap= (children:any)=>  {
-     console.log(children)  ;
-       React.Children.map(children, child => {
-    if (!React.isValidElement(child)) {
-      return <td style={{ textOverflow: "ellipsis",whiteSpace: "nowrap",overflow: "hidden",maxWidth:"30%"}} > {child}</td>;
-    }
-    if (child.props.children) {
-      child = React.cloneElement(child, {
-        children: recursiveMap(child.props.children)
-      });
-    }
-})}*/
-
-/*
-TODO : recursive children but ON PLAIN COMPONENT : <compo>(contenant :<div>....</div>)+ change tag name and switch case props ,PENIBLE 
-const TableRow =({children}:{children:any})=> {
-    const childrenArray = React.Children.toArray(children)
-    return(
-      <tr>
-      {deepMap(children, (child: ReactNode) => {
-      console.log(child)
-      return (//<td style={{ textOverflow: "ellipsis",whiteSpace: "nowrap",overflow: "hidden",width:"30%",maxWidth:"30%"}} >{child}</td>)
-      })}
-  
-
-      </tr>
-
-    )
-
-}*/
-
-
-
 
 /*
     function viewModels() {

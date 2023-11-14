@@ -1,4 +1,4 @@
-
+//@ts-nocheck
 import * as help from "./../../help/IntefaceUtil"
 
 

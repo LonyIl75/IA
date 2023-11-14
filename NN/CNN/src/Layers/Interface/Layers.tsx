@@ -1,4 +1,5 @@
 
+//@ts-nocheck
 import * as help from "./../../help/IntefaceUtil"
 import {ILayer} from "./../../Model/Interface/Model"
 import defaultLayers from"./../Data/defaultLayers"

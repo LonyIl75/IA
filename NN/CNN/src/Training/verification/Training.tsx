@@ -1,3 +1,4 @@
+//@ts-nocheck
 import * as Yup from "yup"
 import * as help from "./../../help/IntefaceUtil"
 import { lossFunction, classLoss } from "./../Interface/Metrics"

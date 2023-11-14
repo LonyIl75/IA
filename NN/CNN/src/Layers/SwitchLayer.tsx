@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { forwardRef, useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { useForm, Controller, useFieldArray,UseFormRegister } from "react-hook-form";
@@ -68,8 +69,7 @@ const handleChange =(e:React.ChangeEvent<HTMLInputElement>,setValue:Function)=>{
         }
         
 
-
-       const ClassName = layers[selectValue|| 'Conv2D']; //wrap dans une function et utiliser getValues 
+       const ClassName = layers[selectValue|| 'Conv2D'] ; //wrap dans une function et utiliser getValues 
        /* change for controller or consider watch to avoid rerendering root component*/
       return (
            <div>

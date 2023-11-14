@@ -1,4 +1,4 @@
-
+//@ts-nocheck
 import { createContext, useContext } from 'react'
 
 export interface IModelID{

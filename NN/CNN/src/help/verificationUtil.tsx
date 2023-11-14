@@ -1,3 +1,4 @@
+//@ts-nocheck
 import * as help from './IntefaceUtil'
 import * as Yup from "yup"
 

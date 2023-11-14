@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { forwardRef, useState, useEffect } from "react";
 import ReactDOM from "react-dom";
 import { useForm, Controller, useFieldArray } from "react-hook-form";

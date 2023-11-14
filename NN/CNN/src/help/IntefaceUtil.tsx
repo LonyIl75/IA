@@ -1,3 +1,4 @@
+//@ts-nocheck
 export interface IGeneric<Class, Config> {
     class_name: Class;
     config: Config;

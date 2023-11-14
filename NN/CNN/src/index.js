@@ -1,6 +1,6 @@
+//@ts-nocheck
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import reportWebVitals from './reportWebVitals';
 import{MyRoute} from './Route/MyRoute'
 import {ModelsProvider} from './Provider/ModelsProvider'

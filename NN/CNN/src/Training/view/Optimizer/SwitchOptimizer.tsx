@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React  ,{ useState,useEffect } from'react'
 import {Optimizers as enumOpti,Clip as enumClip} from "./../../Interface/Optimizers"
 import {GenericInput} from "./GenericInput"

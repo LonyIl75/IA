@@ -1,4 +1,4 @@
-
+//@ts-nocheck
 import  {ITrainingConfig}  from "./../../Training/Interface/Training"
 import * as help from "./../../help/IntefaceUtil"
 

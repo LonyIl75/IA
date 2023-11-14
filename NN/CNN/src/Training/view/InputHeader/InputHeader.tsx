@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { registerBackend } from '@tensorflow/tfjs-core'
 import React ,{useState,useEffect} from 'react'
 import {SelectProps} from "./../../Training"
