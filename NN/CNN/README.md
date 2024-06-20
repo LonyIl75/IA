@@ -7,3 +7,5 @@
     - Backend :
       -   model training
       -   generating UMAP plot
+
+> ⚠️ **Warning: Code made in 2020**
